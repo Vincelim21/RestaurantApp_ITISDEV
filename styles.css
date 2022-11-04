@@ -1,0 +1,116 @@
+body {
+    background-color: powderblue;
+    font-family:helvetica;
+    margin: 0;
+    height: 100%;
+  }
+
+
+h1 {
+    color: blue;
+  }
+ p {
+    color: red;
+  }
+
+.topnav{
+    background-color: #383838;
+    overflow: hidden;
+
+}
+.topnav a{
+    font-family: sans-serif;
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 15px 14px;
+
+}
+.topnav a.nav-home{
+    float: right;
+    background-color: blue;
+    color: black
+
+}
+.topnav a.nav-user{
+    float: right;
+    background-color: white;
+    color: black
+
+}
+.title{
+    margin: 20px;
+}
+.title hr{
+    width:70%;
+    text-align:left;
+    margin-left:  10px;
+}
+.title h1{
+    font-size: 50px;
+    color: black;
+}
+.title .entry{
+    margin:20px;
+}
+.title .entry a{
+    font-size: 30px;
+    color: black;
+}
+.title .entry .continue{
+    padding: 20px;
+    background-color: blue;
+    color: white;
+}
+.inline-two{
+    margin: 20px;
+    display: flexbox;
+
+
+  }
+.inline-two h1{
+    color: black;
+
+}
+
+/* SEPARATES MENU AND CHECKOUT */
+.menu-container{
+    width: 60%;
+    height: 100%;
+    margin-right: 10px;
+    display: inline-block;  
+    background-color:#327bf0;
+    text-align: center;
+    vertical-align: top;
+
+}
+.checkout-container{
+    width: 38%;
+    height: 800px;
+    display: inline-block;
+    background-color:#327bf0;
+    text-align: center;
+    margin-right: 10px;
+    vertical-align: top;
+    
+}
+
+
+.menu-card{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.menu-card .card-container{
+    background-color: white;
+    margin: 10px;
+     padding: 20px;
+    font-size: 30px;
+
+}
+.card-container p{
+    color:black;
+}
+.checkout-details table{
+    width: 100%;
+}
