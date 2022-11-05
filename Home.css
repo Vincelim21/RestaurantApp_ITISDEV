@@ -3,6 +3,34 @@ body
     background-color: powderblue;
 }
 
+/* Navigation Bar */
+.topnav{
+    background-color: #383838;
+    overflow: hidden;
+}
+
+.topnav a{
+    font-family: sans-serif;
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 15px 14px;
+
+}
+.topnav a.nav-home{
+    float: right;
+    background-color: blue;
+    color: black
+
+}
+.topnav a.nav-user{
+    float: right;
+    background-color: white;
+    color: black
+}
+/* End of Navigation Bar */
+
+/* Box Below Navigation Bar */
 .box-container 
 {
     height: 450px;
@@ -38,30 +66,4 @@ body
     color:black;
     text-decoration: none;
 }
-
-.topnav{
-    background-color: #383838;
-    overflow: hidden;
-
-}
-
-.topnav a{
-    font-family: sans-serif;
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 15px 14px;
-
-}
-.topnav a.nav-home{
-    float: right;
-    background-color: blue;
-    color: black
-
-}
-.topnav a.nav-user{
-    float: right;
-    background-color: white;
-    color: black
-
-}
+/* End of Box */
