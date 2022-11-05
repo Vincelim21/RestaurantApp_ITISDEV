@@ -10,7 +10,7 @@ body
     flex-direction: row;
     flex-wrap: wrap;
     border: 3px solid #333;
-    justify-content: space-between;
+    justify-content:space-around;
     background-color: #327bf0;
     margin-top: 20px;
 }
