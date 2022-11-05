@@ -1,6 +1,7 @@
 body
 {
     background-color: powderblue;
+    margin: 0;
 }
 
 /* Navigation Bar */
@@ -41,6 +42,8 @@ body
     justify-content:space-around;
     background-color: #327bf0;
     margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
   
 .box-item
@@ -51,7 +54,6 @@ body
     border: 3px solid #333;
     background-color: white;
     align-self: center;
-  
 }
 
 .box-item p
