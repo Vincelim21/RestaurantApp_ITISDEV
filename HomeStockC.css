@@ -1,14 +1,18 @@
+body
+{
+    background-color: powderblue;
+}
+
 .box-container 
 {
     height: 450px;
-    width: 800px;
-    display: grid;
-    grid-template-columns: 210px 210px 210px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     border: 3px solid #333;
     justify-content: space-between;
-    background-color: hsla(223, 100%, 50%, 0.40);
-    margin-left: 230px;
-    margin-top: 50px;
+    background-color: #327bf0;
+    margin-top: 20px;
 }
   
 .box-item
@@ -19,7 +23,7 @@
     border: 3px solid #333;
     background-color: white;
     align-self: center;
-    margin-left: 28px;
+  
 }
 
 .box-item p
@@ -27,4 +31,31 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
     text-align:center;
+}
+
+.topnav{
+    background-color: #383838;
+    overflow: hidden;
+
+}
+
+.topnav a{
+    font-family: sans-serif;
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 15px 14px;
+
+}
+.topnav a.nav-home{
+    float: right;
+    background-color: blue;
+    color: black
+
+}
+.topnav a.nav-user{
+    float: right;
+    background-color: white;
+    color: black
+
 }
