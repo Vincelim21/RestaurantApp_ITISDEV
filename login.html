@@ -5,23 +5,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="logintest.css">
+    <link rel="stylesheet" href="styles.css">
     <title>Login</title>
 </head>
 
 <body>
     <!--Need to div sizes?, Place checkbox beside the "remember me" text, Add font-->
-    <nav>
-    </nav>
+    <div class="topnav">
+        <a>RESTAURANT NAME</a>
+    </div> 
     <div class="halfgrid">
         <div class="content-half-box">
-            <p>Username</p><input type="text" name="LoginUsername">
-            <p>Password</p><input type="text" name="LoginPassword">
+            <h2>Username</h2><input type="text" name="LoginUsername">
+            <h2>Password</h2><input type="text" name="LoginPassword">
+            <div>
             Remember Me?<input type="checkbox">
-            <button type="submit">Login</button>
+            </div>
+            <button type="submit" class="login">Login</button>
         </div>
         <div class="content-half-box">
-            <p>Restaurant Icon Here</p>
+            <h1>Restaurant Icon Here</h1>
         </div>
     </div>
 </body>
