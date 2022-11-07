@@ -62,6 +62,24 @@ h1 {
     background-color: blue;
     color: white;
 }
+
+/* for date can be removed based on the changes*/
+.title .date a{
+    font-size: 30px;
+    color: black;
+    margin:20px;
+}
+/* end of date*/
+
+/* for spoiled html */
+.confirm, .cancel{
+    margin:20px;
+    padding: 20px;
+    background-color: blue;
+    color: white;
+}
+/* End of Spoiled Html*/ 
+
 .inline-two{
     margin: 20px;
     display: flexbox;
