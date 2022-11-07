@@ -132,3 +132,13 @@ h1 {
 .checkout-details table{
     width: 100%;
 }
+
+.tableInventory,th,td{
+    border:1px solid black;
+    width:fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+
