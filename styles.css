@@ -143,6 +143,26 @@ h1 {
     overflow-y:scroll;
 }
 
+/*Not sure about the scroll bar yet. Change if needed */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    }
+
+::-webkit-scrollbar-track {
+    border: 1px solid darkgray;
+    border-radius: 10px;
+    }
+
+::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+    }
+    
+::-webkit-scrollbar-thumb:hover {
+    background: #88ba1c;
+    }
+
 th,td{
     border:1px solid black;
     padding: 20px;
