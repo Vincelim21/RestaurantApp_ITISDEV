@@ -133,6 +133,7 @@ h1 {
     width: 100%;
 }
 
+/*Inventory and Purchase Table */
 .tableInventory{
     border:1px solid black;
     width:fit-content;
