@@ -1,5 +1,5 @@
 body {
-    background-color: powderblue;
+    background-color: rgba(2,73,255,0.2);
     font-family:helvetica;
     margin: 0;
     height: 100%;
@@ -14,7 +14,7 @@ h1 {
   }
 
 .topnav{
-    background-color: #383838;
+    background-color: #55565A;
     overflow: hidden;
 
 }
@@ -48,6 +48,9 @@ h1 {
 }
 .title h1{
     font-size: 50px;
+    font-family: 'Inter';
+    font-style: 'normal';
+    font-weight: 600;
     color: black;
 }
 .title .entry{
@@ -215,4 +218,15 @@ input[type=text] {
     border: none;
     text-align: center;
 }
+
+.line {
+    position:absolute;
+    width: 826px;
+    height: 0px;
+    left: 20px;
+    top: 150px;
+
+    border:1px solid #000000;
+}
+
 
