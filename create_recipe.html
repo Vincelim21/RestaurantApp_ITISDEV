@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Create a Recipe</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!--In need of a crashcourse before I proceed!!-->
+    
+</head>
+
+<body>
+    <div class="topnav">
+        <a>RESTAURANT NAME</a>
+        <a href="#about" class="nav-user">STOCK CONTROLLER</a>
+        <a href="HomeStockC.html" class="nav-home">HOME</a>
+    </div> 
+
+    <div class="title">
+        <h1>Create a Recipe</h1>
+        <hr>
+
+        <div class="entry"> <!-- Might be changed to form-->
+            <a>Recipe Name</a>
+            <!-- Textbox-->
+            <input type="text" id="recipe_name" name="recipe_name">
+        </div>
+
+        <div class="entry">
+            <a>Ingredients Used</a>
+            
+            <div class="ingredients_in_recipe">
+                <input type="text" id="ingredient_name" name="ingredient_name" placeholder="Ingredient Name">
+                    <!--Must be dropdown-->
+                <input type="number" id="ingredient_value" name="ingredient_value" placeholder="Ingredient Value">
+                <input type="text" id="ingredient_unit" name="ingredient_unit" placeholder="Ingredient Unit">
+                    <!--Must be dropdown-->
+            </div> <br>
+            
+            <button>Click me to add more</button>
+                <!--Click so user can add more ingredients-->
+    </div>
+
+</body>
+</html>
