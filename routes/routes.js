@@ -5,7 +5,7 @@ const router = express.Router()
 // First time use
 router.get('/',(req,res) =>{
     //First Screen
-    res.render('home_stockctrl')
+    res.render('login')
 })
 
 //Home Page
