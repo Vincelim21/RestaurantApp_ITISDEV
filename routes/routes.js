@@ -8,14 +8,53 @@ router.get('/',(req,res) =>{
     res.render('login')
 })
 
+//Home Page
 router.get('/home_stockctrl',(req,res) =>{
     //First Screen
     res.render('home_stockctrl')
 })
 
-router.get('/cashier_menu',(req,res) =>{
+router.get('/home_chef',(req,res) =>{
     //First Screen
-    res.render('cashier_menu')
+    res.render('home_chef')
+})
+
+router.get('/home_manager',(req,res) =>{
+    res.render('home_manager')
+})
+
+//Create Page
+router.get('/create_ingredient',(req,res) =>{
+    //First Screen
+    res.render('create_ingredient')
+})
+router.get('/create_recipe',(req,res) =>{
+    //First Screen
+    res.render('create_recipe')
+})
+
+//Record Page
+router.get('/record_firsttime',(req,res) =>{
+    //First Screen
+    res.render('record_firsttime')
+})
+router.get('/record_spoiled',(req,res) =>{
+    //First Screen
+    res.render('record_spoiled')
+})
+
+//View Pages
+router.get('/view_inventory',(req,res) =>{
+    //First Screen
+    res.render('view_inventory')
+})
+router.get('/view_inventorypurchases',(req,res) =>{
+    //First Screen
+    res.render('view_inventorypurchases')
+})
+router.get('/view_recipe',(req,res) =>{
+    //First Screen
+    res.render('view_recipe')
 })
 
 
