@@ -22,5 +22,8 @@
     "url": "https://github.com/Vincelim21/RestaurantApp_ITISDEV/issues"
   },
   "homepage": "https://github.com/Vincelim21/RestaurantApp_ITISDEV#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
