@@ -4,7 +4,7 @@ const app = express()
 const expressLayouts = require('express-ejs-layouts')
 
 //import index router
-const indexRouter = require('./routes/index')
+const indexRouter = require('./routes/routes')
 
 
 //set layouts into ejs files (html -> ejs tayo sa sunod)
