@@ -1,0 +1,261 @@
+body {
+    background-color: rgba(2,73,255,0.2);
+    font-family:helvetica;
+    margin: 0;
+    height: 100%;
+  }
+
+
+h1 {
+    color: blue;
+  }
+ p {
+    color: red;
+  }
+
+.topnav{
+    background-color: #55565A;
+    overflow: hidden;
+
+}
+.topnav a{
+    font-family: sans-serif;
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 15px 14px;
+
+}
+.topnav a.nav-home{
+    float: right;
+    background-color: blue;
+    color: black
+
+}
+.topnav a.nav-user{
+    float: right;
+    background-color: white;
+    color: black
+
+}
+.title{
+    margin: 20px;
+}
+.title hr{
+    width:70%;
+    text-align:left;
+    margin-left:  10px;
+}
+.title h1{
+    font-size: 50px;
+    font-family: 'Inter';
+    font-style: 'normal';
+    font-weight: 600;
+    color: black;
+}
+.title .entry{
+    margin:20px;
+}
+.title .entry a{
+    font-size: 30px;
+    color: black;
+}
+.title .entry .continue{
+    padding: 20px;
+    background-color: blue;
+    color: white;
+}
+
+/* for date can be removed based on the changes*/
+.title .date a{
+    font-size: 30px;
+    color: black;
+    margin:20px;
+}
+/* end of date*/
+
+/* for spoiled html */
+.confirm, .cancel{
+    margin:20px;
+    padding: 20px;
+    background-color: blue;
+    color: white;
+}
+/* End of Spoiled Html*/ 
+
+.inline-two{
+    margin: 20px;
+    display: flexbox;
+
+
+  }
+.inline-two h1{
+    color: black;
+
+}
+
+/* SEPARATES MENU AND CHECKOUT */
+.menu-container{
+    width: 60%;
+    height: 100%;
+    margin-right: 10px;
+    display: inline-block;  
+    background-color:#327bf0;
+    text-align: center;
+    vertical-align: top;
+
+}
+.checkout-container{
+    width: 38%;
+    height: 800px;
+    display: inline-block;
+    background-color:#327bf0;
+    text-align: center;
+    margin-right: 10px;
+    vertical-align: top;
+    
+}
+
+
+.menu-card{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.menu-card .card-container{
+    background-color: white;
+    margin: 10px;
+     padding: 20px;
+    font-size: 30px;
+
+}
+.card-container p{
+    color:black;
+}
+.checkout-details table{
+    width: 100%;
+}
+
+/*Inventory and Purchase Table */
+.tableInventory{
+    border:1px solid black;
+    width:fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    overflow-y:scroll;
+}
+
+/*Not sure about the scroll bar yet. Change if needed */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    }
+
+::-webkit-scrollbar-track {
+    border: 1px solid darkgray;
+    border-radius: 10px;
+    }
+
+::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+    }
+    
+::-webkit-scrollbar-thumb:hover {
+    background: #88ba1c;
+    }
+
+th,td{
+    border:1px solid black;
+    padding: 20px;
+}
+
+
+nav {
+    display: block;
+    background: #55565A;
+    border-radius: 0px;
+    width: auto;
+    height: 50px;
+}
+
+div.halfgrid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-column-gap: 2em;
+    margin-right: 3em;
+    margin-top: 1em;
+    margin-left: 1em;
+    
+}
+
+div.content-half-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: center;
+    background: rgba(2, 73, 255, 0.2);
+    align-items: center;
+
+}
+
+.login {
+    background: #0069FF;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 50%;
+    align-self: center;
+    border: none;
+    color: #FFFFFF;
+    margin: 2em;
+}
+
+input[type=text] {
+    background: #C4C4C4;
+    border-radius: 10px;
+    height: 30px;
+    border: none;
+    text-align: center;
+}
+
+input[type=number] {
+    background: #C4C4C4;
+    border-radius: 10px;
+    height: 30px;
+    border: none;
+    text-align: center;
+}
+
+.line {
+    position:absolute;
+    width: 826px;
+    height: 0px;
+    left: 20px;
+    top: 150px;
+
+    border:1px solid #000000;
+}
+
+.collapsible{
+    background-color: #eee;
+    color: #C4C4C4;
+    cursor: pointer;
+    padding: 18px;
+    width: 25%;
+    margin-left: 20px;
+    margin-top: 20px;
+    border: none;
+    text-align: center;
+    outline: none;
+    font-size: 15px;
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+
