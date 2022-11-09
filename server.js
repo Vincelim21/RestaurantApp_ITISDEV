@@ -12,7 +12,7 @@ app.set('view engine', 'ejs')
 
 //Set up render shortcuts (Layout is layout of all ejs) (views are ejs)
 app.set('views',__dirname + '/views')
-app.set('layout','layouts/layout')
+app.set('layout','partials/layout')
 
 
 app.use(expressLayouts)

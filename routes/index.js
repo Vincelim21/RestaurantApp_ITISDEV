@@ -5,7 +5,7 @@ const router = express.Router()
 // First time use
 router.get('/',(req,res) =>{
     //First Screen
-    res.render('record_firsttime')
+    res.render('cashier_menu')
 })
 
 // export router to server.js
