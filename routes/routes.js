@@ -5,7 +5,7 @@ const router = express.Router()
 // First time use
 router.get('/',(req,res) =>{
     //First Screen
-    res.render('login')
+    res.render('home_stockctrl')
 })
 
 //Home Page
@@ -57,6 +57,10 @@ router.get('/view_recipe',(req,res) =>{
     res.render('view_recipe')
 })
 
+
+router.get('/cashier_menu',(req,res) =>{
+    res.render('cashier_menu')
+})
 
 // export router to server.js
 module.exports = router
