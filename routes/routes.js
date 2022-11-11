@@ -44,9 +44,9 @@ router.get('/record_spoiled',(req,res) =>{
 })
 
 //View Pages
-router.get('/view_inventory',(req,res) =>{
+router.get('/view_inventory-controller',(req,res) =>{
     //First Screen
-    res.render('view_inventory')
+    res.render('view_inventory-controller')
 })
 router.get('/view_inventorypurchases',(req,res) =>{
     //First Screen
