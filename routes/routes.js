@@ -62,5 +62,9 @@ router.get('/cashier_menu',(req,res) =>{
     res.render('cashier_menu')
 })
 
+router.get('/record_physical',(req,res) =>{
+    res.render('record_physical')
+})
+
 // export router to server.js
 module.exports = router

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="layouts/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="topnav">
+        <a>RESTAURANT NAME</a>
+        <a href="#about" class="nav-user">STOCK CONTROLLER</a>
+        <a href="/home_stockctrl" class="nav-home">HOME</a>
+    </div> 
+
+    <div class="title">
+        <h1>Record Physical Count</h1>
+        <hr>
+
+        <div class="entry">
+            <a>Ingredient Name</a>
+
+            <!-- Dropdown Menu-->
+            <select name="ingredient-names" id="ingredient-names">
+                 <option value="recipe 1">RECIPE 1</option>
+                 <option value="recipe 2">RECIPE 2</option>
+                  <option value="recipe 3">RECIPE 3</option>
+              </select>
+        </div>
+
+        <div class="entry"> <!-- Might be changed to form-->
+            <a>Quantity</a>
+            <!-- Textbox-->
+            <input type="text" id="fname" name="fname">
+        </div>
+
+        <div class="entry">
+            <a>System Count: </a>
+            <a>###</a>
+        </div>
+
+        <!-- Date can be changed to a better one-->
+        <div class="date">
+            <a><label for="start">Date Bought:</label> </a>
+
+                <input type="date" id="start" name="trip-start"
+                    value="2022-11-07"
+                    min="2022-11-07">
+        </div>
+
+        <button type="button" class="confirm">Confirm</button>
+        <button type="button" class="cancel">Cancel</button>
+        
+    </div>
+
+</body>
+</html>
