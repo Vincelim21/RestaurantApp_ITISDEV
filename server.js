@@ -1,3 +1,10 @@
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+  }
+
+
+const DATABASE_URL = 'mongodb+srv://Raphael:andreikulit@cluster0.pauvgk7.mongodb.net/?retryWrites=true&w=majority'
+
 
 const express = require('express')
 const app = express()
@@ -18,19 +25,17 @@ app.set('layout','partials/layout')
 app.use(expressLayouts)
 app.use(express.static('public'))
 
-/*MongoDB
+//Database
 const mongoose = require('mongoose')
-mongoose.connect(process.env.DATABASE_URL,{
-    useNewUrlParser : true
-})
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
 const db = mongoose.connection
 db.on('error', error => console.error(error))
-db.once('open', ()=>console.log('Connected to Mongoose'))
-*/
+db.once('open', () => console.log('Connected to Mongoose'))
 
 //get index route
 app.use('/',indexRouter)
 console.log('Server starting at Localhost:3000...')
+console.log(DATABASE_URL)
 
 //set up SERVER PORT ("Localhost:3000" in Browser)
 app.listen(process.env.PORT || 3000)
