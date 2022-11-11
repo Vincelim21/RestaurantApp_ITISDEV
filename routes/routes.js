@@ -56,6 +56,10 @@ router.get('/view_recipe',(req,res) =>{
     //First Screen
     res.render('view_recipe')
 })
+router.get('/view_inventory-chef',(req,res) =>{
+    //First Screen
+    res.render('view_inventory-chef')
+})
 
 
 router.get('/cashier_menu',(req,res) =>{
