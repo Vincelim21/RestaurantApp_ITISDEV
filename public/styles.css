@@ -16,7 +16,6 @@ h1 {
 .topnav{
     background-color: #55565A;
     overflow: hidden;
-
 }
 .topnav a{
     font-family: sans-serif;
@@ -238,12 +237,11 @@ input[type=number] {
 }
 
 .collapsible{
-    background-color: #eee;
-    color: #C4C4C4;
+    background-color: gray;
+    color: black;
     cursor: pointer;
     padding: 18px;
-    width: 25%;
-    margin-left: 20px;
+    width: 100%;
     margin-top: 20px;
     border: none;
     text-align: center;
@@ -294,4 +292,5 @@ input[type=number] {
     color:black;
     text-decoration: none;
 }
+
 
