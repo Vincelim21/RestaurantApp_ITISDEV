@@ -1,14 +1,19 @@
+
+/*
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
-  }
+  } */
 
 
-const DATABASE_URL = 'mongodb+srv://Raphael:andreikulit@cluster0.pauvgk7.mongodb.net/?retryWrites=true&w=majority'
+const DATABASE_URL = 'mongodb+srv://Raphael:santillan@cluster0.cko2nz6.mongodb.net/?retryWrites=true&w=majority'
 
 
 const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
+const mongoose = require('mongoose')
+const { MongoClient } = require('mongodb');
+const client = new MongoClient(DATABASE_URL)
 
 //import index router
 const indexRouter = require('./routes/routes')
@@ -25,33 +30,38 @@ app.set('layout','partials/layout')
 app.use(expressLayouts)
 app.use(express.static('public'))
 
-//Database
-const mongoose = require('mongoose')
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
-const db = mongoose.connection
-db.on('error', error => console.error(error))
-db.once('open', () => console.log('Connected to Mongoose'))
+
 
 //get index route
 app.use('/',indexRouter)
 console.log('Server starting at Localhost:3000...')
-console.log(DATABASE_URL)
+
 
 //set up SERVER PORT ("Localhost:3000" in Browser)
 app.listen(process.env.PORT || 3000)
 
-
-/*
-async function main() {
-    const uri = "mongodb+srv://raphael:<password>@itisdev.axgfe0h.mongodb.net/?retryWrites=true&w=majority";
-
-    const client = new MongoClient(uri);
-
+//Database
+async function connect(){
     try{
-        await client.connect()
-    }catch (e){
-        console.error(e)
-    }finally{
-        await client.close()
+        await mongoose.connect(DATABASE_URL)
+        console.log("Connected to Mongoose in: "+ DATABASE_URL)
+    }catch(error){
+        console.log(error)
     }
-}   */
+}
+connect()
+
+async function run() {
+    try {
+      const database = client.db('sample_mflix');
+      const movies = database.collection('movies');
+      // Query for a movie that has the title 'Back to the Future'
+      const query = { title: 'Back to the Future' };
+      const movie = await movies.findOne(query);
+      console.log(movie);
+    } finally {
+      // Ensures that the client will close when you finish/error
+      await client.close();
+    }
+  }
+  run().catch(console.dir);
