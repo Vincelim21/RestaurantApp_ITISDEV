@@ -1,11 +1,18 @@
 const express = require('express')
 const router = express.Router()
+const ingredientOrder = require('../models/ingredient_order')
 
 
 // First time use
 router.get('/',(req,res) =>{
     //First Screen
     res.render('login')
+})
+
+router.post('/',(req,res) =>{
+    
+    res.render('test_test',{ingredientOrder: new ingredientOrder()})
+
 })
 
 //Home Page
