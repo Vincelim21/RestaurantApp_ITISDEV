@@ -11,6 +11,7 @@ const DATABASE_URL = 'mongodb+srv://Raphael:santillan@cluster0.cko2nz6.mongodb.n
 const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
+
 const mongoose = require('mongoose')
 const { MongoClient } = require('mongodb');
 const client = new MongoClient(DATABASE_URL)
