@@ -1,12 +1,7 @@
 const express = require('express')
-<<<<<<< HEAD
-const IngredientOrderModel = require('../models/ingredient_order')
+const IngredientOrderModel = require('../models/ingredient_order')//ingredient_order table
 const manualCountModel = require('../models/manual_count')
 const router = express.Router()
-=======
-const IngredientOrderModel = require('../models/ingredient_order') //ingredient_order table
-const router = express.Router() 
->>>>>>> c42097f5c51c648ba9389534a30aa782fa9887bc
 const mongoose = require('mongoose')
 const db = mongoose.connection
 
@@ -19,19 +14,18 @@ router.get('/',(req,res) =>{
 
 router.get('/test_test',async (req,res) =>{ //TEST DATA HERE (can be accessed in home page)
     
-    const ingredient = await IngredientOrderModel.findOne({ingredientId: "55445"}) //find table
+    const ingredient = await IngredientOrderModel.findOne({ingredientId: "55445"})
     
     try{
-        res.render('test_test',{ingredient /* nakalagay na "ingredient" sa ejs (loob ng <%=)*/:ingredient}) 
+        res.render('test_test',{ingredient /* nakalagay na "ingredient" sa ejs (loob ng <%=)*/:ingredient})
         console.log(ingredient) //check lang
     }catch(error){
         res.status(500).send(error)
     }
-    
-
-    
 
 })
+
+
 
 //Home Page
 router.get('/home_stockctrl',(req,res) =>{
