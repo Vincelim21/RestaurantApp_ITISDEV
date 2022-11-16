@@ -1,6 +1,8 @@
 const express = require('express')
 const IngredientOrderModel = require('../models/ingredient_order')//ingredient_order table
 const manualCountModel = require('../models/manual_count')
+const discrepanciesModel = require('../models/discrepancies')
+const spoilageModel = require('../models/spoilage')
 const router = express.Router()
 const mongoose = require('mongoose')
 const db = mongoose.connection
