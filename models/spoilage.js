@@ -16,4 +16,4 @@ const spoilageSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('spoilage', spoilageSchema)
+module.exports = mongoose.model('Spoilage', spoilageSchema)
