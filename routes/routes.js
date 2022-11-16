@@ -1,6 +1,8 @@
 const express = require('express')
+const IngredientOrderModel = require('../models/ingredient_order')
 const router = express.Router()
-const ingredientOrder = require('../models/ingredient_order')
+const mongoose = require('mongoose')
+const db = mongoose.connection
 
 
 // First time use
@@ -9,9 +11,19 @@ router.get('/',(req,res) =>{
     res.render('login')
 })
 
-router.post('/',(req,res) =>{
+router.get('/test_test',async (req,res) =>{
     
-    res.render('test_test',{ingredientOrder: new ingredientOrder()})
+    const ingredient = await IngredientOrderModel.findOne({ingredientId: "55445"})
+    
+    try{
+        res.render('test_test',{ingredient :ingredient})
+        console.log(ingredient)
+    }catch(error){
+        res.status(500).send(error)
+    }
+    
+
+    
 
 })
 

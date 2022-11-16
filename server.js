@@ -43,11 +43,13 @@ app.listen(process.env.PORT || 3000)
 //Database
 async function connect(){
     try{
-        await mongoose.connect(DATABASE_URL)
+        await mongoose.connect(DATABASE_URL,{dbName:'restaurant_database'})
         console.log("Connected to Mongoose in: "+ DATABASE_URL)
     }catch(error){
         console.log(error)
     }
 }
 connect()
+
+module.exports = mongoose
 
