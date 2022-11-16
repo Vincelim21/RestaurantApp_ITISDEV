@@ -27,6 +27,18 @@ router.get('/test_test',async (req,res) =>{ //TEST DATA HERE (can be accessed in
 
 })
 
+router.get('/test_discrepancies',async (req,res) =>{
+    
+    const Discrepancies = await discrepanciesModel.findOne({countId: "121"})
+    
+    try{
+        res.render('test_discrepancies',{discrep:Discrepancies})
+        console.log(discrep) //check lang
+    }catch(error){
+        res.status(500).send(error)
+    }
+
+})
 
 
 //Home Page
