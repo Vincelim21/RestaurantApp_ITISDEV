@@ -5,7 +5,7 @@ const manual_countSchema = new mongoose.Schema({
         type:Number,
         required:true
     },
-    ingredientID: {
+    ingredientTypeID: {
         type: String,
         required: true
     },
@@ -24,4 +24,4 @@ const manual_countSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('manual_Count', manual_countSchema)
+module.exports = mongoose.model('ManualCount', manual_countSchema)

@@ -15,4 +15,4 @@ const discrepanciesSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('discrepancies', discrepanciesSchema)
+module.exports = mongoose.model('Discrepancies', discrepanciesSchema)
