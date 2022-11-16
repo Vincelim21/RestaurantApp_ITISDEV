@@ -1,6 +1,6 @@
 const express = require('express')
-const IngredientOrderModel = require('../models/ingredient_order')
-const router = express.Router()
+const IngredientOrderModel = require('../models/ingredient_order') //ingredient_order table
+const router = express.Router() 
 const mongoose = require('mongoose')
 const db = mongoose.connection
 
@@ -11,13 +11,13 @@ router.get('/',(req,res) =>{
     res.render('login')
 })
 
-router.get('/test_test',async (req,res) =>{
+router.get('/test_test',async (req,res) =>{ //TEST DATA HERE (can be accessed in home page)
     
-    const ingredient = await IngredientOrderModel.findOne({ingredientId: "55445"})
+    const ingredient = await IngredientOrderModel.findOne({ingredientId: "55445"}) //find table
     
     try{
-        res.render('test_test',{ingredient :ingredient})
-        console.log(ingredient)
+        res.render('test_test',{ingredient /* reference sa ejs */:ingredient}) 
+        console.log(ingredient) //check lang
     }catch(error){
         res.status(500).send(error)
     }
