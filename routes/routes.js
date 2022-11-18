@@ -35,7 +35,7 @@ router.get('/test_discrepancies',async (req,res) =>{
     
     try{
         res.render('test_discrepancies',{discrep:Discrepancies})
-        console.log(discrep) //check lang
+        console.log(Discrepancies) //check lang
     }catch(error){
         res.status(500).send(error)
     }
