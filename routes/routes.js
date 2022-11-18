@@ -44,7 +44,7 @@ router.get('/test_discrepancies',async (req,res) =>{
 // diko mapalabas hahahah
 router.get('/test_users',async (req,res) =>{
     
-    const users = await UsersModel.findOne({username: "AccountStock"})
+    const users = await UsersModel.findOne({userType: "Stock Controller"})
     
     try{
         res.render('test_users',{users:users})
