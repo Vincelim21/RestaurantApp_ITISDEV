@@ -44,11 +44,11 @@ router.get('/test_discrepancies',async (req,res) =>{
 // diko mapalabas hahahah
 router.get('/test_users',async (req,res) =>{
     
-    const users = await UsersModel.findOne({userType: "Stock Controller"})
+    const user = await UsersModel.findOne({userType: "Stock Controller"})
     
     try{
-        res.render('test_users',{users:users})
-        console.log(users) //check lang
+        res.render('test_users',{user:user})
+        console.log(user) //check lang
     }catch(error){
         res.status(500).send(error)
     }
