@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
-const Users_accountSchema = new mongoose.Schema({
+const User_accountSchema = new mongoose.Schema({
   userID: {
-    type: Number,
+    type: String,
     required: true
   },
   username: {
@@ -19,4 +19,4 @@ const Users_accountSchema = new mongoose.Schema({
   }
   },{collection : 'user_account'})
 
-module.exports = mongoose.model('Users_account', Users_accountSchema)
+module.exports = mongoose.model('User_account', User_accountSchema)
