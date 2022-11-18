@@ -3,7 +3,6 @@ const IngredientOrderModel = require('../models/ingredient_order')//ingredient_o
 const manualCountModel = require('../models/manual_count')
 const discrepanciesModel = require('../models/discrepancies')
 const spoilageModel = require('../models/spoilage')
-const UserAccountModel = require('../models/user_account')
 const router = express.Router()
 const mongoose = require('mongoose')
 const db = mongoose.connection
@@ -35,20 +34,6 @@ router.get('/test_discrepancies',async (req,res) =>{
     try{
         res.render('test_discrepancies',{discrep:Discrepancies})
         console.log(discrep) //check lang
-    }catch(error){
-        res.status(500).send(error)
-    }
-
-})
-
-// diko mapalabas hahahah
-router.get('/test_users',async (req,res) =>{
-    
-    const user = await UserAccountModel.findOne({userID: "9001"})
-    
-    try{
-        res.render('test_users',{user:user})
-        console.log(user) //check lang
     }catch(error){
         res.status(500).send(error)
     }
