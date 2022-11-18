@@ -42,7 +42,6 @@ router.get('/test_discrepancies',async (req,res) =>{
 
 })
 
-// diko mapalabas userType wala naman error...
 router.get('/test_userType',async (req,res) =>{ //TEST DATA HERE (can be accessed in home page)
     
     const usertype = await UserTypeModel.findOne({userTypeID: "9001"})
@@ -56,7 +55,6 @@ router.get('/test_userType',async (req,res) =>{ //TEST DATA HERE (can be accesse
 
 })
 
-// diko din mapalabas user details...
 router.get('/test_userDetails',async (req,res) =>{ //TEST DATA HERE (can be accessed in home page)
     
     const userdetails = await UserDetailsModel.findOne({userID: "9901"})
