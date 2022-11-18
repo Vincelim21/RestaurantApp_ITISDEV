@@ -3,6 +3,8 @@ const IngredientOrderModel = require('../models/ingredient_order')//ingredient_o
 const manualCountModel = require('../models/manual_count')
 const discrepanciesModel = require('../models/discrepancies')
 const spoilageModel = require('../models/spoilage')
+const UserTypeModel = require('../models/user_type')
+const UserDetailsModel = require('../models/user_details')
 const router = express.Router()
 const mongoose = require('mongoose')
 const db = mongoose.connection
@@ -34,6 +36,20 @@ router.get('/test_discrepancies',async (req,res) =>{
     try{
         res.render('test_discrepancies',{discrep:Discrepancies})
         console.log(discrep) //check lang
+    }catch(error){
+        res.status(500).send(error)
+    }
+
+})
+
+// diko mapalabas userType
+router.get('/test_userType',async (req,res) =>{ //TEST DATA HERE (can be accessed in home page)
+    
+    const usertype = await UserTypeModel.findOne({userTypeID: "9001"})
+    
+    try{
+        res.render('test_userType',{usertype /* nakalagay na "ingredient" sa ejs (loob ng <%=)*/:usertype})
+        console.log(usertype) //check lang
     }catch(error){
         res.status(500).send(error)
     }
