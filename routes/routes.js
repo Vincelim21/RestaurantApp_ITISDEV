@@ -3,7 +3,7 @@ const IngredientOrderModel = require('../models/ingredient_order')//ingredient_o
 const manualCountModel = require('../models/manual_count')
 const discrepanciesModel = require('../models/discrepancies')
 const spoilageModel = require('../models/spoilage')
-const Users_Schema = require('../models/users')
+const UsersModel = require('../models/users')
 const router = express.Router()
 const mongoose = require('mongoose')
 const db = mongoose.connection
@@ -44,7 +44,7 @@ router.get('/test_discrepancies',async (req,res) =>{
 // working on this pa
 router.get('/test_users',async (req,res) =>{
     
-    const users = await Users_Schema.findOne({username: "AccountChef"})
+    const users = await UsersModel.findOne({username: "AccountChef"})
     
     try{
         res.render('test_users',{users:users})
