@@ -13,6 +13,6 @@ const Users_accountSchema = new mongoose.Schema({
     type: String,
     required: true
   }
-  },{collection : 'users'})
+  },{collection : 'user_account'})
 
-module.exports = mongoose.model('Users', Users_accountSchema)
+module.exports = mongoose.model('Users_account', Users_accountSchema)
