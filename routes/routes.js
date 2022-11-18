@@ -42,7 +42,7 @@ router.get('/test_discrepancies',async (req,res) =>{
 
 })
 
-// diko mapalabas userType
+// diko mapalabas userType wala naman error...
 router.get('/test_userType',async (req,res) =>{ //TEST DATA HERE (can be accessed in home page)
     
     const usertype = await UserTypeModel.findOne({userTypeID: "9001"})
@@ -50,6 +50,20 @@ router.get('/test_userType',async (req,res) =>{ //TEST DATA HERE (can be accesse
     try{
         res.render('test_userType',{usertype /* nakalagay na "ingredient" sa ejs (loob ng <%=)*/:usertype})
         console.log(usertype) //check lang
+    }catch(error){
+        res.status(500).send(error)
+    }
+
+})
+
+// diko din mapalabas user details...
+router.get('/test_userDetails',async (req,res) =>{ //TEST DATA HERE (can be accessed in home page)
+    
+    const userdetails = await UserDetailsModel.findOne({userID: "9901"})
+    
+    try{
+        res.render('test_userDetails',{userdetails /* nakalagay na "ingredient" sa ejs (loob ng <%=)*/:userdetails})
+        console.log(userdetails) //check lang
     }catch(error){
         res.status(500).send(error)
     }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div class="topnav">
+        <a>RESTAURANT NAME</a>
+        <a href="#about" class="nav-user">STOCK CONTROLLER</a>
+        <a href="/home_stockctrl" class="nav-home">HOME</a>
+    </div> 
+    <div class="title">
+        <h1>Test User Details</h1>
+        <hr>
+
+        <div class="entry"> <!-- Might be changed to form-->
+            <a>User ID: <%=userdetails.userID %> </a>
+        </div>
+        <div class="entry"> 
+            <a>First Name: <%=userdetails.firstName %> </a>
+        </div>
+        <div class="entry"> 
+            <a>Last Name: <%=userdetails.lastName %> </a>
+        </div>
+        <div class="entry"> 
+            <a>username: <%=userdetails.username %> </a>
+        </div>
+        <div class="entry"> 
+            <a>password: <%=userdetails.password %> </a>
+        </div>
+        <div class="entry">
+            <a>User Type ID: <%= userdetails.userTypeID %></a>
+            <br><br><br><br>
+            <button type="button" class="continue">CONTINUE</button>
+        </div>
+
+        
+    </div>
+
+</body>
+</html> 

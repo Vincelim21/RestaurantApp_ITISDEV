@@ -20,7 +20,11 @@ const User_detailsSchema = new mongoose.Schema({
     password: {
         type: String,
         required : true
-    }   
+    },   
+    userTypeID: {
+      type: String,
+      required: true
+    }
 }, {collection : 'user_details'})
 
 module.exports = mongoose.model('User_details', User_detailsSchema)
