@@ -41,6 +41,18 @@ router.get('/test_discrepancies',async (req,res) =>{
 
 })
 
+router.get('/test_users',async (req,res) =>{
+    
+    const users = await UserModel.findOne({username: "AccountChef"})
+    
+    try{
+        res.render('test_users',{discrep:Discrepancies})
+        console.log(users) //check lang
+    }catch(error){
+        res.status(500).send(error)
+    }
+
+})
 
 //Home Page
 router.get('/home_stockctrl',(req,res) =>{
