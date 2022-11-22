@@ -9,15 +9,11 @@ const manual_countSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    count: {
+    totalQuantity: {
         type: Number,
         required: true
     },
-    totalUnitValue: {
-        type: Number,
-        required: true
-    },
-    date: {
+    dateCount: {
         type: Date,
         required: true,
         default: Date.now

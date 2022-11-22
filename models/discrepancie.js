@@ -1,11 +1,15 @@
 const mongoose = require('mongoose')
 
 const discrepancieSchema = new mongoose.Schema({
+    countID: {
+        type: Number,
+        required: true
+    },
     ingredientID: {
         type: Number,
         required: true
     },
-    difference: {
+    quantityDiff: {
         type: Number,
         required: true
     }
