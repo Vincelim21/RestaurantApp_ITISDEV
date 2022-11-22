@@ -36,7 +36,7 @@ router.get('/test_test',async (req,res) =>{ //TEST DATA HERE (can be accessed in
 
 router.get('/test_discrepancies',async (req,res) =>{
     
-    const Discrepancies = await discrepancieModel.findOne({countId: "121"})
+    const Discrepancies = await discrepancieModel.find({});
     
     try{
         res.render('test_discrepancies',{discrep:Discrepancies})
