@@ -6,22 +6,22 @@ const manual_countSchema = new mongoose.Schema({
         required:true
     },
     ingredientTypeID: {
-        type: String,
-        required: true
-    },
-    ingredientType: {
-        type: String,
-        required: true
-    },
-    totalQuantity: {
         type: Number,
         required: true
     },
-    dateCount: {
+    count: {
+        type: Number,
+        required: true
+    },
+    totalUnitValue: {
+        type: Number,
+        required: true
+    },
+    date: {
         type: Date,
         required: true,
         default: Date.now
     }
 })
 
-module.exports = mongoose.model('ManualCount', manual_countSchema)
+module.exports = mongoose.model('manual_Count', manual_countSchema)

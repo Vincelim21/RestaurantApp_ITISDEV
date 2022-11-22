@@ -1,7 +1,7 @@
 const express = require('express')
 const IngredientOrderModel = require('../models/ingredient_order')//ingredient_order table
 const manualCountModel = require('../models/manual_count')
-const discrepanciesModel = require('../models/discrepancies')
+const discrepancieModel = require('../models/discrepancie')
 const spoilageModel = require('../models/spoilage')
 const UserTypeModel = require('../models/user_type')
 const UserDetailsModel = require('../models/user_details')
@@ -36,7 +36,7 @@ router.get('/test_test',async (req,res) =>{ //TEST DATA HERE (can be accessed in
 
 router.get('/test_discrepancies',async (req,res) =>{
     
-    const Discrepancies = await discrepanciesModel.findOne({countId: "121"})
+    const Discrepancies = await discrepancieModel.findOne({countId: "121"})
     
     try{
         res.render('test_discrepancies',{discrep:Discrepancies})
