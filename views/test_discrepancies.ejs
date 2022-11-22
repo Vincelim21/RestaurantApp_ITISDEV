@@ -11,17 +11,20 @@
     <div class="title">
         <h1>Test Discrepancies</h1>
         <hr>    
-        <div class="entry"> <!-- Might be changed to form-->
-            <a>Count Type ID: <%=discrep.countID %> </a>
-        </div>
-        <div class="entry">
-            <a>Ingredient ID: <%=discrep.ingredientID %></a>
-        </div>
-        <div class="entry">
-            <a>Quantity Diff: <%= discrep.quantityDiff %></a>
-            <br><br><br><br>
-            <button type="button" class="continue">CONTINUE</button>
-        </div>
+        <% discrep.forEach(discrep => { %>
+            <div class="entry"> <!-- Might be changed to form-->
+                <a>Count Type ID: <%=discrep.countID %> </a>
+            </div>
+            <div class="entry">
+                <a>Ingredient ID: <%=discrep.ingredientID %></a>
+            </div>
+            <div class="entry">
+                <a>Quantity Diff: <%= discrep.quantityDiff %></a>
+                <br><br><br><br>
+                <button type="button" class="continue">CONTINUE</button>
+            </div>
+        <% }); %> 
+        
 
         
     </div>
