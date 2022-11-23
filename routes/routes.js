@@ -177,9 +177,7 @@ router.post('/record_physical',async (req,res)=>{
     try{
         const ingredientDiscrepancie = new discrepancieModel({  // Put fields into Ingredient First Model
             ingredientID: req.body.ingredientID,
-            unitValue:req.body.unitValue,
-            ingredientType: req.body.ingredientType
-            
+            quantityDiff:req.body.unitValue
           })
  
     
