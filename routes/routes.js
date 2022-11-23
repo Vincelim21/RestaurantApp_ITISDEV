@@ -8,16 +8,9 @@ const UserDetailsModel = require('../models/user_details')
 const CustomerOrderModel = require('../models/customer_order')
 const menuModel = require('../models/menu')
 const recipeModel = require('../models/recipe')
-<<<<<<< Updated upstream
-const unitModel = require('../models/unit')
-const conversionModel = require('../models/conversion')
-const ingredentsModel = require('../models/ingredients_chef')
-const recipe_ingredientsModel = require('../models/recipe_ingredients_chef')
-=======
 const IngredientsModel = require("../models/ingredients")
 const IngredientFirstModel = require("../models/ingredient_first")
 const IngredientStockModel = require("../models/ingredient_stock")
->>>>>>> Stashed changes
 const router = express.Router()
 const mongoose = require('mongoose')
 const db = mongoose.connection
@@ -43,12 +36,13 @@ router.get('/test_test',async (req,res) =>{ //TEST DATA HERE (can be accessed in
 router.get('/record_firsttime',async(req,res) =>{
     
     try{
-        const ingredient = await IngredientsModel.find({})
-        const ingredient_first = new IngredientFirstModel()
+        // Read Databasefile
+        const ingredient = await IngredientsModel.find({})  //Retrieve Ingredients table
+        const ingredient_first = new IngredientFirstModel() // Create Ingredients Firsttime table
         const params = {
             ingredients: ingredient,
             ingredientorder : ingredient_first
-        }
+        } //EJS 
         res.render('record_firsttime',params)
         
     }catch(error){
@@ -60,7 +54,7 @@ router.get('/record_firsttime',async(req,res) =>{
 })
 router.post('/record_firsttime',async (req,res)=>{
     try{
-        const ingredientFirst = new IngredientFirstModel({
+        const ingredientFirst = new IngredientFirstModel({ // Put fields into Ingredient First Model
             ingredientName:req.body.name,
             unitValue:req.body.unitValue,
             ingredientType: req.body.ingredientType
@@ -69,6 +63,7 @@ router.post('/record_firsttime',async (req,res)=>{
  
     
         IngredientFirstModel.create(ingredientFirst) 
+        res.redirect('/')
         
 
     }catch(error){
