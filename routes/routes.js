@@ -3,7 +3,6 @@ const IngredientOrderModel = require('../models/ingredient_order')//ingredient_o
 const manualCountModel = require('../models/manual_count')
 const discrepancieModel = require('../models/discrepancie')
 const spoilageModel = require('../models/spoilage')
-const UserTypeModel = require('../models/user_type')
 const UserDetailsModel = require('../models/user_details')
 const CustomerOrderModel = require('../models/customer_order')
 const menuModel = require('../models/menu')
@@ -154,19 +153,6 @@ router.get('/test_discrepancies',async (req,res) =>{
     }catch(error){
         res.status(500).send(error)
     }   
-
-})
-
-router.get('/test_userType',async (req,res) =>{ //TEST DATA HERE (can be accessed in home page)
-    
-    const usertype = await UserTypeModel.findOne({userTypeID: "9001"})
-    
-    try{
-        res.render('test_userType',{usertype /* nakalagay na "ingredient" sa ejs (loob ng <%=)*/:usertype})
-        console.log(usertype) //check lang
-    }catch(error){
-        res.status(500).send(error)
-    }
 
 })
 
