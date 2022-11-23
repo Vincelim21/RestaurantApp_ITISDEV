@@ -20,13 +20,15 @@
                 <th>Ingredient Type</th>
                 <th>Total Quantity</th>
             </tr>
-            <tr>
+            <!-- Loops Each ingredient data onto the table-->
             <% ingredStock.forEach(ingredStock => { %>
+                <tr>
                     <td><%= ingredStock.ingredientName %></td>
                     <td><%= ingredStock.ingredientType %></td>
                     <td><%= ingredStock.totalUnitValue %></td>
+                </tr>
             <% }); %> 
-            </tr>
+           
 
             <!-- <tr>
               <td>Ingredient 1</td>
