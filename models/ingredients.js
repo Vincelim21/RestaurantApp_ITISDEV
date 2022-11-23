@@ -5,7 +5,7 @@
 
 const mongoose = require('mongoose')
 
-const ingredients_chefSchema = new mongoose.Schema({
+const ingredientsSchema = new mongoose.Schema({
     ingredientID:{
         type:Number,
         required:true
@@ -27,4 +27,4 @@ const ingredients_chefSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('ingredients_chef', ingredients_chefSchema)
+module.exports = mongoose.model('ingredients', ingredientsSchema)

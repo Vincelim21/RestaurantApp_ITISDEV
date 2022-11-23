@@ -8,7 +8,7 @@
 
 const mongoose = require('mongoose')
 
-const recipe_ingredients_chefSchema = new mongoose.Schema({
+const recipe_ingredientsSchema = new mongoose.Schema({
     recipeID:{
         type:Number,
         required:true
@@ -30,4 +30,4 @@ const recipe_ingredients_chefSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('recipe_ingredients_chef', recipe_ingredients_chefSchema)
+module.exports = mongoose.model('recipe_ingredients', recipe_ingredientsSchema)
