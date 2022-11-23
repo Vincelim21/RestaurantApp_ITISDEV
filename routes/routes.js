@@ -74,14 +74,14 @@ router.post('/record_firsttime',async (req,res)=>{
 
 router.get('/record_itempurchase',async (req,res)=>{
     try{
-        const ingredientFirst = await IngredientFirstModel.find({})
+        const ingredientFirst = await IngredientFirstModel.find({}) //Get INgredients First Table
         console.log(ingredientFirst)
-        const ingredientOrder = new IngredientOrderModel()
+        const ingredientOrder = new IngredientOrderModel() // Create Ingredient Order table
 
         const params = {
             ingredientorder: ingredientOrder,
             ingredientfirst : ingredientFirst
-        }
+        } // EJS
         res.render('record_itempurchase',params)
         
     }catch(error){
@@ -94,7 +94,7 @@ router.get('/record_itempurchase',async (req,res)=>{
 
 router.post('/record_itempurchase',async (req,res)=>{
     try{
-       const ingredientFirst = await IngredientFirstModel.find({ingredientName:req.body.name})
+       const ingredientFirst = await IngredientFirstModel.find({ingredientName:req.body.name}) //
        console.log("Ingredient First: "+ ingredientFirst)
        
        console.log("1")
@@ -104,20 +104,20 @@ router.post('/record_itempurchase',async (req,res)=>{
         unitValue:ingredientFirst.unitValue,
         quantityBought:req.body.quantity
        })
-       IngredientOrderModel.create(ingredientOrder)
-
+       IngredientOrderModel.create(ingredientOrder)  // Create Ingredient Order Table
+ 
 
        var query = {ingredientType:ingredientOrder.ingredientType}
        var valueQuery = ingredientOrder.quantityBought * ingredientOrder.unitValue
        
        console.log("2")
-       const ingredientsModelQuery = IngredientsModel.findOneAndUpdate({query,$inc : {'totalUnitValue' : valueQuery } })
+       const ingredientsModelQuery = IngredientsModel.findOneAndUpdate({query,$inc : {'totalUnitValue' : valueQuery } }) // Add Ingredients Table
        
        
        console.log(ingredientOrder)
        
        console.log("3")
-       const ingredientStockQuery = await IngredientStockModel.findOne({ingredientName:ingredientOrder.ingredientName})
+       const ingredientStockQuery = await IngredientStockModel.findOne({ingredientName:ingredientOrder.ingredientName}) // Compare Ingredient Order name with Ingredient Name
 
        console.log("4")
        if ( ingredientStockQuery== null){
@@ -128,7 +128,7 @@ router.post('/record_itempurchase',async (req,res)=>{
         ingredientStock.$inc({totalUnitValue:valueQuery})
        }
        else{
-        ingredientStockQuery.totalUnitValue.$inc({totalUnitValue:valueQuery})
+        ingredientStockQuery.totalUnitValue.$inc({totalUnitValue:valueQuery}) // Add Ingredient Order value to Ingredient Stock Value
 
        }
        console.log(ingredientOrder)
