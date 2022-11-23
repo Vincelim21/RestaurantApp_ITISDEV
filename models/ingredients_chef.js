@@ -11,7 +11,7 @@ const ingredients_chefSchema = new mongoose.Schema({
         required:true
     },
     
-    ingredientName:{
+    ingredientType:{
         type:String,
         required:true
     },

@@ -13,18 +13,8 @@ const recipe_ingredients_chefSchema = new mongoose.Schema({
         type:Number,
         required:true
     },
-
-    recipeName:{
-        type:String,
-        required:true
-    },
     
-    ingredientID:{
-        type:Number,
-        required:true
-    },
-
-    ingredientName:{
+    ingredientType:{
         type:String,
         required:true
     },
@@ -34,8 +24,8 @@ const recipe_ingredients_chefSchema = new mongoose.Schema({
         required:true
     },
 
-    unit:{
-        type:String,
+    unitID:{
+        type:Number,
         required:true
     }
 })
