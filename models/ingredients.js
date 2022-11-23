@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 // What's to be seen here: In Chef's POV, view all the ingredients, their running total, and chosen units (grams, mL, oz, etc)\
 // Ex.:
 // __INGREDIENT__RUNNING TOT____UNIT__
@@ -28,3 +29,24 @@ const ingredientsSchema = new mongoose.Schema({
 })
 
 module.exports = mongoose.model('ingredients', ingredientsSchema)
+=======
+const mongoose = require('mongoose')
+
+const IngredientsSchema = new mongoose.Schema({
+  ingredientID: {
+    type: String,
+    required: true
+  },
+  ingredientType: {
+    type: String,
+    required: true
+  },
+  totalUnitValue: {
+    type: Number,
+    required: true
+  }
+},{collection : 'ingredients'})
+
+
+module.exports = mongoose.model('Ingredients', IngredientsSchema)
+>>>>>>> Stashed changes

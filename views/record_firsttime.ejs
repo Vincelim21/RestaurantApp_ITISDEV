@@ -8,42 +8,48 @@
         <a href="#about" class="nav-user">STOCK CONTROLLER</a>
         <a href="/home_stockctrl" class="nav-home">HOME</a>
     </div> 
-    <form action = "/routes/"
-    <div class="title">
-        <h1>Record First Time Purchase</h1>
-        <hr>
-
-        <div class="entry"> <!-- Might be changed to form-->
-            <a>Ingredient Name </a>
-            <!-- Textbox-->
-            <input type="text" id="fname" name="fname">
+    <form action = "/record_firsttime" method="POST">
+        <div class="title">
+            <h1>Record First Time Purchase</h1>
+            <hr>
+    
+            
+           
+            <div class="entry"> 
+                <a>Ingredient Name </a>
+                <!-- Textbox-->
+                <input type="text" name="name" value="<%= ingredientorder.name %>">
+            </div>
+            <div class="entry">
+                <a>Ingredient Type</a>
+                <!-- Dropdown Menu-->
+               <select name ="ingredientType" id="type">
+                <% ingredients.forEach(ingredients => { %>
+                    <option  label="<%= ingredients.ingredientType %>" value="<%= ingredients.ingredientType %>">
+                <% }) %>
+              </select>
+            </div>
+            <div class="entry">
+                <a>Net Weight </a>
+                <!-- Textbox-->
+                <input type="number" name="unitValue" min="1" value="<%= ingredientorder.unitValue %>">
+    
+                <!-- Dropdown Menu
+                <select name="ingredient-names" id="ingredient-names">
+                     <option value="recipe 1">G</option>
+                     <option value="recipe 2">KG</option>
+                      <option value="recipe 3">MG</option>
+                </select> <br><br><br><br>-->
+                
+            </div>
+            
+    
+            
         </div>
-        <div class="entry">
-            <a>Ingredient Type</a>
+        <button class="continue" type="submit" href="/record_itempurchase">CONTINUE</button>
+    
 
-            <!-- Dropdown Menu-->
-            <select name="ingredient_name" id="ingredient_name">
-                <option value="ingredient_cheese">Cheese</option>
-                <option value="ingredient_milk">Milk</option>
-                 <option value="ingredient_flour">Flour</option>
-           </select>
-        </div>
-        <div class="entry">
-            <a>Net Weight </a>
-            <!-- Textbox-->
-            <input type="text" id="fname" name="fname">
-
-            <!-- Dropdown Menu-->
-            <select name="ingredient-names" id="ingredient-names">
-                 <option value="recipe 1">G</option>
-                 <option value="recipe 2">KG</option>
-                  <option value="recipe 3">MG</option>
-            </select> <br><br><br><br>
-            <button type="button"class="continue">CONTINUE</button>
-        </div>
-
-        
-    </div>
-
+    </form>
+    
 </body>
 </html> 

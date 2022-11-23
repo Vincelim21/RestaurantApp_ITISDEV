@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div class="topnav">
+        <a>RESTAURANT NAME</a>
+        <a href="#about" class="nav-user">STOCK CONTROLLER</a>
+        <a href="/home_stockctrl" class="nav-home">HOME</a>
+    </div> 
+    <form action = "/record_itempurchase" method="POST">
+        <div class="title">
+            <h1>Record Item Purchase</h1>
+            <hr>
+    
+            <div class="entry">
+                <a>Ingredient Name</a>
+                <!-- Dropdown Menu-->
+               <select name ="name" id="name">
+                <% ingredientfirst.forEach(ingredientfirst => { %>
+                    <option  label="<%= ingredientfirst.ingredientName%>" value="<%= ingredientfirst.ingredientName %>">
+                <% }) %>
+              </select>
+            </div>
+            <div class="entry">
+                <a>Quantity </a>
+                <!-- Textbox-->
+                <input type="number" name="quantity" min="1" value="<%= ingredientorder.quantity %>">
+
+                
+            </div>
+            
+            
+    
+            
+        </div>
+        <button class="continue" type="submit">CONTINUE</button>
+    
+
+    </form>
+    
+</body>
+</html> 

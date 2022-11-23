@@ -15,6 +15,7 @@ const expressLayouts = require('express-ejs-layouts')
 const mongoose = require('mongoose')
 const { MongoClient } = require('mongodb');
 const client = new MongoClient(DATABASE_URL)
+var bodyParser = require('body-parser')
 
 //import index router
 const indexRouter = require('./routes/routes')
@@ -30,6 +31,10 @@ app.set('layout','partials/layout')
 
 app.use(expressLayouts)
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({
+    extended:false
+}))
+app.use(bodyParser.json())
 
 
 

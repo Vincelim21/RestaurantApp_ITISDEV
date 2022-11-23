@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const Ingredient_orderSchema = new mongoose.Schema({
+const Ingredient_firstSchema = new mongoose.Schema({
   ingredientID: {
     type: String,
     required: false
@@ -21,17 +21,8 @@ const Ingredient_orderSchema = new mongoose.Schema({
   unitValue: {
     type: Number,
     required: false
-  },
-  quantityBought: {
-    type: Number,
-    required: false
-  },
-  dateBought: {
-    type: Date,
-    required: true,
-    default: Date.now
   }
-},{collection : 'ingredient_order'})
+},{collection : 'ingredient_first'})
 
 
-module.exports = mongoose.model('Ingredient_order', Ingredient_orderSchema)
+module.exports = mongoose.model('Ingredient_first', Ingredient_firstSchema)
