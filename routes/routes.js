@@ -34,6 +34,7 @@ router.get('/test_test',async (req,res) =>{ //TEST DATA HERE (can be accessed in
 
 })
 
+//Test to see if data in discrepancies are being read properly
 router.get('/test_discrepancies',async (req,res) =>{
     
     const Discrepancies = await discrepancieModel.find({});
