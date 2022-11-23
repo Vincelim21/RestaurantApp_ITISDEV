@@ -142,6 +142,22 @@ router.post('/record_itempurchase',async (req,res)=>{
     
 })
 
+router.get('/view_inventory-controller',async(req,res) =>{
+
+    const ingredientStock = await IngredientStockModel.find({});
+    try{
+        // Read Databasefile
+          //Retrieve IngredientStock table
+        res.render('view_inventory-controller',{ingredStock:ingredientStock});
+        console.log(ingredientStock);
+    //EJS 
+        
+    }catch(error){
+        res.status(500).send(error);
+        console.log(error);
+    }
+})
+
 //Test to see if data in discrepancies are being read properly
 router.get('/test_discrepancies',async (req,res) =>{
     
