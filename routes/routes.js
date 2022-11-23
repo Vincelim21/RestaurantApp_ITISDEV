@@ -143,19 +143,54 @@ router.post('/record_itempurchase',async (req,res)=>{
 })
 
 router.get('/view_inventory-controller',async(req,res) =>{
+    
+    const ingredientStock = await IngredientStockModel.find({})
 
-    const ingredientStock = await IngredientStockModel.find({});
     try{
         // Read Databasefile
           //Retrieve IngredientStock table
         res.render('view_inventory-controller',{ingredStock:ingredientStock});
-        console.log(ingredientStock);
     //EJS 
         
     }catch(error){
         res.status(500).send(error);
         console.log(error);
     }
+})
+
+router.get('/record_physical',async(req,res) =>{
+    
+    try{
+        // Read Databasefile
+        const ingredientStock = await IngredientStockModel.find({});  //Retrieve IngredientStock table
+        res.render('record_physical',{ingredStock:ingredientStock});
+    //EJS 
+        
+    }catch(error){
+        res.status(500).send(error);
+        console.log(error);
+    }
+})
+
+//I stopped here
+router.post('/record_physical',async (req,res)=>{
+    try{
+        const ingredientDiscrepancie = new discrepancieModel({  // Put fields into Ingredient First Model
+            ingredientID: req.body.ingredientID,
+            unitValue:req.body.unitValue,
+            ingredientType: req.body.ingredientType
+            
+          })
+ 
+    
+        IngredientFirstModel.create(ingredientFirst) 
+        res.redirect('/')
+        
+
+    }catch(error){
+        res.status(500).send(error)
+    }
+    
 })
 
 //Test to see if data in discrepancies are being read properly
