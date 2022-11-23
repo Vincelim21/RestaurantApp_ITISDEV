@@ -25,7 +25,7 @@
                 <!-- Dropdown Menu-->
                <select name ="ingredientType" id="type">
                 <% ingredients.forEach(ingredients => { %>
-                    <option  label="<%= ingredients.ingredientType %>" value="<%= ingredients.ingredientType %>">
+                    <option  label="<%= ingredients.ingredientType %>" value="<%= ingredients.ingredientType %>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
                 <% }) %>
               </select>
             </div>
@@ -34,12 +34,12 @@
                 <!-- Textbox-->
                 <input type="number" name="unitValue" min="1" value="<%= ingredientorder.unitValue %>">
     
-                <!-- Dropdown Menu
+       
                 <select name="ingredient-names" id="ingredient-names">
                      <option value="recipe 1">G</option>
                      <option value="recipe 2">KG</option>
                       <option value="recipe 3">MG</option>
-                </select> <br><br><br><br>-->
+                </select> <br><br><br><br>
                 
             </div>
             
