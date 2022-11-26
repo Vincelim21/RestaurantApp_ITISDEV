@@ -147,6 +147,7 @@ router.post('/record_itempurchase',async (req,res)=>{
     
 })
 
+// only manage to make recipeName work
 router.get('/create_recipe',async (req,res)=>{
 
     try{
@@ -161,6 +162,7 @@ router.get('/create_recipe',async (req,res)=>{
         console.log(error)
     }
 })
+// only manage to make recipeName work
 router.post('/create_recipe',async (req,res)=>{//Happens when submitting form of create_recipe EJS
 
     //SUMMARY:     Create recipe_table with values inputted from EJS
@@ -172,7 +174,7 @@ router.post('/create_recipe',async (req,res)=>{//Happens when submitting form of
  
         recipeModel.create(recipeName) // Create table in MongoAtlas
         res.redirect('/')
-        
+
     }catch(error){
         res.status(500).send(error)
         console.log(error)
