@@ -23,10 +23,11 @@
 
         <div class="entry"> <!-- Might be changed to form-->
             <a>Recipe Name</a>
-            <!-- Textbox-->
+            <!-- Textbox--><!-- trial value=" %= recipes.recipe_name %" refer to record_firsttime.ejs -->
             <input type="text" id="recipe_name" name="recipe_name">
         </div>
 
+        <form action = "/record_firsttime" method="POST">
         <div class="entry">
             <a>Ingredients Used</a>
             
@@ -37,9 +38,9 @@
                 <select name="ingredient_name" id="ingredient_name">
                     <option value="ingredient_cheese">Cheese</option>
                     <option value="ingredient_milk">Milk</option>
-                     <option value="ingredient_flour">Flour</option>
-               </select>
-               
+                    <option value="ingredient_flour">Flour</option>
+                </select> 
+
                 <input type="number" min="1" id="ingredient_value" name="ingredient_value" placeholder="Ingredient Value">
                 
                 <!--input type="text" id="ingredient_unit" name="ingredient_unit" placeholder="Ingredient Unit"-->
@@ -56,6 +57,9 @@
             <button onclick="addIngredient()" id="add_ingredient">Click me to add more</button>
                 <!--Click so user can add more ingredients-->
     </div>
+    
+    <button class="continue" type="submit" href="/view_recipe">CONTINUE</button>
+    </form>
 
 </body>
 </html>

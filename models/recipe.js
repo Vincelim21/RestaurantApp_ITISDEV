@@ -8,10 +8,6 @@ const recipeSchema = new mongoose.Schema({
     recipeName:{
         type:String,
         required:true
-    },
-    menuID:{
-        type:Number,
-        required:true
     }
 })
 
