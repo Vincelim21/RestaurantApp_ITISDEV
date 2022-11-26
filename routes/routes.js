@@ -21,29 +21,19 @@ router.get('/', async(req,res) =>{
     res.render('login')
 })
 
-router.get('/test_test',async (req,res) =>{ //TEST DATA HERE (can be accessed in home page)
-    
-    const ingredient = await IngredientOrderModel.findOne({ingredientId: "55445"})
-    
-    try{
-        res.render('test_test',{ingredient /* nakalagay na "ingredient" sa ejs (loob ng <%=)*/:ingredient})
-        console.log(ingredient) //check lang
-    }catch(error){
-        res.status(500).send(error)
-    }
 
-})
-router.get('/record_firsttime',async(req,res) =>{
+router.get('/record_firsttime',async(req,res) =>{ //Happens when rendering record_firsttime EJS
+
+    //SUMMARY: Render EJS file with IngredientsFirst Table (created) and Ingredients Table (Retrieved) as params for EJS
     
     try{
-        // Read Databasefile
-        const ingredient = await IngredientsModel.find({})  //Retrieve Ingredients table
+        const ingredients = await IngredientsModel.find({})  //Retrieve Ingredients table
         const ingredient_first = new IngredientFirstModel() // Create Ingredients Firsttime table
         const params = {
-            ingredients: ingredient,
-            ingredientorder : ingredient_first
-        } //EJS 
-        res.render('record_firsttime',params)
+            ingredients: ingredients, // ingredients in EJS file: ingredients data taken  
+            ingredientorder : ingredient_first // ingredientorder in EJS file: ingredientfirst value retrieved
+        } 
+        res.render('record_firsttime',params) // Render EJS with table values
         
     }catch(error){
         res.status(500).send(error)
@@ -52,37 +42,45 @@ router.get('/record_firsttime',async(req,res) =>{
 
     
 })
-router.post('/record_firsttime',async (req,res)=>{
+router.post('/record_firsttime',async (req,res)=>{//Happens when submitting form of record_firsttime EJS
+
+    //SUMMARY:     Create IngredientFirst table with values inputted from EJS
+
     try{
         const ingredientFirst = new IngredientFirstModel({ // Put fields into Ingredient First Model
-            ingredientName:req.body.name,
+            ingredientName:req.body.name, //Table value : Inputted Data from EJS
             unitValue:req.body.unitValue,
             ingredientType: req.body.ingredientType
             
           })
  
     
-        IngredientFirstModel.create(ingredientFirst) 
+        IngredientFirstModel.create(ingredientFirst) // Create table in MongoAtlas
         res.redirect('/')
         
 
     }catch(error){
         res.status(500).send(error)
+        console.log(error)
     }
     
 })
 
 router.get('/record_itempurchase',async (req,res)=>{
+
+    //SUMMARY: Render EJS file with IngredientOrder Table (created) and IngredientsFirst Table (Retrieved) as params for EJS
+
+
     try{
         const ingredientFirst = await IngredientFirstModel.find({}) //Get INgredients First Table
         console.log(ingredientFirst)
         const ingredientOrder = new IngredientOrderModel() // Create Ingredient Order table
 
         const params = {
-            ingredientorder: ingredientOrder,
-            ingredientfirst : ingredientFirst
+            ingredientorder: ingredientOrder, // ingredientorder in EJS file: Ingredient Order value taker
+            ingredientfirst : ingredientFirst// ingredientfirst in EJS file: Ingredient First value taken
         } // EJS
-        res.render('record_itempurchase',params)
+        res.render('record_itempurchase',params) // Render EJS with table values
         
     }catch(error){
         res.status(500).send(error)
@@ -93,48 +91,55 @@ router.get('/record_itempurchase',async (req,res)=>{
 })
 
 router.post('/record_itempurchase',async (req,res)=>{
+
+     //SUMMARY: Create IngredientsOrder Table with IngredientsFirst values and inputted values, Update Ingredients table with Ingredients Order value, Update Ingredient Stock table with Ingredients Order Value (create if not existing)
+
+
     try{
-       const ingredientFirst = await IngredientFirstModel.find({ingredientName:req.body.name}) //
-       console.log("Ingredient First: "+ ingredientFirst)
-       
-       console.log("1")
-       const ingredientOrder = new IngredientOrderModel({
-        ingredientName:ingredientFirst.ingredientName,
+       const ingredientFirst = await IngredientFirstModel.findOne({ingredientName:req.body.name}) //Get Ingredient First Table Values to be put in for Ingredient Order Values
+
+
+       const ingredientOrder = new IngredientOrderModel({ //Create Ingredient Order Values
+        ingredientName:ingredientFirst.ingredientName, // Put Ingredient First Values in Ingredient Order Table
         ingredientType:ingredientFirst.ingredientType,
         unitValue:ingredientFirst.unitValue,
-        quantityBought:req.body.quantity
+        quantityBought:req.body.quantity // Put Inputted Value into Ingredient Order Table
        })
+       
        IngredientOrderModel.create(ingredientOrder)  // Create Ingredient Order Table
  
 
-       var query = {ingredientType:ingredientOrder.ingredientType}
-       var valueQuery = ingredientOrder.quantityBought * ingredientOrder.unitValue
+       var query = {ingredientType:ingredientOrder.ingredientType} // Find Ingredient Type of Ingredients Table with a similar Ingredient type of IngredientOrder table
+       var valueQuery = ingredientOrder.quantityBought * ingredientOrder.unitValue // UnitValue * Quantity of Ingredient Order (totalUnitValue of IngredientOrder)
        
-       console.log("2")
-       const ingredientsModelQuery = IngredientsModel.findOneAndUpdate({query,$inc : {'totalUnitValue' : valueQuery } }) // Add Ingredients Table
+       IngredientsModel.updateOne(
+            { ingredientType: ingredientOrder.ingredientType },
+            { $inc: { totalUnitValue: Number(valueQuery) }}
+         ).exec() // Update IngredientModel table by adding valueQuery of Ingredient Order to totalUnitValue of IngredientsModel
        
        
-       console.log(ingredientOrder)
-       
-       console.log("3")
-       const ingredientStockQuery = await IngredientStockModel.findOne({ingredientName:ingredientOrder.ingredientName}) // Compare Ingredient Order name with Ingredient Name
+       const ingredientStockQuery = await IngredientStockModel.findOne({ingredientName:ingredientOrder.ingredientName}) // Find IngredientStock Table with Name to IngredientOrder name
 
-       console.log("4")
-       if ( ingredientStockQuery== null){
-        const ingredientStock = new IngredientStockModel({
+
+
+       if ( ingredientStockQuery== null){ //If there are no IngredientStock Table with existing name that was ordered
+        const ingredientStock = new IngredientStockModel({ //Create IngredientStock Table with values from IngredientFirst and valueQuery
             ingredientName:ingredientFirst.ingredientName,
-            ingredientType:ingredientFirst.ingredientType
-        })
-        ingredientStock.$inc({totalUnitValue:valueQuery})
+            ingredientType:ingredientFirst.ingredientType,
+            totalUnitValue: valueQuery
+        }) 
+        IngredientStockModel.create(ingredientStock) //Create IngredientStock Table
+        res.redirect('/')
        }
-       else{
-        ingredientStockQuery.totalUnitValue.$inc({totalUnitValue:valueQuery}) // Add Ingredient Order value to Ingredient Stock Value
 
+       else{ //If there is an existing IngredientStock Table that was ordered
+
+        IngredientStockModel.updateOne(
+            { ingredientName: ingredientOrder.ingredientName },
+            { $inc: { totalUnitValue: Number(valueQuery) }}
+         ).exec() //Update IngredientStock table by finding the table with the same IngredientOrder name and incrementing totalUnitValue with valQuery
+        res.redirect('/')
        }
-       console.log(ingredientOrder)
-       console.log(ingredientStockQuery)
-       console.log(ingredientsModelQuery)
-
 
 
     }catch(error){

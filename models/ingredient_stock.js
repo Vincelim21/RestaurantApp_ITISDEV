@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const Ingredient_stockSchema = new mongoose.Schema({
   ingredientID: {
     type: String,
-    required: true
+    required: false
   },
   ingredientName: {
     type: String,
