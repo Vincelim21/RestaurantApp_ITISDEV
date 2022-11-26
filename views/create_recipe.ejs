@@ -21,11 +21,11 @@
         <h1>Create a Recipe</h1>
         <hr>
 
-        <form action = "/record_firsttime" method="POST">
+        <form action = "/create_recipe" method="POST">
         <div class="entry"> <!-- Might be changed to form-->
             <a>Recipe Name</a>
             <!-- Textbox--><!-- trial value=" %= recipes.recipe_name %" refer to record_firsttime.ejs -->
-            <input type="text" id="recipe_name" name="recipe_name">
+            <input type="text" id="recipe_name" name="recipe_name" value="<%= recipename.recipe_name %>">
         </div>
 
         
@@ -60,7 +60,7 @@
                 <!--Click so user can add more ingredients-->
     </div>
     
-    <button class="continue" type="submit" href="/view_recipe">CONTINUE</button>
+    <button class="continue" type="submit" href="/">CONTINUE</button>
     </form>
 
 </body>

@@ -147,6 +147,39 @@ router.post('/record_itempurchase',async (req,res)=>{
     
 })
 
+router.get('/create_recipe',async (req,res)=>{
+
+    try{
+        const recipes = new recipeModel() // Create recipe Firsttime table
+        const params = { 
+            recipename : recipes // recipename in EJS file: recipename value retrieved
+        } 
+        res.render('create_recipe',params) // Render EJS with table values
+
+    }catch(error){
+        res.status(500).send(error)
+        console.log(error)
+    }
+})
+router.post('/create_recipe',async (req,res)=>{//Happens when submitting form of create_recipe EJS
+
+    //SUMMARY:     Create recipe_table with values inputted from EJS
+
+    try{
+        const recipeName = new recipeModel({ // Put fields into recipemodel
+            recipeName:req.body.recipe_name, //Table value : Inputted Data from EJS     
+          })
+ 
+        recipeModel.create(recipeName) // Create table in MongoAtlas
+        res.redirect('/')
+        
+    }catch(error){
+        res.status(500).send(error)
+        console.log(error)
+    }
+})
+
+
 router.get('/view_inventory-controller',async(req,res) =>{
     
     const ingredientStock = await IngredientStockModel.find({})
