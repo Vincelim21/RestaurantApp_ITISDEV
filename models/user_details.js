@@ -21,9 +21,9 @@ const User_detailsSchema = new mongoose.Schema({
         type: String,
         required : true
     },   
-    userTypeID: {
+    userTypeName: {
       type: String,
-      required: true
+      required : true
     }
 }, {collection : 'user_details'})
 

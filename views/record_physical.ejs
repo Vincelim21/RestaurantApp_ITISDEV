@@ -23,9 +23,9 @@
 
             <!-- Dropdown Menu-->
             <select name="ingredient-names" id="ingredient-names">
-                 <option value="recipe 1">RECIPE 1</option>
-                 <option value="recipe 2">RECIPE 2</option>
-                  <option value="recipe 3">RECIPE 3</option>
+                <% ingredStock.forEach(ingredStock => { %>
+                    <option  label="<%= ingredStock.ingredientName %>" value="<%= ingredStock.ingredientName %>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
+                <% }) %>
               </select>
         </div>
 
@@ -42,7 +42,7 @@
 
         <!-- Date can be changed to a better one-->
         <div class="date">
-            <a><label for="start">Date Bought:</label> </a>
+            <a><label for="start">Date Recorded:</label> </a>
 
                 <input type="date" id="start" name="trip-start"
                     value="2022-11-07"
