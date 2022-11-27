@@ -152,11 +152,12 @@ router.post('/record_itempurchase',async (req,res)=>{
 router.get('/create_recipe',async (req,res)=>{
 
     try{
+        const getRecipeIngredient = await IngredientsModel.find({})
         const recipes = new recipeModel() // Create recipe table
         const recipeingredients = new recipeIngredientsModel() // Create recipeingredients table
         const params = { 
             recipename : recipes, // recipename in EJS file: recipename value retrieved
-            recipeingredient : recipeingredients
+            recipeingredient : getRecipeIngredient
         } 
         res.render('create_recipe',params) // Render EJS with table values
 

@@ -33,13 +33,13 @@
             <a>Ingredients Used</a>
             
             <div class="ingredients_in_recipe">
-
+                
                 <!--input type="text" id="ingredient_name" name="ingredient_name" placeholder="Ingredient Name"-->
                     <!--Must be dropdown-->
                 <select name="ingredient_name" id="ingredient_name">
-                    <option value="ingredient_cheese">Cheese</option>
-                    <option value="ingredient_milk">Milk</option>
-                    <option value="ingredient_flour">Flour</option>
+                    <% recipeingredient.forEach(recipeingredient => { %>
+                        <option  label="<%= recipeingredient.ingredientType%>" value="<%= recipeingredient.ingredientType %>">
+                    <% }) %>
                 </select> 
 
                 <!-- trial amount in the recipe_ingredients -->
