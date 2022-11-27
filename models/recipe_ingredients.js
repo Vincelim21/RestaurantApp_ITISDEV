@@ -11,12 +11,12 @@ const mongoose = require('mongoose')
 const recipe_ingredientsSchema = new mongoose.Schema({
     recipeID:{
         type:Number,
-        required:true
+        required:false // change to true if the user can input / select from dropbox. 
     },
     
     ingredientType:{
         type:String,
-        required:true
+        required:false // change to true if the user can input / select from dropbox. 
     },
 
     unitValue:{
@@ -26,7 +26,7 @@ const recipe_ingredientsSchema = new mongoose.Schema({
 
     unitID:{
         type:Number,
-        required:true
+        required:false // change to true if the user can input / select from dropbox. 
     }
 })
 
