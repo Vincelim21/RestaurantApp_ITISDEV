@@ -13,12 +13,13 @@
 
 <div class = "title">
     <h1>Create New Ingredient</h1>
-    <div class = "line"></div>
+    <hr>
 
-    <div class="entry">
-        <a>Ingredient Name </a>
-        <input type="text" id="fname" name="fname">
-    </div>
+    <form action = "/create_ingredient" method ="POST">
+        <div class = "entry">
+            <a>Ingredient Type</a>
+            <input type = "text" id = "ingredient_type" name = "ingredient_type" value="<%=ingredient.ingredient_type%>">
+        </div>
 
     <div class="entry">
         <a>Specify Ingredient's Default Unit</a>
@@ -30,6 +31,8 @@
     </div>
 
 </div>
+<button class="continue" type="submit" href="/">CREATE</button>
+</form>
 
 
 

@@ -266,7 +266,29 @@ router.get('/test_userDetails',async (req,res) =>{ //TEST DATA HERE (can be acce
 
 router.get('/create_ingredient',async (req,res) => {
 
-    
+    try{
+        const ingredients = new IngredientsModel()
+        const params = {
+            ingredient : ingredients
+        }
+        res.render('create_ingredient',params)
+    }catch(error){
+        res.status(500).send(error)
+        console.log(error)
+    }
+})
+
+router.post('/create_ingredient',async (req,res) =>{
+    try{
+        const ingredientType = new IngredientsModel({
+            ingredientType:req.body.ingredient_type
+        })
+        IngredientsModel.create(ingredientType)
+        res.redirect('/')
+    }catch(error){
+        res.status(500).send(error)
+        console.log(error)
+    }
 })
 
 //Home Page

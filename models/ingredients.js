@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const IngredientsSchema = new mongoose.Schema({
   ingredientID: {
     type: String,
-    required: true
+    required: false
   },
   ingredientType: {
     type: String,
@@ -11,7 +11,7 @@ const IngredientsSchema = new mongoose.Schema({
   },
   totalUnitValue: {
     type: Number,
-    required: true
+    required: false
   }
 },{collection : 'ingredients'})
 
