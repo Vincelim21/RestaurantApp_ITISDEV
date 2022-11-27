@@ -7,6 +7,7 @@ const UserDetailsModel = require('../models/user_details')
 const CustomerOrderModel = require('../models/customer_order')
 const menuModel = require('../models/menu')
 const recipeModel = require('../models/recipe')
+const recipeIngredientsModel = require('../models/recipe_ingredients')
 const IngredientsModel = require("../models/ingredients")
 const IngredientFirstModel = require("../models/ingredient_first")
 const IngredientStockModel = require("../models/ingredient_stock")
@@ -151,9 +152,11 @@ router.post('/record_itempurchase',async (req,res)=>{
 router.get('/create_recipe',async (req,res)=>{
 
     try{
-        const recipes = new recipeModel() // Create recipe Firsttime table
+        const recipes = new recipeModel() // Create recipe table
+        const recipeingredients = new recipeIngredientsModel() // Create recipeingredients table
         const params = { 
-            recipename : recipes // recipename in EJS file: recipename value retrieved
+            recipename : recipes, // recipename in EJS file: recipename value retrieved
+            recipeingredient : recipeingredients
         } 
         res.render('create_recipe',params) // Render EJS with table values
 
@@ -171,8 +174,11 @@ router.post('/create_recipe',async (req,res)=>{//Happens when submitting form of
         const recipeName = new recipeModel({ // Put fields into recipemodel
             recipeName:req.body.recipe_name, //Table value : Inputted Data from EJS     
           })
- 
+        const recipeingredients = new recipeIngredientsModel({ // Put fields into recipemodel
+            unitValue:req.body.ingredient_value, //Table value : Inputted Data from EJS     
+          })
         recipeModel.create(recipeName) // Create table in MongoAtlas
+        recipeIngredientsModel.create(recipeingredients) // Create table in MongoAtlas
         res.redirect('/')
 
     }catch(error){
