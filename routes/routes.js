@@ -179,7 +179,7 @@ router.post('/create_recipe',async (req,res)=>{//Happens when submitting form of
           })
         recipeModel.create(recipeName) // Create table in MongoAtlas
         recipeIngredientsModel.create(recipeingredients) // Create table in MongoAtlas
-        res.redirect('/view_recipe')
+        res.redirect('/')
 
     }catch(error){
         res.status(500).send(error)
