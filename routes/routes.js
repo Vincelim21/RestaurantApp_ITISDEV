@@ -258,6 +258,11 @@ router.get('/test_userDetails',async (req,res) =>{ //TEST DATA HERE (can be acce
 
 })
 
+router.get('/create_ingredient',async (req,res) => {
+
+    
+})
+
 //Home Page
 router.get('/home_stockctrl',(req,res) =>{
     //First Screen
