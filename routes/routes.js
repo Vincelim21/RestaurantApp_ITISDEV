@@ -13,6 +13,7 @@ const IngredientFirstModel = require("../models/ingredient_first")
 const IngredientStockModel = require("../models/ingredient_stock")
 const router = express.Router()
 const mongoose = require('mongoose')
+const { addListener } = require('../models/ingredient_stock')
 const db = mongoose.connection
 
 
@@ -221,17 +222,43 @@ router.get('/record_physical',async(req,res) =>{
 
 //I stopped here
 router.post('/record_physical',async (req,res)=>{
+
+    
     try{
+        const ingredientStockChosen = await IngredientStockModel.findOne({ingredientName:req.body.ingredient-names})
+
+       varquantityDiff = abs(ingredientStockChosen.totalUnitValue - req.body.fname)
+
         const ingredientDiscrepancie = new discrepancieModel({  // Put fields into Ingredient First Model
             ingredientID: req.body.ingredient-names,
-            quantityDiff:req.body.fname
+            quantityDiff:varquantityDiff
           })
  
     
         discrepancieModel.create(ingredientDiscrepancie) 
-        res.redirect('/view_discrepancy')
         
+        IngredientStockModel.updateOne({ingredientName:req.body.ingredient-names},
+            {$inc: { totalUnitValue: Number(-varquantityDiff)}})
 
+        res.redirect('/view_discrepancy')
+
+    }catch(error){
+        res.status(500).send(error)
+    }
+    
+})
+
+router.get('/view_discrepany',async(req,res)=>{
+
+    try{
+        const getViewDiscrepancy = await discrepancieModel.find({});
+    const getStockValue = await IngredientStockModel.find({});
+    const params = { 
+        viewDiscrep : getViewDiscrepancy, // recipename in EJS file: recipename value retrieved
+        stockIngredient : getStockValue
+    } 
+
+    res.render('/view_discrepany',params);
     }catch(error){
         res.status(500).send(error)
     }
@@ -350,6 +377,11 @@ router.get('/cashier_menu',(req,res) =>{
 router.get('/record_physical',(req,res) =>{
     res.render('record_physical')
 })
+
+router.get('/view_discrepancy',(req,res) =>{
+    res.render('view_discrepancy');
+})
+
 
 // export router to server.js
 module.exports = router

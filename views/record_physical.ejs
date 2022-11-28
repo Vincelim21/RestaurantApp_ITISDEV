@@ -14,7 +14,8 @@
         <a href="/home_stockctrl" class="nav-home">HOME</a>
     </div> 
 
-    <div class="title">
+    <form action="/record_physical" method="post">
+        <div class="title">
         <h1>Record Physical Count</h1>
         <hr>
 
@@ -32,7 +33,7 @@
         <div class="entry"> <!-- Might be changed to form-->
             <a>Quantity</a>
             <!-- Textbox-->
-            <input type="text" id="fname" name="fname">
+            <input type="number" id="fname" name="fname">
         </div>
 
         <div class="entry">
@@ -51,10 +52,12 @@
                     min="2022-11-07">
         </div>
 
-        <button type="button" class="confirm">Confirm</button>
-        <button type="button" class="cancel">Cancel</button>
+            <button type="submit" class="confirm">Confirm</button>
+            <button type="button" class="cancel" href="/home_stockctrl">Cancel</button>
         
-    </div>
+        </div>
+
+    </form>
 
 </body>
 </html>

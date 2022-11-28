@@ -16,10 +16,21 @@
     <div class="tableInventory">
         <table>
             <tr>
-              <th>Ingredient Type</th>
+              <th>Ingredient Name</th>
               <th>Running Total</th>
+              <th>Difference</th>
               <th>Unit</th>
             </tr>
+
+            <% ingredStock.forEach(ingredStock => { %>
+                <tr>
+                    <td><%= StockIngredient.ingredientName %></td>
+                    <td><%= StockIngredient.totalUnitValue %></td>
+                    <td><%= viewDiscrep.quantityDiff %></td>
+                </tr>
+            <% }); %> 
+
+            <!--
             <tr>
               <td>Ingredient 1</td>
               <td>1000</td>
@@ -44,7 +55,7 @@
                 <td>1000</td>
                 <td>g</td>
             </tr>
-          </table>
+          </table>              -->
 
     </div>
     
