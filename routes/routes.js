@@ -226,43 +226,47 @@ router.get('/record_physical',async(req,res) =>{
 router.post('/record_physical',async (req,res)=>{
 
     try{
-        const ingredientStockChosen = await IngredientStockModel.findOne({ingredientName:req.body.ingredient-names})
+        const ingredientStockChosen = await IngredientStockModel.findOne({ingredientName:req.body.ingredient_names})
 
-       varquantityDiff = abs(ingredientStockChosen.totalUnitValue - req.body.fname)
+       var quantityDiff = Math.abs(ingredientStockChosen.totalUnitValue - req.body.fname)
 
         const ingredientDiscrepancie = new discrepancieModel({  // Put fields into Ingredient First Model
-            ingredientID: req.body.ingredient-names,
-            quantityDiff:varquantityDiff
+            ingredientID: req.body.ingredient_names,
+            quantityDiff:quantityDiff
           })
  
     
         discrepancieModel.create(ingredientDiscrepancie) 
         
-        IngredientStockModel.updateOne({ingredientName:req.body.ingredient-names},
-            {$inc: { totalUnitValue: Number(-varquantityDiff)}})
+        IngredientStockModel.updateOne({ingredientName:req.body.ingredient_names},
+            {$inc: { totalUnitValue: Number(-quantityDiff)}}
+            ).exec()
 
-        res.redirect('/view_discrepancy')
+        res.redirect('/')
 
     }catch(error){
         res.status(500).send(error)
+        console.log(error);
     }
     
 })
 
-router.get('/view_discrepany',async(req,res)=>{
+router.get('/view_discrepancy',async(req,res)=>{
 
     try{
         const getViewDiscrepancy = await discrepancieModel.find({});
-    const getStockValue = await IngredientStockModel.find({});
-    const params = { 
-        viewDiscrep : getViewDiscrepancy, // recipename in EJS file: recipename value retrieved
-        stockIngredient : getStockValue
-    } 
+        const getStockValue = await IngredientStockModel.find({});
+        const params = { 
+            viewDiscrep : getViewDiscrepancy, // recipename in EJS file: recipename value retrieved
+            stockIngredient : getStockValue
+        } 
+        console.log(getViewDiscrepancy);
+        console.log(getStockValue);
 
-    res.render('/view_discrepany',params);
-    }catch(error){
-        res.status(500).send(error)
-    }
+        res.render('view_discrepancy',params);
+        }catch(error){
+            res.status(500).send(error)
+        }
     
 })
 

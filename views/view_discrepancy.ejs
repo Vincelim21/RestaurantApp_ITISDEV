@@ -17,18 +17,19 @@
         <table>
             <tr>
               <th>Ingredient Name</th>
-              <th>Running Total</th>
+              <th>New Total</th>
               <th>Difference</th>
-              <th>Unit</th>
             </tr>
 
-            <% ingredStock.forEach(ingredStock => { %>
+            <% stockIngredient.forEach(stockIngredient => { %>
                 <tr>
-                    <td><%= StockIngredient.ingredientName %></td>
-                    <td><%= StockIngredient.totalUnitValue %></td>
+                    <td><%= stockIngredient.ingredientName %></td>
+                    <td><%= stockIngredient.totalUnitValue %></td>
                     <td><%= viewDiscrep.quantityDiff %></td>
                 </tr>
             <% }); %> 
+
+            
 
             <!--
             <tr>
