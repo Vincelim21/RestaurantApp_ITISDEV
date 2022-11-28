@@ -207,7 +207,7 @@ router.get('/view_inventory-controller',async(req,res) =>{
         console.log(error);
     }
 })
-
+//Renders current inventory and stock amount in record physical page
 router.get('/record_physical',async(req,res) =>{
     
     try{
@@ -222,7 +222,7 @@ router.get('/record_physical',async(req,res) =>{
     }
 })
 
-//I stopped here
+//Submits user manual count input and calculates the difference of system inventory with the manual count
 router.post('/record_physical',async (req,res)=>{
 
     try{
@@ -250,7 +250,7 @@ router.post('/record_physical',async (req,res)=>{
     }
     
 })
-
+//Renders the page to view discprepancy
 router.get('/view_discrepancy',async(req,res)=>{
 
     try{
