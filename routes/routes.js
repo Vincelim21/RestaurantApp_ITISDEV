@@ -180,6 +180,8 @@ router.post('/create_recipe',async (req,res)=>{//Happens when submitting form of
         const recipeingredients = new recipeIngredientsModel({ // Put fields into recipemodel
             unitValue:req.body.ingredient_value, //Table value : Inputted Data from EJS 
             ingredientType:req.body.ingredient_name,
+            unitID:req.body.ingredient_unit,
+            recipeID:recipeName._id,
           })
         recipeModel.create(recipeName) // Create table in MongoAtlas
         recipeIngredientsModel.create(recipeingredients) // Create table in MongoAtlas
