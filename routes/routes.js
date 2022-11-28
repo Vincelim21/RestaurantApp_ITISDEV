@@ -225,7 +225,6 @@ router.get('/record_physical',async(req,res) =>{
 //I stopped here
 router.post('/record_physical',async (req,res)=>{
 
-    
     try{
         const ingredientStockChosen = await IngredientStockModel.findOne({ingredientName:req.body.ingredient-names})
 
