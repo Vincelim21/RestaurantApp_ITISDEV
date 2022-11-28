@@ -1,8 +1,9 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const recipeSchema = new mongoose.Schema({
-    recipeID:{
-        type:Number,
+const recipeSchema = new Schema({
+    _id:{
+        type: Schema.Types.ObjectId,
         required:false // not inputted by the user switched from true 
     },
     recipeName:{

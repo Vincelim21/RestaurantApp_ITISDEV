@@ -1,32 +1,34 @@
 // What's to be seen here: In Chef's POV, view all the recipes's contents: ingredients, unit value, and unit 
 // Ex.:
 //  RECIPE NAME: Hotsilog
-//  __INGREDIENT___UNIT VAL___UNIT___
+//  INGREDIENT___UNIT VAL___UNIT_
 //  - Hotdog    :   2       piece/s
 //  - Egg       :   1       piece/s
 //  - Rice      :   1       cup
 
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const recipe_ingredientsSchema = new mongoose.Schema({
-    recipeID:{
-        type:String,
-        required:false,// change to true if the user can input / select from dropbox. 
+const recipe_ingredientsSchema = new Schema({
+    _id:{
+        type: Schema.Types.ObjectId,
+        ref: 'recipe',
+        required:true
     },
     
     ingredientType:{
-        type: Array,
-        required:false // change to true if the user can input / select from dropbox. 
+        type:String,
+        required:true
     },
 
     unitValue:{
-        type: Array,
+        type:Number,
         required:true
     },
 
     unitID:{
-        type: Array,
-        required:false // change to true if the user can input / select from dropbox. 
+        type:Number,
+        required:true
     }
 })
 
