@@ -223,13 +223,13 @@ router.get('/record_physical',async(req,res) =>{
 router.post('/record_physical',async (req,res)=>{
     try{
         const ingredientDiscrepancie = new discrepancieModel({  // Put fields into Ingredient First Model
-            ingredientID: req.body.ingredientID,
-            quantityDiff:req.body.unitValue
+            ingredientID: req.body.ingredient-names,
+            quantityDiff:req.body.fname
           })
  
     
-        IngredientFirstModel.create(ingredientFirst) 
-        res.redirect('/')
+        discrepancieModel.create(ingredientDiscrepancie) 
+        res.redirect('/view_discrepancy')
         
 
     }catch(error){
