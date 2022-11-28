@@ -279,6 +279,23 @@ router.get('/view_discrepancy',async(req,res)=>{
     
 })
 
+//AYIANA: Renders the page to view ingredients in Chef's POV
+router.get('/view_recipe',async(req,res)=>{
+
+    const recipeIngredients = await recipeIngredientsModel.find({})
+
+    try{
+        //Read Database file
+        //Retrieve recipeIngredients table
+        res.render('view_recipe',{reciIngredients:recipeIngredients});
+        //EJS
+    }catch(error){
+        res.status(500).send(error);
+        console.log(error)
+    }
+})
+
+
 //Test to see if data in discrepancies are being read properly
 router.get('/test_discrepancies',async (req,res) =>{
     

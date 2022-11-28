@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 <link rel = "stylesheet" href = "styles.css"> 
@@ -18,7 +18,31 @@
 
 <!--TODO: Recipe Cards-->
 <div>
-    <button type = "button" class = "collapsible">Open</button>
+    <button type = "button" class = "collapsible">How to Show Recipe Name</button>
+    <div class = "content">
+        <table>
+          <tr>
+            <th>Ingredient</th>
+            <th>Amount</th>
+            <th>Unit</th>
+        </tr>
+        <!-- Loops Each ingredient data onto the table-->
+        <% reciIngredients.forEach(reciIngredients => { %>
+            <tr>
+                <td><%= reciIngredients.ingredientType %></td>
+                <td><%= reciIngredients.unitValue %></td>
+                <td><%= reciIngredients.unitName %></td>
+            </tr>
+        <% }); %> 
+        </table>
+    </div>
+
+
+
+
+
+
+    <!--<button type = "button" class = "collapsible">Open</button>
     <div class = "content">
         <p>test</p>
     </div>
@@ -29,11 +53,7 @@
     <button type = "button" class = "collapsible">Open</button>
     <div class = "content">
         <p>test</p>
-    </div>
-    <button type = "button" class = "collapsible">Open</button>
-    <div class = "content">
-        <p>test</p>
-    </div>
+    </div> -->
 
 </div>
 <!--Need javascript to make collapsible functional-->

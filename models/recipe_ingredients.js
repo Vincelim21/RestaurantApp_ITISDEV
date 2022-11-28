@@ -6,8 +6,8 @@
 //  - Egg       :   1       piece/s
 //  - Rice      :   1       cup
 
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const recipe_ingredientsSchema = new Schema({
     _id:{
@@ -26,10 +26,11 @@ const recipe_ingredientsSchema = new Schema({
         required:true
     },
 
-    unitID:{
-        type:Number,
-        required:true
-    }
+    unitID: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'unit'
+      }
 })
 
 module.exports = mongoose.model('recipe_ingredients', recipe_ingredientsSchema)
