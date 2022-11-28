@@ -37,7 +37,9 @@
 
         <div class="entry">
             <a>System Count: </a>
-            <a>###</a>
+            <a><% ingredStock.forEach(ingredStock => { %>
+                <option  label="<%= ingredStock.totalUnitValue %>" value="<%= ingredStock.totalUnitValue %>">
+            <% }) %></a>
         </div>
 
         <!-- Date can be changed to a better one-->
