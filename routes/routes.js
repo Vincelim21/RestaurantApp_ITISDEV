@@ -158,6 +158,7 @@ router.get('/create_recipe',async (req,res)=>{
         const params = { 
             recipename : recipes, // recipename in EJS file: recipename value retrieved
             recipeingredient : getRecipeIngredient
+
         } 
         res.render('create_recipe',params) // Render EJS with table values
 
@@ -176,7 +177,8 @@ router.post('/create_recipe',async (req,res)=>{//Happens when submitting form of
             recipeName:req.body.recipe_name, //Table value : Inputted Data from EJS     
           })
         const recipeingredients = new recipeIngredientsModel({ // Put fields into recipemodel
-            unitValue:req.body.ingredient_value, //Table value : Inputted Data from EJS     
+            unitValue:req.body.ingredient_value, //Table value : Inputted Data from EJS 
+            ingredientType:req.body.ingredient_name,
           })
         recipeModel.create(recipeName) // Create table in MongoAtlas
         recipeIngredientsModel.create(recipeingredients) // Create table in MongoAtlas
