@@ -22,10 +22,11 @@
             </tr>
 
             <% stockIngredient.forEach(stockIngredient => { %>
+                <% const discrep = await viewDiscrep.findOne(ingredientID:stockIngredient.ingredientName) %>
                 <tr>
                     <td><%= stockIngredient.ingredientName %></td>
                     <td><%= stockIngredient.totalUnitValue %></td>
-                    <td><%= viewDiscrep.quantityDiff %></td>
+                    <td><%= discrep.ingredientID %></td>
                 </tr>
             <% }); %> 
 

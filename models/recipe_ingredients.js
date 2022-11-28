@@ -15,17 +15,17 @@ const recipe_ingredientsSchema = new mongoose.Schema({
     },
     
     ingredientType:{
-        type: Array,
+        type: String,
         required:false // change to true if the user can input / select from dropbox. 
     },
 
     unitValue:{
-        type: Array,
+        type: Number,
         required:true
     },
 
     unitID:{
-        type: Array,
+        type: String,
         required:false // change to true if the user can input / select from dropbox. 
     }
 })

@@ -11,6 +11,7 @@ const recipeIngredientsModel = require('../models/recipe_ingredients')
 const IngredientsModel = require("../models/ingredients")
 const IngredientFirstModel = require("../models/ingredient_first")
 const IngredientStockModel = require("../models/ingredient_stock")
+const unitModel = require("../models/unit")
 const router = express.Router()
 const mongoose = require('mongoose')
 const { addListener } = require('../models/ingredient_stock')
@@ -29,10 +30,12 @@ router.get('/record_firsttime',async(req,res) =>{ //Happens when rendering recor
     
     try{
         const ingredients = await IngredientsModel.find({})  //Retrieve Ingredients table
+        const unit = await unitModel.find({})
         const ingredient_first = new IngredientFirstModel() // Create Ingredients Firsttime table
         const params = {
             ingredients: ingredients, // ingredients in EJS file: ingredients data taken  
-            ingredientorder : ingredient_first // ingredientorder in EJS file: ingredientfirst value retrieved
+            ingredientorder : ingredient_first,
+            unit: unit // ingredientorder in EJS file: ingredientfirst value retrieved
         } 
         res.render('record_firsttime',params) // Render EJS with table values
         
@@ -174,14 +177,18 @@ router.post('/create_recipe',async (req,res)=>{//Happens when submitting form of
     //SUMMARY:     Create recipe_table with values inputted from EJS
 
     try{
-        const recipeName = new recipeModel({ // Put fields into recipemodel
-            recipeName:req.body.recipe_name, //Table value : Inputted Data from EJS     
-          })
+        
         const recipeingredients = new recipeIngredientsModel({ // Put fields into recipemodel
             unitValue:req.body.ingredient_value, //Table value : Inputted Data from EJS 
             ingredientType:req.body.ingredient_name,
-            unitID:req.body.ingredient_unit,
-            recipeID:recipeName._id,
+            unitID:req.body.ingredient_unit
+          })
+
+          console.log(recipeingredients)
+
+          const recipeName = new recipeModel({ // Put fields into recipemodel
+            recipeName:req.body.recipe_name,
+            recipeIngredients:recipeingredients //Table value : Inputted Data from EJS     
           })
         recipeModel.create(recipeName) // Create table in MongoAtlas
         recipeIngredientsModel.create(recipeingredients) // Create table in MongoAtlas
