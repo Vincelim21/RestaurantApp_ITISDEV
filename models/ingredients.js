@@ -5,19 +5,16 @@ const IngredientsSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  
-  runningUnitValue: {
+
+  totalUnitValue: {
     type: Number,
     required: false
-  }
+  },
 
-  /*
-  unit_Id: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: 'Unit_ID'
+  unitID:{
+    type: String,
+    required:false // change to true if the user can input / select from dropbox. 
   }
-  */
 
 },{collection : 'ingredients'})
 

@@ -7,6 +7,7 @@ const UserDetailsModel = require('../models/user_details')
 const CustomerOrderModel = require('../models/customer_order')
 const menuModel = require('../models/menu')
 const recipeModel = require('../models/recipe')
+const ingredientsModel = require('../models/ingredients')
 const recipeIngredientsModel = require('../models/recipe_ingredients')
 const IngredientsModel = require("../models/ingredients")
 const IngredientFirstModel = require("../models/ingredient_first")
@@ -290,6 +291,22 @@ router.get('/view_recipe',async(req,res)=>{
         //Read Database file
         //Retrieve recipeIngredients table
         res.render('view_recipe',{recipe:recipe});
+        //EJS
+    }catch(error){
+        res.status(500).send(error);
+        console.log(error)
+    }
+})
+
+//AYIANA: Renders the page to view ingredients and its running balance, for Chef's POV
+router.get('/view_inventory-chef',async(req,res)=>{
+
+    const ingredients = await ingredientsModel.find({})
+
+    try{
+        //Read Database file
+        //Retrieve recipeIngredients table
+        res.render('view_inventory-chef',{ingredients:ingredients});
         //EJS
     }catch(error){
         res.status(500).send(error);

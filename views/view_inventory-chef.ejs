@@ -17,10 +17,20 @@
         <table>
             <tr>
               <th>Ingredient Name</th>
-              <th>Ingredient Type</th>
+              <th>Running Balance</th>
               <th>Unit</th>
             </tr>
-
+            
+            <!-- Loops Each ingredient data onto the table-->
+            <% ingredients.forEach(ingredients => { %>
+                <tr>
+                    <td><%= ingredients.ingredientType %></td>
+                    <td><%= ingredients.totalUnitValue %></td>
+                    <td><%= ingredients.unitID %></td>
+                </tr>
+            <% }); %> 
+            
+            <!--
            <tr>
               <td>Ingredient 1</td>
               <td>1000</td>
@@ -31,20 +41,8 @@
                 <td>1000</td>
                 <td>g</td>
             </tr>
-            <tr>
-                <td>Ingredient 3</td>
-                <td>1000</td>
-                <td>g</td>
-            </tr>
-            <tr>
-                <td>Ingredient 4</td>
-                <td>1000</td>
-                <td>g</td>
-            </tr><tr>
-                <td>Ingredient 5</td>
-                <td>1000</td>
-                <td>g</td>
-            </tr>               
+            --> 
+
           </table>
 
     </div>
