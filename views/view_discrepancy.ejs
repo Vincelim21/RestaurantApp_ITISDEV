@@ -17,16 +17,14 @@
         <table>
             <tr>
               <th>Ingredient Name</th>
-              <th>New Total</th>
-              <th>Difference</th>
+              <th> Changes</th>
+              <!--<th>Difference</th>!-->
             </tr>
 
-            <% stockIngredient.forEach(stockIngredient => { %>
-                <% const discrep = await viewDiscrep.findOne(ingredientID:stockIngredient.ingredientName) %>
+            <% discrep.forEach(discrep => { %>
                 <tr>
-                    <td><%= stockIngredient.ingredientName %></td>
-                    <td><%= stockIngredient.totalUnitValue %></td>
                     <td><%= discrep.ingredientID %></td>
+                    <td><%= discrep.quantityDiff %></td>
                 </tr>
             <% }); %> 
 

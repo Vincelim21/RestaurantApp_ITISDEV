@@ -48,9 +48,10 @@
                 <!--input type="text" id="ingredient_unit" name="ingredient_unit" placeholder="Ingredient Unit"-->
                     <!--Must be dropdown-->
                 <select name="ingredient_unit" id="ingredient_unit">
-                    <option value="unit_grams">G</option>
-                    <option value="unit_kilograms">KG</option>
-                     <option value="unit_milligrams">MG</option>
+                    <% recipeunit.forEach(recipeunit => { %>
+                        <option  label="<%= recipeunit.unitName%>" value="<%= recipeunit.unitName %>">
+                    <% }) %>
+                    
                </select>
                <br>
                

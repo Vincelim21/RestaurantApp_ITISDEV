@@ -10,14 +10,14 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const recipe_ingredientsSchema = new Schema({
-    _id:{
+   /* _id:{
         type: Schema.Types.ObjectId,
         ref: 'recipe',
-        required:true
-    },
+        required:false
+    },*/
     
     ingredientType:{
-        type:String,
+        type:String,    
         required:true
     },
 
@@ -27,9 +27,8 @@ const recipe_ingredientsSchema = new Schema({
     },
 
     unitID: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'unit'
+        type: String,
+        required: true
       }
 })
 

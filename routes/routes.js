@@ -157,11 +157,13 @@ router.get('/create_recipe',async (req,res)=>{
 
     try{
         const getRecipeIngredient = await IngredientsModel.find({})
+        const getUnit = await unitModel.find({})
         const recipes = new recipeModel() // Create recipe table
         const recipeingredients = new recipeIngredientsModel() // Create recipeingredients table
         const params = { 
             recipename : recipes, // recipename in EJS file: recipename value retrieved
-            recipeingredient : getRecipeIngredient
+            recipeingredient : getRecipeIngredient,
+            recipeunit : getUnit
 
         } 
         res.render('create_recipe',params) // Render EJS with table values
@@ -237,7 +239,7 @@ router.post('/record_physical',async (req,res)=>{
     try{
         const ingredientStockChosen = await IngredientStockModel.findOne({ingredientName:req.body.ingredient_names})
 
-       var quantityDiff = Math.abs(ingredientStockChosen.totalUnitValue - req.body.fname)
+       var quantityDiff = req.body.fname - ingredientStockChosen.totalUnitValue  
 
         const ingredientDiscrepancie = new discrepancieModel({  // Put fields into Ingredient First Model
             ingredientID: req.body.ingredient_names,
@@ -246,9 +248,10 @@ router.post('/record_physical',async (req,res)=>{
  
     
         discrepancieModel.create(ingredientDiscrepancie) 
+        console.log(quantityDiff)
         
         IngredientStockModel.updateOne({ingredientName:req.body.ingredient_names},
-            {$inc: { totalUnitValue: Number(-quantityDiff)}}
+            {$inc: { totalUnitValue: Number(quantityDiff)}}
             ).exec()
 
         res.redirect('/')
@@ -266,8 +269,7 @@ router.get('/view_discrepancy',async(req,res)=>{
         const getViewDiscrepancy = await discrepancieModel.find({});
         const getStockValue = await IngredientStockModel.find({});
         const params = { 
-            viewDiscrep : getViewDiscrepancy, // recipename in EJS file: recipename value retrieved
-            stockIngredient : getStockValue
+            discrep : getViewDiscrepancy // recipename in EJS file: recipename value retrieved
         } 
         console.log(getViewDiscrepancy);
         console.log(getStockValue);
