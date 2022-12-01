@@ -17,19 +17,17 @@
         </div>
     </div>
     <div class="checkout-container">
+        <form action = "/cashier_menu" method="POST">
         <h1> CHECKOUT</h1>
         <div class="checkout-details">
             <table>
-
-
                 <tr class ="table-header">
                     <th>ITEM NAME</th>
                     <th>QUANTITY</th>
                     <th>PRICE</th>
                 </tr>
-
-
-
+                <%= customerorder.quantity_value %>
+                
         </div>
         <div class="totals">
             <table>
@@ -40,12 +38,10 @@
                 <tr>
                     <td>TOTAL</td>
                     <td>TOTAL</td>
-                </tr>
+                </tr>        
         </div>
+
+        <button class="continue" type="submit" href="/">CONTINUE</button>
+        </form>
     </div>
-
-
-
-
-
 </div>

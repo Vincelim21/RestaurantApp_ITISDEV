@@ -315,6 +315,26 @@ router.get('/cashier_menu',async(req,res)=>{
     
 })
 
+router.post('/cashier_menu',async (req,res)=>{//Happens when submitting form of create_recipe EJS
+
+    //SUMMARY:     Create recipe_table with values inputted from EJS
+
+    try{
+        
+        const getcashiermenu = new customerOrderModel({ // Put fields into recipemodel
+            quantity:req.body.quantity_value, //Table value : Inputted Data from EJS 
+          })
+
+          console.log(getcashiermenu)
+          customerOrderModel.create(getcashiermenu) // Create table in MongoAtlas
+        res.redirect('/')
+
+    }catch(error){
+        res.status(500).send(error)
+        console.log(error)
+    }
+})
+
 //Test to see if data in discrepancies are being read properly
 router.get('/test_discrepancies',async (req,res) =>{
     
