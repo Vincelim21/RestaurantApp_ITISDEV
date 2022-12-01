@@ -1,186 +1,33 @@
+<script type="text/javascript" src="js\cashiermenuscript.js"></script>
 <div class="inline-two">
     <div class="menu-container">
         <h1> MENU</h1>
         <div class="menu-card">
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-            <div class="card-container">
-                <p>ITEM X</p>
-                <p>PRICE</p>
-            </div>
-
+            
+            <% recipename.forEach(recipename => { %>
+                <tr>
+                    <button onclick="addItem(this.id)" id ="<%= recipename.recipeName%>">
+                    <div class="card-container" >
+                    <td><%= recipename.recipeName %></td>
+                    <p>PRICE</p>
+                    </div>
+                    </button>
+                </tr>
+            <% }); %> 
         </div>
     </div>
     <div class="checkout-container">
+        <form action = "/cashier_menu" method="POST">
         <h1> CHECKOUT</h1>
         <div class="checkout-details">
             <table>
-                <tr>
+                <tr class ="table-header">
                     <th>ITEM NAME</th>
                     <th>QUANTITY</th>
                     <th>PRICE</th>
                 </tr>
-                <tr>
-                    <td>ITEM X</td>
-                    <td><input type="text"></td>
-                    <td>PRICE</td>
-                </tr>
-                <tr>
-                    <td>ITEM X</td>
-                    <td><input type="text"></td>
-                    <td>PRICE</td>
-                </tr>
-
+                <%= customerorder.quantity_value %>
+                
         </div>
         <div class="totals">
             <table>
@@ -191,12 +38,10 @@
                 <tr>
                     <td>TOTAL</td>
                     <td>TOTAL</td>
-                </tr>
+                </tr>        
         </div>
+
+        <button class="continue" type="submit" href="/">CONTINUE</button>
+        </form>
     </div>
-
-
-
-
-
 </div>

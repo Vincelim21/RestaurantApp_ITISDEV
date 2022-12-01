@@ -3,19 +3,16 @@ const mongoose = require('mongoose')
 const customer_orderSchema = new mongoose.Schema({
     orderID:{
         type:Number,
-        required:true
-    },
-    menuID:{
-        type:Number,
-        required:true
+        required:false
     },
     quantity:{
-        type:Number,
+        type:Array,
         required:true
     },
     dateOrdered:{
         type:Date,
-        required:true
+        required:false,
+        default: Date.now
     }
 })
 
