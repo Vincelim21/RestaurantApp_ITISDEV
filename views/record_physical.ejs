@@ -23,9 +23,10 @@
             <a>Ingredient Name</a>
 
             <!-- Dropdown Menu-->
-            <select name="ingredient_names" id="ingredient_names">
+            <select name="ingredient_names" id="ingredient_names" onchange="changeSystemCount(count)">
                 <% ingredStock.forEach(ingredStock => { %>
-                    <option  label="<%= ingredStock.ingredientName %>" value="<%= ingredStock.ingredientName %>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
+                    <option  label="<%= ingredStock.ingredientName %>" value="<%= ingredStock.ingredientName %>">
+                        <% var count = ingredStock.totalUnitValue %>  <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
                 <% }) %>
               </select>
         </div>
@@ -38,9 +39,7 @@
 
         <div class="entry">
             <a>System Count: </a>
-            <a><% ingredStock.forEach(ingredStock => { %>
-                <option  label="<%= ingredStock.totalUnitValue %>" value="<%= ingredStock.totalUnitValue %>">
-            <% }) %></a>
+            <a id="count"></a>
         </div>
 
         <!-- Date can be changed to a better one-->
@@ -56,8 +55,13 @@
             <button type="button" class="cancel" href="/home_stockctrl">Cancel</button>
         
         </div>
-
     </form>
+    <script>
+        function changeSystemCount(count){
+            var x = document.getElementById("count")
+            x.nodeValue= count
+        }
+    </script>
 
 </body>
 </html>
