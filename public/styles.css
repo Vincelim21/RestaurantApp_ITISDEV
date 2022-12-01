@@ -106,7 +106,7 @@ h1 {
 }
 .checkout-container{
     width: 38%;
-    height: 800px;
+    height: auto;
     display: inline-block;
     background-color:#327bf0;
     text-align: center;
