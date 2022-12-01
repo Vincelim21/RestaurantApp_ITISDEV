@@ -1,18 +1,24 @@
 const mongoose = require('mongoose')
 
 const IngredientsSchema = new mongoose.Schema({
-  ingredientID: {
-    type: String,
-    required: false
-  },
   ingredientType: {
     type: String,
     required: true
   },
-  totalUnitValue: {
+  
+  runningUnitValue: {
     type: Number,
     required: false
   }
+
+  /*
+  unit_Id: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'Unit_ID'
+  }
+  */
+
 },{collection : 'ingredients'})
 
 
