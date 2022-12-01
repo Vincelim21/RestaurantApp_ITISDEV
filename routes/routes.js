@@ -320,9 +320,11 @@ router.get('/cashier_menu',async(req,res)=>{
     try{
         const getcashiermenu = new customerOrderModel({});
         const recipes = await recipeModel.find();
+        const orders = new Array()
         const params = { 
             recipename : recipes, 
-            customerorder : getcashiermenu
+            customerorder : getcashiermenu,
+            orders : orders
         }
         console.log(getcashiermenu);
         console.log(recipes);
