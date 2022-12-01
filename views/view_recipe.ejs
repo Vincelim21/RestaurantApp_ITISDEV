@@ -18,44 +18,55 @@
 
 <!--TODO: Recipe Cards-->
 <div>
-    <button type = "button" class = "collapsible">How to Show Recipe Name</button>
-    <div class = "content">
-        <table>
-          <tr>
-            <th>Ingredient</th>
-            <th>Amount</th>
-            <th>Unit</th>
-        </tr>
-        <!-- Loops Each ingredient data onto the table-->
-        <% reciIngredients.forEach(reciIngredients => { %>
+  <% for (var i = 0; i < recipe.length; i++) { %>
+    <button type = "button" class = "collapsible">IDK how to display recipe name</button>
+      <div class = "content">
+          <table>
             <tr>
-                <td><%= reciIngredients.ingredientType %></td>
-                <td><%= reciIngredients.unitValue %></td>
-                <td><%= reciIngredients.unitName %></td>
+              <th>Ingredient</th>
+              <th>Amount</th>
+              <th>Unit</th>
+          </tr>
+          <!-- Loops Each ingredient data onto the table-->
+          <% for (var y = 0; y < recipe[i].recipeIngredients.length; y++) { %> 
+            <tr>
+              
+              <td><%= recipe[i].recipeIngredients[y].ingredientType %></td>
+              <td><%= recipe[i].recipeIngredients[y].unitValue %></td>
+              <td><%= recipe[i].recipeIngredients[y].unitName %></td>
+              
             </tr>
-        <% }); %> 
-        </table>
-    </div>
+          <% } %>
+
+          <!--
+          <% recipe.forEach(reciIngredients => { %>
+            <tr>
+                <td><%= recipe.ingredientType %></td>
+                <td><%= recipe.unitValue %></td>
+                <td><%= recipe.unitName %></td>
+            </tr>
+          <% }); %> 
+          -->
+          </table>
+      </div>
 
 
-
-
-
-
-    <!--<button type = "button" class = "collapsible">Open</button>
-    <div class = "content">
-        <p>test</p>
-    </div>
-    <button type = "button" class = "collapsible">Open</button>
-    <div class = "content">
-        <p>test</p>
-    </div>
-    <button type = "button" class = "collapsible">Open</button>
-    <div class = "content">
-        <p>test</p>
-    </div> -->
-
+      <!--<button type = "button" class = "collapsible">Open</button>
+      <div class = "content">
+          <p>test</p>
+      </div>
+      <button type = "button" class = "collapsible">Open</button>
+      <div class = "content">
+          <p>test</p>
+      </div>
+      <button type = "button" class = "collapsible">Open</button>
+      <div class = "content">
+          <p>test</p>
+      </div> -->
+  <% } %>
 </div>
+
+
 <!--Need javascript to make collapsible functional-->
 <script>
 var coll = document.getElementsByClassName("collapsible");
