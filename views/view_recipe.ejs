@@ -19,7 +19,9 @@
 <!--TODO: Recipe Cards-->
 <div>
   <% for (var i = 0; i < recipe.length; i++) { %>
-    <button type = "button" class = "collapsible">IDK how to display recipe name</button>
+    <button type = "button" class = "collapsible">
+      <%= recipe[i].recipeName %>
+    </button>
       <div class = "content">
           <table>
             <tr>
@@ -30,39 +32,15 @@
           <!-- Loops Each ingredient data onto the table-->
           <% for (var y = 0; y < recipe[i].recipeIngredients.length; y++) { %> 
             <tr>
-              
+
               <td><%= recipe[i].recipeIngredients[y].ingredientType %></td>
               <td><%= recipe[i].recipeIngredients[y].unitValue %></td>
               <td><%= recipe[i].recipeIngredients[y].unitName %></td>
               
             </tr>
           <% } %>
-
-          <!--
-          <% recipe.forEach(reciIngredients => { %>
-            <tr>
-                <td><%= recipe.ingredientType %></td>
-                <td><%= recipe.unitValue %></td>
-                <td><%= recipe.unitName %></td>
-            </tr>
-          <% }); %> 
-          -->
           </table>
       </div>
-
-
-      <!--<button type = "button" class = "collapsible">Open</button>
-      <div class = "content">
-          <p>test</p>
-      </div>
-      <button type = "button" class = "collapsible">Open</button>
-      <div class = "content">
-          <p>test</p>
-      </div>
-      <button type = "button" class = "collapsible">Open</button>
-      <div class = "content">
-          <p>test</p>
-      </div> -->
   <% } %>
 </div>
 

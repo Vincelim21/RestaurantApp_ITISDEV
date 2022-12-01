@@ -281,7 +281,7 @@ router.get('/view_discrepancy',async(req,res)=>{
     
 })
 
-//AYIANA: Renders the page to view ingredients in Chef's POV
+//Renders the page to view recipes and its ingredients in Chef's POV
 router.get('/view_recipe',async(req,res)=>{
 
     const recipe = await recipeModel.find({})
@@ -295,18 +295,6 @@ router.get('/view_recipe',async(req,res)=>{
         res.status(500).send(error);
         console.log(error)
     }
-
-    // const recipeIngredients = await recipeIngredientsModel.find({})
-
-    // try{
-    //     //Read Database file
-    //     //Retrieve recipeIngredients table
-    //     res.render('view_recipe',{reciIngredients:recipeIngredients});
-    //     //EJS
-    // }catch(error){
-    //     res.status(500).send(error);
-    //     console.log(error)
-    // }
 })
 
 //trial for cashier menu
