@@ -5,17 +5,14 @@ const customer_orderSchema = new mongoose.Schema({
         type:Number,
         required:true
     },
-    menuID:{
-        type:Number,
-        required:true
-    },
     quantity:{
         type:Number,
         required:true
     },
     dateOrdered:{
         type:Date,
-        required:true
+        required:false,
+        default: Date.now
     }
 })
 

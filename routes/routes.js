@@ -15,6 +15,7 @@ const unitModel = require("../models/unit")
 const router = express.Router()
 const mongoose = require('mongoose')
 const { addListener } = require('../models/ingredient_stock')
+const customerOrderModel = require('../models/customer_order')
 const db = mongoose.connection
 
 
@@ -152,7 +153,6 @@ router.post('/record_itempurchase',async (req,res)=>{
     
 })
 
-// only manage to make recipeName work
 router.get('/create_recipe',async (req,res)=>{
 
     try{
@@ -171,7 +171,7 @@ router.get('/create_recipe',async (req,res)=>{
         console.log(error)
     }
 })
-// only manage to make recipeName work
+
 router.post('/create_recipe',async (req,res)=>{//Happens when submitting form of create_recipe EJS
 
     //SUMMARY:     Create recipe_table with values inputted from EJS
@@ -295,6 +295,25 @@ router.get('/view_recipe',async(req,res)=>{
     }
 })
 
+//trial for cashier menu
+router.get('/cashier_menu',async(req,res)=>{
+
+    try{
+        const getcashiermenu = new customerOrderModel({});
+        const recipes = await recipeModel.find();
+        const params = { 
+            recipename : recipes, 
+            customerorder : getcashiermenu
+        }
+        console.log(getcashiermenu);
+        console.log(recipes);
+
+        res.render('cashier_menu',params);
+        }catch(error){
+            res.status(500).send(error)
+        }
+    
+})
 
 //Test to see if data in discrepancies are being read properly
 router.get('/test_discrepancies',async (req,res) =>{
