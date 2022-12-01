@@ -1,14 +1,17 @@
+<script type="text/javascript" src="js\cashiermenuscript.js"></script>
 <div class="inline-two">
     <div class="menu-container">
         <h1> MENU</h1>
         <div class="menu-card">
-
+            
             <% recipename.forEach(recipename => { %>
                 <tr>
-                    <div class="card-container">
+                    <button onclick="addItem(this.id)" id ="<%= recipename.recipeName%>">
+                    <div class="card-container" >
                     <td><%= recipename.recipeName %></td>
                     <p>PRICE</p>
                     </div>
+                    </button>
                 </tr>
             <% }); %> 
         </div>
@@ -17,21 +20,15 @@
         <h1> CHECKOUT</h1>
         <div class="checkout-details">
             <table>
-                <tr>
+
+
+                <tr class ="table-header">
                     <th>ITEM NAME</th>
                     <th>QUANTITY</th>
                     <th>PRICE</th>
                 </tr>
-                <tr>
-                    <td>ITEM X</td>
-                    <td><input type="text"></td>
-                    <td>PRICE</td>
-                </tr>
-                <tr>
-                    <td>ITEM X</td>
-                    <td><input type="text"></td>
-                    <td>PRICE</td>
-                </tr>
+
+
 
         </div>
         <div class="totals">
