@@ -298,8 +298,7 @@ router.get('/record_spoiled',async(req,res) =>{
 router.post('/record_spoiled',async (req,res)=>{
 
     try{
-        const ingredientStockChosen = await IngredientStockModel.findOne({ingredientName:req.body.ingredient_names})
-
+    
        var quantitySpoiled = req.body.spoiled_quantity
 
         const ingredientSpoiled= new spoilageModel({  // Put fields into Ingredient First Model
@@ -315,7 +314,7 @@ router.post('/record_spoiled',async (req,res)=>{
             {$inc: { totalUnitValue: Number(quantity)}}
             ).exec()
 
-        res.redirect('/')
+        res.redirect('/view_inventory-controller')
 
     }catch(error){
         res.status(500).send(error)

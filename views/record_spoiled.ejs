@@ -24,9 +24,9 @@
 
                 <!-- Dropdown Menu-->
                 <select name="ingredient_names" id="ingredient_names" onchange="changeSystemCount(count)">
-                    <% ingredStock.forEach(ingredStock => { %>
-                        <option  label="<%= ingredStock.ingredientName %>" value="<%= ingredStock.ingredientName %>">
-                            <% var count = ingredStock.totalUnitValue %>  <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
+                    <% ingredientStock.forEach(ingredientStock => { %>
+                        <option  label="<%= ingredientStock.ingredientName %>" value="<%= ingredientStock.ingredientName %>">
+                            <% var count = ingredientStock.totalUnitValue %>  <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
                     <% }) %>
                 </select>
             </div>
@@ -46,8 +46,8 @@
                     min="2022-11-07">
         </div>
 
-        <button type="button" class="confirm">Confirm</button>
-        <button type="button" class="cancel">Cancel</button>
+            <button type="submit" class="confirm">Confirm</button>
+            <button type="button" class="cancel" href="/home_stockctrl">Cancel</button>
         
     </div>
     </form>
