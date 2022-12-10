@@ -1,7 +1,7 @@
-function addItem(id,orders){
+function addItem(value,orders){
 
     $(".table-header").after('<tr class="table-input">\
-    <td>'+id+'</td>\
+    <td>'+value+'</td>\
     <td><input type="text" name="quantity_value" value=""></td>\
     <td>PRICE</td>\
     </tr>')
