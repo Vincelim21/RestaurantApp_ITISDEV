@@ -295,6 +295,37 @@ router.get('/record_spoiled',async(req,res) =>{
     }
 })
 
+router.post('/record_spoiled',async (req,res)=>{
+
+    try{
+        const ingredientStockChosen = await IngredientStockModel.findOne({ingredientName:req.body.ingredient_names})
+
+       var quantitySpoiled = req.body.spoiled_quantity
+
+        const ingredientSpoiled= new spoilageModel({  // Put fields into Ingredient First Model
+            ingredientTypeID: req.body.ingredient_names,
+            quantity:quantitySpoiled
+          })
+ 
+    
+        spoilageModel.create(ingredientSpoiled) 
+        console.log(quantity)
+        
+        IngredientStockModel.updateOne({ingredientName:req.body.ingredient_names},
+            {$inc: { totalUnitValue: Number(quantity)}}
+            ).exec()
+
+        res.redirect('/')
+
+    }catch(error){
+        res.status(500).send(error)
+        console.log(error);
+    }
+    
+})
+
+
+
 //Renders the page to view recipes and its ingredients in Chef's POV
 router.get('/view_recipe',async(req,res)=>{
 
