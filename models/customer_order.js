@@ -5,6 +5,10 @@ const customer_orderSchema = new mongoose.Schema({
         type:Number,
         required:false
     },
+    itemName:{
+        type:Array,
+        required:true
+    },
     quantity:{
         type:Array,
         required:true

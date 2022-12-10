@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     $("#add_ingredient").click(function(){
 
         const name = $('#ingredient_name').clone();
@@ -10,6 +9,7 @@ $(document).ready(function(){
         $(value).appendTo(".ingredients_in_recipe")
         $(unit).appendTo(".ingredients_in_recipe")
         
+
         console.log("asd")
     })
     

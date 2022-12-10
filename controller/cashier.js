@@ -46,6 +46,7 @@ router.post('/cashier_menu',async (req,res)=>{//Happens when submitting form of 
     try{
         
         const getcashiermenu = new customerOrderModel({ // Put fields into recipemodel
+            itemName:req.body.item_value,
             quantity:req.body.quantity_value, //Table value : Inputted Data from EJS 
           })
 
