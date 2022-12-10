@@ -137,4 +137,45 @@ router.post('/create_ingredient',async (req,res) =>{
         console.log(error)
     }
 })
+
+router.get('/record_spoiled',async(req,res) =>{
+    
+    try{
+        // Read Databasefile
+        const ingredientStock = await IngredientStockModel.find({});  //Retrieve IngredientStock table
+        res.render('/ingredients/record_spoiled',{ingredientStock:ingredientStock});
+    //EJS 
+        
+    }catch(error){
+        res.status(500).send(error);
+        console.log(error);
+    }
+})
+
+router.post('/record_spoiled',async (req,res)=>{
+
+    try{
+    
+       var quantitySpoiled = req.body.spoiled_quantity
+
+        const ingredientSpoiled= new spoilageModel({  // Put fields into Ingredient First Model
+            ingredientTypeID: req.body.ingredient_names,
+            quantity:quantitySpoiled
+          })
+ 
+    
+        spoilageModel.create(ingredientSpoiled) 
+        
+        IngredientStockModel.updateOne({ingredientName:req.body.ingredient_names},
+            {$inc: { totalUnitValue: Number(-quantitySpoiled)}}
+            ).exec()
+
+        res.redirect('/ingredients/view_inventory-controller')
+
+    }catch(error){
+        res.status(500).send(error)
+        console.log(error);
+    }
+    
+})
 module.exports = router
