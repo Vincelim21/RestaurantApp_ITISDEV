@@ -18,7 +18,6 @@ const client = new MongoClient(DATABASE_URL)
 var bodyParser = require('body-parser')
 
 //import index router
-const indexRouter = require('./routes/routes')
 
 
 //set layouts into ejs files (html -> ejs tayo sa sunod)
@@ -36,10 +35,22 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json())
 
+const indexRouter = require('./controller/index')
+const ingredientsRouter = require('./controller/ingredients')
+const cashierRouter = require('./controller/cashier')
+const ordersRouter = require('./controller/orders')
+const recipesRouter = require('./controller/recipes')
 
 
 //get index route
+//app.use('/',indexRouter)
 app.use('/',indexRouter)
+app.use('/cashier',cashierRouter)
+app.use('/ingredients',ingredientsRouter)
+app.use('/orders',ordersRouter)
+app.use('/recipes',recipesRouter)
+
+
 console.log('Server starting at Localhost:3000...')
 
 

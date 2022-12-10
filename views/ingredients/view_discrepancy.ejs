@@ -4,33 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="layouts/styles.css">
+    <link rel="stylesheet" href="/styles.css">
     <title>View Inventory for Controller</title>
     
 </head>
 <body>
     <div class="title">
-        <h1>View Inventory</h1>
+        <h1>View Discrepancy</h1>
         
     <!-- Table for View Inventory-->
     <div class="tableInventory">
         <table>
             <tr>
-                <th>Ingredient Name</th>
-                <th>Ingredient Type</th>
-                <th>Total Quantity Available</th>
+              <th>Ingredient Name</th>
+              <th> Changes</th>
+              <!--<th>Difference</th>!-->
             </tr>
-            <!-- Loops Each ingredient data onto the table-->
-            <% ingredStock.forEach(ingredStock => { %>
+
+            <% discrep.forEach(discrep => { %>
                 <tr>
-                    <td><%= ingredStock.ingredientName %></td>
-                    <td><%= ingredStock.ingredientType %></td>
-                    <td><%= ingredStock.totalUnitValue %></td>
+                    <td><%= discrep.ingredientID %></td>
+                    <td><%= discrep.quantityDiff %></td>
                 </tr>
             <% }); %> 
-           
 
-            <!-- <tr>
+            
+
+            <!--
+            <tr>
               <td>Ingredient 1</td>
               <td>1000</td>
               <td>g</td>
@@ -53,8 +54,8 @@
                 <td>Ingredient 5</td>
                 <td>1000</td>
                 <td>g</td>
-            </tr>    -->
-          </table>
+            </tr>
+          </table>              -->
 
     </div>
     
