@@ -44,23 +44,29 @@ router.post('/create_recipe',async (req,res)=>{//Happens when submitting form of
     //SUMMARY:     Create recipe_table with values inputted from EJS
 
     try{
-        
-        const recipeingredients = new recipeIngredientsModel({ // Put fields into recipemodel
-            unitValue:req.body.ingredient_value, //Table value : Inputted Data from EJS 
-            ingredientType:req.body.ingredient_name,
-            unitID:req.body.ingredient_unit
-          })
 
-          console.log(recipeingredients)
+        let arrayofrecipes = [];
+
+        for(let i=0;i<req.body.ingredient_value.length;i++){
+        let recipeingredients = new recipeIngredientsModel({ // Put fields into recipemodel
+            unitValue:req.body.ingredient_value[i], //Table value : Inputted Data from EJS 
+            ingredientType:req.body.ingredient_name[i],
+            unitID:req.body.ingredient_unit[i]
+
+          })
+          arrayofrecipes.push(recipeingredients)
+        }
+          
 
           const recipeName = new recipeModel({ // Put fields into recipemodel
             recipeName:req.body.recipe_name,
-            recipeIngredients:recipeingredients //Table value : Inputted Data from EJS     
+            recipeIngredients:arrayofrecipes //Table value : Inputted Data from EJS     
           })
         recipeModel.create(recipeName) // Create table in MongoAtlas
-        recipeIngredientsModel.create(recipeingredients) // Create table in MongoAtlas
+        // recipeIngredientsModel.create(arrayofrecipes) // Create table in MongoAtlas
+        console.log(recipeName)
         res.redirect('/')
-
+          
     }catch(error){
         res.status(500).send(error)
         console.log(error)

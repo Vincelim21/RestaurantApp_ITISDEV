@@ -14,7 +14,7 @@ const recipeSchema = new Schema({
         type:Array,
         ingredientType:{
             type: String,
-            required:false // change to true if the user can input / select from dropbox. 
+            required:true // change to true if the user can input / select from dropbox. 
         },
     
         unitValue:{
