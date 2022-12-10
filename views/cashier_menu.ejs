@@ -6,7 +6,7 @@
             
             <% recipename.forEach(recipename => { %>
                 <tr>
-                    <button onclick="addItem(this.value)" value ="<%= recipename.recipeName%>">
+                    <button onclick="addItem(this.id)" id ="<%= recipename.recipeName%>">
                     <div class="card-container" >
                     <td><%= recipename.recipeName %></td>
                     <p>PRICE</p>
