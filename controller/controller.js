@@ -281,6 +281,50 @@ router.get('/view_discrepancy',async(req,res)=>{
     
 })
 
+router.get('/record_spoiled',async(req,res) =>{
+    
+    try{
+        // Read Databasefile
+        const ingredientStock = await IngredientStockModel.find({});  //Retrieve IngredientStock table
+        res.render('record_spoiled',{ingredientStock:ingredientStock});
+    //EJS 
+        
+    }catch(error){
+        res.status(500).send(error);
+        console.log(error);
+    }
+})
+
+router.post('/record_spoiled',async (req,res)=>{
+
+    try{
+    
+       var quantitySpoiled = req.body.spoiled_quantity
+
+        const ingredientSpoiled= new spoilageModel({  // Put fields into Ingredient First Model
+            ingredientTypeID: req.body.ingredient_names,
+            quantity:quantitySpoiled
+          })
+ 
+    
+        spoilageModel.create(ingredientSpoiled) 
+        console.log(quantity)
+        
+        IngredientStockModel.updateOne({ingredientName:req.body.ingredient_names},
+            {$inc: { totalUnitValue: Number(quantity)}}
+            ).exec()
+
+        res.redirect('/view_inventory-controller')
+
+    }catch(error){
+        res.status(500).send(error)
+        console.log(error);
+    }
+    
+})
+
+
+
 //Renders the page to view recipes and its ingredients in Chef's POV
 router.get('/view_recipe',async(req,res)=>{
 
@@ -435,11 +479,6 @@ router.get('/create_recipe',(req,res) =>{
 })
 
 //Record Page
-
-router.get('/record_spoiled',(req,res) =>{
-    //First Screen
-    res.render('record_spoiled')
-})
 
 //View Pages
 router.get('/view_inventory-controller',(req,res) =>{

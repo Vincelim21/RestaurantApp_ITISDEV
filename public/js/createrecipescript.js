@@ -1,5 +1,16 @@
-function addIngredient() {
-    //Add a way to differentiate each ingredient input for database
-    //Brute force jquery pls suggest another method ;-;
-    $("#ingredient_unit").after('<select name="ingredient_name" id="ingredient_name"><option value="ingredient_cheese">Cheese</option>< option value = "ingredient_milk" > Milk</ ><option value="ingredient_flour">Flour</option></select ><input type="number" min="1" id="ingredient_value" name="ingredient_value" placeholder="Ingredient Value"> <!--input type="text" id="ingredient_unit" name="ingredient_unit" placeholder="Ingredient Unit"--> <!--Must be dropdown--><select name="ingredient_unit" id="ingredient_unit"><option value="unit_grams">G</option><option value="unit_kilograms 2">KG</option><option value="unit_milligrams">MG</option></select>')
-}
+$(document).ready(function(){
+
+    $("#add_ingredient").click(function(){
+
+        const name = $('#ingredient_name').clone();
+        const value = $('#ingredient_value').clone();
+        const unit = $('#ingredient_unit').clone();
+        
+        $(name).appendTo(".ingredients_in_recipe")
+        $(value).appendTo(".ingredients_in_recipe")
+        $(unit).appendTo(".ingredients_in_recipe")
+        
+        console.log("asd")
+    })
+    
+  });

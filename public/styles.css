@@ -218,6 +218,14 @@ input[type=text] {
     text-align: center;
 }
 
+input[type=password] {
+    background: #C4C4C4;
+    border-radius: 10px;
+    height: 30px;
+    border: none;
+    text-align: center;
+}
+
 input[type=number] {
     background: #C4C4C4;
     border-radius: 10px;

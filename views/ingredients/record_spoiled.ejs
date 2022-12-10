@@ -14,25 +14,27 @@
         <a href="/home_stockctrl" class="nav-home">HOME</a>
     </div> 
 
-    <div class="title">
-        <h1>Record Spoiled Inventory</h1>
-        <hr>
+    <form action="/record_spoiled" method="post">
+        <div class="title">
+            <h1>Record Spoiled Inventory</h1>
+            <hr>
 
-        <div class="entry">
-            <a>Ingredient Name</a>
+            <div class="entry">
+                <a>Ingredient Name</a>
 
-            <!-- Dropdown Menu-->
-            <select name="ingredient-names" id="ingredient-names">
-                 <option value="recipe 1">RECIPE 1</option>
-                 <option value="recipe 2">RECIPE 2</option>
-                  <option value="recipe 3">RECIPE 3</option>
-              </select>
-        </div>
+                <!-- Dropdown Menu-->
+                <select name="ingredient_names" id="ingredient_names" onchange="changeSystemCount(count)">
+                    <% ingredientStock.forEach(ingredientStock => { %>
+                        <option  label="<%= ingredientStock.ingredientName %>" value="<%= ingredientStock.ingredientName %>">
+                            <% var count = ingredientStock.totalUnitValue %>  <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
+                    <% }) %>
+                </select>
+            </div>
 
         <div class="entry"> <!-- Might be changed to form-->
             <a>Quantity</a>
             <!-- Textbox-->
-            <input type="text" id="fname" name="fname">
+            <input type="text" id="spoiled_quantity" name="spoiled_quantity">
         </div>
 
         <!-- Date can be changed to a better one-->
@@ -44,10 +46,17 @@
                     min="2022-11-07">
         </div>
 
-        <button type="button" class="confirm">Confirm</button>
-        <button type="button" class="cancel">Cancel</button>
+            <button type="submit" class="confirm">Confirm</button>
+            <button type="button" class="cancel" href="/home_stockctrl">Cancel</button>
         
     </div>
+    </form>
+    <script>
+        function changeSystemCount(count){
+            var x = document.getElementById("count")
+            x.nodeValue= count
+        }
+    </script>
 
 </body>
 </html>
