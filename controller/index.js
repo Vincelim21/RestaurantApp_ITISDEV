@@ -8,6 +8,14 @@ router.get('/', async(req,res) =>{
     res.render('login')
 })
 
+router.get('/register', async(req,res) =>{
+    res.render('register')
+})
+
+router.get('/register', async(req,res) =>{
+    res.render('register')
+})
+
 router.get('/home_stockctrl',(req,res) =>{
     //First Screen
     res.render('home_stockctrl')
