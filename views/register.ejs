@@ -12,9 +12,13 @@
     <!--Need to div sizes?, Place checkbox beside the "remember me" text, Add font-->
     <div class="halfgrid">
         <div class="content-half-box">
-            <form action="/login" method ="POST">
-            <h2>Username</h2><input type="text" id="username" name="username">
-            <h2>Password</h2><input type="password" id="password" name="password">
+            <form action="/register" method ="POST">
+            <h2>User ID</h2><input type="text" id="userid" name="userid" value="<%= user.userid %>">
+            <h2>first Name</h2><input type="text" id="firstname" name="firstname" value="<%= user.firstname %>">
+            <h2>Last Name</h2><input type="text" id="lastname" name="lastname" value="<%= user.lastname %>">
+            <h2>email</h2><input type="email" id="email" name="email" value="<%= user.email %>">
+            <h2>Password</h2><input type="password" id="password" name="password" value="<%= user.password %>">
+            <h2>User Type</h2><input type="text" id="usertype" name="usertype" value="<%= user.usertype %>">
             <div>
             Remember Me?<input type="checkbox">
             </div>
