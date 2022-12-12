@@ -30,7 +30,7 @@ router.post('/register', async (req,res) =>{
         const user = new UserDetailsModel({
             userID: req.body.userid,
             firstName: req.body.firstname,
-            lastName: req.body.firstname,
+            lastName: req.body.lastname,
             email: req.body.email,
             password: hashedPassword,
             userTypeName: req.body.usertype
