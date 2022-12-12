@@ -1,9 +1,6 @@
-
-/*
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
-  } */
-
+}
 
 const DATABASE_URL = 'mongodb+srv://Raphael:santillan@cluster0.cko2nz6.mongodb.net/?retryWrites=true&w=majority'
 
@@ -17,6 +14,9 @@ const { MongoClient } = require('mongodb');
 const client = new MongoClient(DATABASE_URL)
 var bodyParser = require('body-parser')
 
+// added flash and session
+const flash = require('express-flash')
+const session = require('express-session')
 //import index router
 
 
@@ -34,6 +34,17 @@ app.use(bodyParser.urlencoded({
     extended:false
 }))
 app.use(bodyParser.json())
+
+// added flash and session
+app.use(flash())
+app.use(session({
+    //key that would encrypt information for us
+    secret: process.env.SESSION_SECRET,
+    //should we resave our session variable if nothing is changed
+    resave: false,
+    // do you wanna save an empty value in the session if there is no value
+    saveUninitialized: false
+}))
 
 const indexRouter = require('./controller/index')
 const ingredientsRouter = require('./controller/ingredients')
