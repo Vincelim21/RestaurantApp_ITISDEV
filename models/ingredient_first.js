@@ -13,11 +13,10 @@ const Ingredient_firstSchema = new mongoose.Schema({
     type: String,
     required: false
   },
-  /**unit_Id: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: 'unit'
-  },*/
+  unit: {
+    type: String,
+    required: true
+  },
   unitValue: {
     type: Number,
     required: false

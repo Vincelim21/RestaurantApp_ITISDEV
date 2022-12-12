@@ -13,11 +13,11 @@ const Ingredient_orderSchema = new mongoose.Schema({
     type: String,
     required: false
   },
-  /*unit_Id: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: 'Unit_ID'
-  }*/
+  unit: {
+    type: String,
+    required: false
+ 
+  },
   unitValue: {
     type: Number,
     required: false

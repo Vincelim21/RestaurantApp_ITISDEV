@@ -115,8 +115,10 @@ router.get('/create_ingredient',async (req,res) => {
 
     try{
         const ingredients = new IngredientsModel()
+        const units = await unitModel.find()
         const params = {
-            ingredient : ingredients
+            ingredient : ingredients,
+            unit : units
         }
         res.render('ingredients/create_ingredient',params)
     }catch(error){
@@ -128,7 +130,8 @@ router.get('/create_ingredient',async (req,res) => {
 router.post('/create_ingredient',async (req,res) =>{
     try{
         const ingredientType = new IngredientsModel({
-            ingredientType:req.body.ingredient_type
+            ingredientType:req.body.ingredient_type,
+            unit:req.body.unit
         })
         IngredientsModel.create(ingredientType)
         res.redirect('/')

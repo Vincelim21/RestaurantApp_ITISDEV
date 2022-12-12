@@ -23,11 +23,11 @@
 
     <div class="entry">
         <a>Specify Ingredient's Default Unit</a>
-        <select name="ingredient_def_unit" id="ingredient_def_unit">
-            <option value="ingredient_def-unit_g">g</option>
-            <option value="ingredient_def-unit_mg">mg</option>
-             <option value="ingredient_def-unit_ml">ml</option>
-       </select>
+        <select name ="unit" id="unit">
+            <% unit.forEach(unit => { %>
+                <option  label="<%= unit.unitName %>" value="<%= unit.unitName %>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
+            <% }) %>
+          </select>
     </div>
 
 </div>

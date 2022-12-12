@@ -1,4 +1,4 @@
-function addItem(id,orders){
+function addItem(id){
 
     $(".table-header").after('<tr class="table-input">\
     <td><input type="text" value="'+id+'" name="item_value" readonly></td>\

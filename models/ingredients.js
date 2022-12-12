@@ -11,9 +11,9 @@ const IngredientsSchema = new mongoose.Schema({
     required: false
   },
 
-  unitID:{
+  unit:{
     type: String,
-    required:false // change to true if the user can input / select from dropbox. 
+    required:true
   }
 
 },{collection : 'ingredients'})
