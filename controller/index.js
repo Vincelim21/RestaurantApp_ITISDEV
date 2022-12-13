@@ -10,62 +10,98 @@ router.get('/', async(req,res) =>{
 })
 
 // trial start
+// this will return manager email
 async function login_user() {
 
     try{
         const userDetails = await UserDetailsModel.findOne({email: "manager@gmail.com"})
-        console.log("USER DETAILS "+userDetails)
+        // console.log("USER DETAILS "+userDetails)
         return userDetails.email
     }catch(error){
         console.log(error)
     }
 }
+
+// this will return manager password
+async function password_user() {
+
+    try{
+        const userDetails = await UserDetailsModel.findOne({password: "$2b$10$Au5QxrxX7H00hZ1EekLf0uT5uOmzLXpQMeUYNow02KZWO3gCUdbX2"})
+        console.log("USER DETAILS "+userDetails)
+        return userDetails.password
+    }catch(error){
+        console.log(error)
+    }
+}
+
+// this will return stock controller email
 async function login_user2() {
 
     try{
         const userDetails = await UserDetailsModel.findOne({email: "stock@gmail.com"})
-        console.log("USER DETAILS "+userDetails)
+        // console.log("USER DETAILS "+userDetails)
         return userDetails.email
     }catch(error){
         console.log(error)
     }
 }
-async function login_user3() {
+
+// this will return stock controller password
+async function password_user2() {
 
     try{
-        const userDetails = await UserDetailsModel.findOne({email: "chef@gmail.com"})
+        const userDetails = await UserDetailsModel.findOne({password: "$2b$10$6StahTHb/f7hx/C0UXtZ3eQLbwcOXxqUkcWBoqojtVOdaRw30ohJa"})
         console.log("USER DETAILS "+userDetails)
+        return userDetails.password
+    }catch(error){
+        console.log(error)
+    }
+}
+
+// this will return chef email
+async function login_user3() {
+    try{
+        const userDetails = await UserDetailsModel.findOne({email: "chef@gmail.com"})
+        // console.log("USER DETAILS "+userDetails)
         return userDetails.email
     }catch(error){
         console.log(error)
     }
 }
 
-function checklogin() {
-    let username = req.body.email;
-    let password = req.body.password;
+// this will return chef password
+async function password_user3() {
 
-    User.findOne({email:username, password:password}).lean().exec(function(err, result){
-        console.log(result);
-        console.log(result.display_Name)
-        if(result.isAdmin){
-            res.render('home_manager',{});
-        }
-        else if(!result.isAdmin){
-            res.render('home_stockctrl', {});
-        }
-        else
-            res.redirect("/");
-    })
+    try{
+        const userDetails = await UserDetailsModel.findOne({password: "$2b$10$TCQs4uhMhVVn1CwghZrtLOXAGMm/EwneqbbPtrU6H40bb3lgOSEoa"})
+        console.log("USER DETAILS "+userDetails)
+        return userDetails.password
+    }catch(error){
+        console.log(error)
+    }
 }
 
 router.post('/login', async (req, res, next) => {
     try{
+        //manager email
         var user = await login_user()
+        //stock controller email
         var user2 = await login_user2()
+        //chef email
         var user3 = await login_user3()
-        console.log("login_user "+login_user())
-        console.log(user)
+        //manager password
+        var pass = await password_user()
+        //stock controller password
+        var pass2 = await password_user2()
+        //chef password
+        var pass3 = await password_user3()
+        //compare the user input to the hashed password
+        const pMatch =  await bcrypt.compare(req.body.password, pass) 
+        console.log(req.body.password)
+        console.log(pass)
+        console.log(pMatch)
+        // console.log("login_user "+login_user())
+        // console.log(user)
         if( req.body.email == user) {
             res.render('home_manager')
             return next()
