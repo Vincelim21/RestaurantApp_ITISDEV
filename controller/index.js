@@ -9,6 +9,41 @@ router.get('/', async(req,res) =>{
     res.render('login')
 })
 
+// trial start
+function login_user() {
+    const userDetails = UserDetailsModel.findOne({email: "manager@gmail.com", password: "$2b$10$TCQs4uhMhVVn1CwghZrtLOXAGMm/EwneqbbPtrU6H40bb3lgOSEoa"}).lean().exec(function(err, user){
+        //placeholder
+        if(userDetails.userTypeName = 'Manager')
+            return userDetails.userTypeName
+            console.log()
+    })
+}
+
+function checklogin() {
+    let username = req.body.email;
+    let password = req.body.password;
+
+    User.findOne({email:username, password:password}).lean().exec(function(err, result){
+        console.log(result);
+        console.log(result.display_Name)
+        if(result.isAdmin){
+            res.render('home_manager',{});
+        }
+        else if(!result.isAdmin){
+            res.render('home_stockctrl', {});
+        }
+        else
+            res.redirect("/");
+    })
+}
+
+router.post('/login', async (req, res) => {
+    if(login_user() == 'Manager') 
+        res.render('home_manager')
+})
+// trial end
+
+
 router.get('/register', async(req,res) =>{
     try{
         const user_first = await UserDetailsModel.find({})
