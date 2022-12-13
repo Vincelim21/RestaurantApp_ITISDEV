@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script type="text/javascript" src="\js\ingredientorderscript.js"></script>
+<link rel = "stylesheet" href = "/styles.css"> 
+</head>
+
+<body>
+
+<div class = "topnav">
+ <a>RESTAURANT NAME</a>
+</div>
+
+<div class = "title">
+    <h1>End-of-Day Inventory Report</h1>
+    <hr>
+
+    <form action = "/reports/ingredient_dailyHistory_report" method ="POST">
+    <h2>Filter By:</h2>
+
+    <div class="entry">
+        <a>Date</a>
+        <select name ="reportDate" id="reportDate">
+            <% ingredient.forEach(ingredient => { %>
+                <option  label="<%= ingredient.date %>" value="<%= ingredient.date %>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
+            <% }) %>
+          </select>
+    </div>
+
+    <div class="tableInventory">
+        <table>
+            <tr>
+              <th>Ingredient Name</th>
+              <th>End-of-Day Balance</th>
+              <th>Unit</th>
+            </tr>
+            
+            <!-- Loops Each ingredient data onto the table-->
+            <% ingredient.forEach(ingredient => { %>
+                <tr>
+                    <td><%= ingredient.ingredientType %></td>
+                    <td><%= ingredient.totalUnitValue %></td>
+                    <td><%= ingredient.unitID %></td>
+                </tr>
+            <% }); %> 
+          </table>
+    </div>
+</div>
+<button class="continue" type="submit" href="/">GENERATE REPORT</button>
+</form>
+
+
+</body>
+</html>
