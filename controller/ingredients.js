@@ -18,7 +18,7 @@ const { addListener } = require('../models/ingredient_stock')
 const customerOrderModel = require('../models/customer_order')
 const discprepancieHistoryModel = require('../models/discpepancie_history')
 const spoilageHistoryModel = require('../models/spoilage_history')
-const ingredients_HistorySchema = require('../models/ingredients_history')
+const ingredients_HistoryModel = require('../models/ingredients_history')
 const db = mongoose.connection
 
 router.get('/view_inventory-controller',async(req,res) =>{
@@ -236,4 +236,28 @@ async function spoilageHistory(ingredientSpoiled){
        }
        
 }
+//Function that creates ingredient History
+async function ingredientsHistory(ingredientsList){
+    var findIngredientsHistory = await ingredients_HistoryModel.findOne({dateBought:Date.today().toString("MMMM dS, yyyy")});
+       console.log("Find Spoilage History: "+findIngredientsHistory)
+       try {
+        if(findIngredientsHistory == null){
+            const ingredientsHistory = new ingredients_HistoryModel({
+                dateSpoiled:Date.today().toString("MMMM dS, yyyy"),
+                ingredientsList:ingredientsList
+               })
+               ingredients_HistoryModel.create(ingredientsHistory)
+    
+           }
+           else if (findIngredientsHistory !=null){
+                findIngredientsHistory.ingredientsList.push(ingredientsList)
+                console.log("INGREDIENT SPOILED: "+ingredientsList)
+                console.log(findIngredientsHistory.ingredientsList)
+                findIngredientsHistory.save()
+           }
+       } catch (error) {
+        console.log(error)
+       }
+}
+
 module.exports = router

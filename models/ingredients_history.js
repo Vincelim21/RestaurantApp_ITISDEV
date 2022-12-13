@@ -5,7 +5,7 @@ const ingredients_HistorySchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  ingredientslist: {
+  ingredientsList: {
     type: Array,
     ingredientType: {
         type: String,
