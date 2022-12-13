@@ -68,15 +68,15 @@ router.post('/login', async (req, res, next) => {
         console.log(user)
         if( req.body.email == user) {
             res.render('home_manager')
-            next()
+            return next()
         }
         else if( req.body.email == user2){
             res.render('home_stockctrl')
-            next()
+            return next()
         }
         else if(req.body.email == user3) {
             res.render('home_chef')
-            next()
+            return next()
         }
         else 
             (req.body.email != user && user2 && user3)
