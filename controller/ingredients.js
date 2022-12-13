@@ -69,7 +69,7 @@ router.post('/record_physical',async (req,res)=>{
             {$inc: { totalUnitValue: Number(quantityDiff)}}
             ).exec()
 
-        res.redirect('/')
+            res.redirect('/ingredients/view_inventory-controller')
 
     }catch(error){
         res.status(500).send(error)
