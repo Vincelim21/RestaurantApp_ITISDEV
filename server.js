@@ -81,6 +81,7 @@ async function connect(){
 }
 connect()
 
+/*
 const PDFGenerator = require('pdfkit')
 const fs = require('fs')
 
@@ -96,3 +97,4 @@ theOutput.end()
 
 module.exports = mongoose
 
+*/
