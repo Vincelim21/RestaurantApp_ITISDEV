@@ -17,6 +17,9 @@ const mongoose = require('mongoose')
 const { addListener } = require('../models/ingredient_stock')
 const customerOrderModel = require('../models/customer_order')
 const conversionModel = require('../models/conversion')
+const ingredientOrderHistoryModel = require('../models/ingredient_order_history')
+var parsedate = require('datejs')
+const { find } = require('../models/ingredient_order_history')
 const db = mongoose.connection
 
 router.get('/record_firsttime',async(req,res) =>{ //Happens when rendering record_firsttime EJS
@@ -72,7 +75,6 @@ router.get('/record_itempurchase',async (req,res)=>{
 
     try{
         const ingredientFirst = await IngredientFirstModel.find({}) //Get INgredients First Table
-        console.log(ingredientFirst)
         const ingredientOrder = new IngredientOrderModel() // Create Ingredient Order table
 
         const params = {
@@ -98,6 +100,9 @@ router.post('/record_itempurchase',async (req,res)=>{
        const ingredientFirst = await IngredientFirstModel.findOne({ingredientName:req.body.name}) //Get Ingredient First Table Values to be put in for Ingredient Order Values
 
 
+      
+
+
 
 
        const ingredientOrder = new IngredientOrderModel({ //Create Ingredient Order Values
@@ -105,7 +110,9 @@ router.post('/record_itempurchase',async (req,res)=>{
         ingredientType:ingredientFirst.ingredientType,
         unitValue:ingredientFirst.unitValue,
         quantityBought:req.body.quantity,
-        unit: ingredientFirst.unit // Put Inputted Value into Ingredient Order Table
+        unit: ingredientFirst.unit,
+        dateBought: Date.today().toString("MMMM dS, yyyy")
+        
        })
        
        IngredientOrderModel.create(ingredientOrder)  // Create Ingredient Order Table
@@ -123,8 +130,29 @@ router.post('/record_itempurchase',async (req,res)=>{
        
        const ingredientStockQuery = await IngredientStockModel.findOne({ingredientName:ingredientOrder.ingredientName}) // Find IngredientStock Table with Name to IngredientOrder name
        console.log(ingredientStockQuery)
-        var valueQuery = ingredientOrder.quantityBought * ingredientOrder.unitValue
-        console.log("Value query: "+valueQuery)
+       var valueQuery = ingredientOrder.quantityBought * ingredientOrder.unitValue
+       console.log("Value query: "+valueQuery)
+
+       var findOrderHistory = await ingredientOrderHistoryModel.findOne({dateBought:Date.today().toString("MMMM dS, yyyy")})
+       console.log("Find Order History: "+findOrderHistory)
+       if(findOrderHistory == null){
+        const ingredientOrderHistory = new ingredientOrderHistoryModel({
+            dateBought: Date.today().toString("MMMM dS, yyyy"),
+            ingredientOrder:ingredientOrder
+           })
+           ingredientOrderHistoryModel.create(ingredientOrderHistory)
+
+       }
+       else if (findOrderHistory !=null){
+            findOrderHistory.ingredientOrder.push(ingredientOrder)
+            console.log("INGREDIENT ORDER: "+ingredientOrder)
+            console.log(findOrderHistory.ingredientOrder)
+            findOrderHistory.save()
+       }
+       
+
+       
+
 
        if ( ingredientStockQuery== null){ //If there are no IngredientStock Table with existing name that was ordered
         const ingredientStock = new IngredientStockModel({ //Create IngredientStock Table with values from IngredientFirst and valueQuery
@@ -145,6 +173,9 @@ router.post('/record_itempurchase',async (req,res)=>{
         res.redirect('/')
        }
 
+
+
+    
 
     }catch(error){
         res.status(500).send(error)

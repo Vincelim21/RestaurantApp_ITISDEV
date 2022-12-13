@@ -27,9 +27,8 @@ const Ingredient_orderSchema = new mongoose.Schema({
     required: false
   },
   dateBought: {
-    type: Date,
-    required: true,
-    default: Date.now
+    type: String,
+    required: true
   }
 },{collection : 'ingredient_order'})
 

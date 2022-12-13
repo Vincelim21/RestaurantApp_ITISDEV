@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script type="text/javascript" src="\js\ingredientorderscript.js"></script>
+<link rel = "stylesheet" href = "/styles.css"> 
+</head>
+
+<body>
+
+<div class = "topnav">
+ <a>RESTAURANT NAME</a>
+</div>
+
+<div class = "title">
+    <h1>Ingredient Order Report</h1>
+    <hr>
+
+    <form action = "/reports/ingredient_order_report" method ="POST">
+    <div class="entry">
+        <a>Generate report for date</a>
+        <select name ="reportDate" id="reportDate">
+            <% orderHistory.forEach(orderHistory => { %>
+                <option  label="<%= orderHistory.dateBought %>" value="<%= orderHistory.dateBought %>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
+            <% }) %>
+          </select>
+    </div>
+
+</div>
+<button class="continue" type="submit" href="/">GENERATE REPORT</button>
+</form>
+
+
+
+
+</body>
+</html>
