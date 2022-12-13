@@ -70,6 +70,9 @@ router.post('/record_physical',async (req,res)=>{
             ).exec()
 
             res.redirect('/ingredients/view_inventory-controller')
+        
+        //Add to Discpepancie History
+        discrepancieHistory(ingredientDiscrepancie)
 
     }catch(error){
         res.status(500).send(error)
@@ -181,4 +184,24 @@ router.post('/record_spoiled',async (req,res)=>{
     }
     
 })
+
+//Function that creates Discprepancie History
+async function discrepancieHistory(ingredientDiscrepancie){
+    var findDiscrepancieHistory = await discprepancieHistoryModel.findOne({dateRecorded:Date.today().toString("MMMM dS, yyyy")})
+       console.log("Find Order History: "+findDiscrepancieHistory)
+       if(findDiscrepancieHistory == null){
+        const discrepancieHistory = new discprepancieHistoryModel({
+            dateRecorded: Date.today().toString("MMMM dS, yyyy"),
+            ingredientDiscrepancie:ingredientDiscrepancie
+           })
+           discrepancieHistoryModel.create(discrepancieHistory)
+
+       }
+       else if (findDiscrepancieHistory !=null){
+            findDiscrepancieHistory.ingredientDiscrepancie.push(ingredientDiscrepancie)
+            console.log("INGREDIENT DISC: "+ingredientDiscrepancie)
+            console.log(findDiscrepancieHistory.ingredientDiscrepancie)
+            findDiscrepancieHistory.save()
+       }
+}
 module.exports = router
