@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const discrepancie_historySchema = new mongoose.Schema({
 
     dateRecorded:{
-        type: Date,
+        type: String,
         required: true,
     },
     ingredientDiscrepancie:{

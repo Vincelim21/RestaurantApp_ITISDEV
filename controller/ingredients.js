@@ -16,6 +16,8 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const { addListener } = require('../models/ingredient_stock')
 const customerOrderModel = require('../models/customer_order')
+const discprepancieHistoryModel = require('../models/discpepancie_history')
+const spoilageHistoryModel = require('../models/spoilage_history')
 const db = mongoose.connection
 
 router.get('/view_inventory-controller',async(req,res) =>{
@@ -175,8 +177,11 @@ router.post('/record_spoiled',async (req,res)=>{
         IngredientStockModel.updateOne({ingredientName:req.body.ingredient_names},
             {$inc: { totalUnitValue: Number(-quantitySpoiled)}}
             ).exec()
-
+    
         res.redirect('/ingredients/view_inventory-controller')
+
+        //Add to Spoilage History
+        spoilageHistory(ingredientSpoiled)
 
     }catch(error){
         res.status(500).send(error)
@@ -188,7 +193,7 @@ router.post('/record_spoiled',async (req,res)=>{
 //Function that creates Discprepancie History
 async function discrepancieHistory(ingredientDiscrepancie){
     var findDiscrepancieHistory = await discprepancieHistoryModel.findOne({dateRecorded:Date.today().toString("MMMM dS, yyyy")})
-       console.log("Find Order History: "+findDiscrepancieHistory)
+       console.log("Find Discrepancie History: "+findDiscrepancieHistory)
        if(findDiscrepancieHistory == null){
         const discrepancieHistory = new discprepancieHistoryModel({
             dateRecorded: Date.today().toString("MMMM dS, yyyy"),
@@ -202,6 +207,25 @@ async function discrepancieHistory(ingredientDiscrepancie){
             console.log("INGREDIENT DISC: "+ingredientDiscrepancie)
             console.log(findDiscrepancieHistory.ingredientDiscrepancie)
             findDiscrepancieHistory.save()
+       }
+}
+
+//Function that creates Discprepancie History
+async function spoilageHistory(ingredientSpoiled){
+    var findSpoilageHistory = await spoilageHistoryModel.find({});
+       console.log("Find Spoilage History: "+findSpoilageHistory)
+       if(findSpoilageHistory == null){
+        const spoilageHistory = new spoilageHistoryModel({
+            ingredientSpoiled:ingredientSpoiled
+           })
+           spoilageHistoryModel.create(spoilageHistory)
+
+       }
+       else if (findSpoilageHistory !=null){
+            findSpoilageHistory.ingredientSpoiled.push(ingredientSpoiled)
+            console.log("INGREDIENT SPOILED: "+ingredientSpoiled)
+            console.log(findSpoilageHistory.ingredientSpoiled)
+            findSpoilageHistory.save()
        }
 }
 module.exports = router
