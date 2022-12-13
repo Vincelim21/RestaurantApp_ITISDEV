@@ -41,8 +41,10 @@ router.get('/record_physical',async(req,res) =>{
     
     try{
         // Read Databasefile
-        const ingredientStock = await IngredientStockModel.find({});  //Retrieve IngredientStock table
+        const ingredientStock = await IngredientStockModel.find({});
+        console.log("Ingredient: "+ingredientStock)  //Retrieve IngredientStock table
         res.render('ingredients/record_physical',{ingredStock:ingredientStock});
+        
     //EJS 
         
     }catch(error){
