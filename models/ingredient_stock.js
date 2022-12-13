@@ -16,6 +16,10 @@ const Ingredient_stockSchema = new mongoose.Schema({
   totalUnitValue: {
     type: Number,
     required: true
+  },
+  unit:{
+    type:String,
+    required: true
   }
 },{collection : 'ingredient_stock'})
 

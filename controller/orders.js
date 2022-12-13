@@ -133,22 +133,11 @@ router.post('/record_itempurchase',async (req,res)=>{
        var valueQuery = ingredientOrder.quantityBought * ingredientOrder.unitValue
        console.log("Value query: "+valueQuery)
 
-       var findOrderHistory = await ingredientOrderHistoryModel.findOne({dateBought:Date.today().toString("MMMM dS, yyyy")})
-       console.log("Find Order History: "+findOrderHistory)
-       if(findOrderHistory == null){
-        const ingredientOrderHistory = new ingredientOrderHistoryModel({
-            dateBought: Date.today().toString("MMMM dS, yyyy"),
-            ingredientOrder:ingredientOrder
-           })
-           ingredientOrderHistoryModel.create(ingredientOrderHistory)
 
-       }
-       else if (findOrderHistory !=null){
-            findOrderHistory.ingredientOrder.push(ingredientOrder)
-            console.log("INGREDIENT ORDER: "+ingredientOrder)
-            console.log(findOrderHistory.ingredientOrder)
-            findOrderHistory.save()
-       }
+       //Create or Update Order History
+       orderHistory(ingredientOrder)
+
+       
        
 
        
@@ -158,7 +147,8 @@ router.post('/record_itempurchase',async (req,res)=>{
         const ingredientStock = new IngredientStockModel({ //Create IngredientStock Table with values from IngredientFirst and valueQuery
             ingredientName:ingredientFirst.ingredientName,
             ingredientType:ingredientFirst.ingredientType,
-            totalUnitValue: Number(valueQuery)
+            totalUnitValue: Number(valueQuery),
+            unit: ingredientFirst.unit
         }) 
         IngredientStockModel.create(ingredientStock) //Create IngredientStock Table
         res.redirect('/')
@@ -209,7 +199,8 @@ function conversion(ingredientOrder,ingredient){
         return orderedValue
 }
 
-function getMultiplier(ingredientOrderUnit,ingredientUnit){
+function getMultiplier(ingredientOrderUnit,ingredientUnit) // Params: from unit,to unit Returns multiplier
+{
 
     var multiplier = 0
     if(ingredientOrderUnit == "gram"){
@@ -305,5 +296,24 @@ function getMultiplier(ingredientOrderUnit,ingredientUnit){
     console.log("MULTIPLIER FROM CONVERSION FUNCTION: "+multiplier)
 
     return multiplier
+}
+
+async function orderHistory(ingredientOrder){
+    var findOrderHistory = await ingredientOrderHistoryModel.findOne({dateBought:Date.today().toString("MMMM dS, yyyy")})
+       console.log("Find Order History: "+findOrderHistory)
+       if(findOrderHistory == null){
+        const ingredientOrderHistory = new ingredientOrderHistoryModel({
+            dateBought: Date.today().toString("MMMM dS, yyyy"),
+            ingredientOrder:ingredientOrder
+           })
+           ingredientOrderHistoryModel.create(ingredientOrderHistory)
+
+       }
+       else if (findOrderHistory !=null){
+            findOrderHistory.ingredientOrder.push(ingredientOrder)
+            console.log("INGREDIENT ORDER: "+ingredientOrder)
+            console.log(findOrderHistory.ingredientOrder)
+            findOrderHistory.save()
+       }
 }
 module.exports = router
