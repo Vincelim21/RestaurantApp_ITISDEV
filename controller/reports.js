@@ -17,6 +17,7 @@ const mongoose = require('mongoose')
 const { addListener } = require('../models/ingredient_stock')
 const customerOrderModel = require('../models/customer_order')
 const ingredientOrderHistoryModel = require('../models/ingredient_order_history')
+const ingredientDaiyHistoryModel = require('../models/ingredient_dailyHistory')
 const db = mongoose.connection
 
 
@@ -78,7 +79,29 @@ function getFilters(filters,body){
 
 }
 
+router.get('/ingredient_dailyHistory_report',async (req,res) => {
 
+    try{
+        const ingredient = await IngredientsModel.find({})
+ 
+        const params = {
+         ingredient:ingredient
+        }
+         res.render('reports/ingredient_dailyHistory_report',params)
+     }catch(error){
+         res.status(500).send(error)
+         console.log(error)
+     }
+})
+
+router.post('/ingredient_dailyHistory_report',async (req,res) =>{
+    try{
+        let filters = []
+        getFilters(filters,req.body)
+    }catch(error){
+
+    }
+})
 
 
 module.exports = router

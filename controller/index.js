@@ -176,4 +176,18 @@ router.get('/home_chef',(req,res) =>{
 router.get('/home_manager',(req,res) =>{
     res.render('home_manager')
 })
+
+router.get('/employeeView',async(req,res) =>{
+    try{
+        const users = await UserDetailsModel.find({})
+        const params = { 
+            users : users // recipename in EJS file: recipename value retrieved
+        } 
+        res.render('employeeView',params);
+    }catch(error){
+        res.status(500).send(error);
+        console.log(error);
+    }
+})
+
 module.exports = router
