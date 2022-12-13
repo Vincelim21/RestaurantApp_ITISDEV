@@ -214,18 +214,23 @@ async function discrepancieHistory(ingredientDiscrepancie){
 async function spoilageHistory(ingredientSpoiled){
     var findSpoilageHistory = await spoilageHistoryModel.find({});
        console.log("Find Spoilage History: "+findSpoilageHistory)
-       if(findSpoilageHistory == null){
-        const spoilageHistory = new spoilageHistoryModel({
-            ingredientSpoiled:ingredientSpoiled
-           })
-           spoilageHistoryModel.create(spoilageHistory)
-
+       try {
+        if(findSpoilageHistory == null){
+            const spoilageHistory = new spoilageHistoryModel({
+                ingredientSpoiled:ingredientSpoiled
+               })
+               spoilageHistoryModel.create(spoilageHistory)
+    
+           }
+           else if (findSpoilageHistory !=null){
+                findSpoilageHistory.ingredientSpoiled.push(ingredientSpoiled)
+                console.log("INGREDIENT SPOILED: "+ingredientSpoiled)
+                console.log(findSpoilageHistory.ingredientSpoiled)
+                findSpoilageHistory.save()
+           }
+       } catch (error) {
+        console.log(error)
        }
-       else if (findSpoilageHistory !=null){
-            findSpoilageHistory.ingredientSpoiled.push(ingredientSpoiled)
-            console.log("INGREDIENT SPOILED: "+ingredientSpoiled)
-            console.log(findSpoilageHistory.ingredientSpoiled)
-            findSpoilageHistory.save()
-       }
+       
 }
 module.exports = router
