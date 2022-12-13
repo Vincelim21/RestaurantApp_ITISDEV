@@ -200,7 +200,7 @@ async function discrepancieHistory(ingredientDiscrepancie){
             dateRecorded: Date.today().toString("MMMM dS, yyyy"),
             ingredientDiscrepancie:ingredientDiscrepancie
            })
-           discrepancieHistoryModel.create(discrepancieHistory)
+           discprepancieHistoryModel.create(discrepancieHistory)
 
        }
        else if (findDiscrepancieHistory !=null){

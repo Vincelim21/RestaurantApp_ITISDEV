@@ -7,6 +7,7 @@ const discrepancie_historySchema = new mongoose.Schema({
         required: true,
     },
     ingredientDiscrepancie:{
+        type:Array,
         ingredientID: {
             type: String,
             required: true
