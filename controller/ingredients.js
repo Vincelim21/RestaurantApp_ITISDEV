@@ -146,7 +146,7 @@ router.get('/record_spoiled',async(req,res) =>{
     try{
         // Read Databasefile
         const ingredientStock = await IngredientStockModel.find({});  //Retrieve IngredientStock table
-        res.render('/ingredients/record_spoiled',{ingredientStock:ingredientStock});
+        res.render('ingredients/record_spoiled',{ingredientStock:ingredientStock});
     //EJS 
         
     }catch(error){
