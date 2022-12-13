@@ -15,12 +15,30 @@ async function login_user() {
     try{
         const userDetails = await UserDetailsModel.findOne({email: "manager@gmail.com"})
         console.log("USER DETAILS "+userDetails)
-        return userDetails.userTypeName
-    
+        return userDetails.email
     }catch(error){
         console.log(error)
     }
-    
+}
+async function login_user2() {
+
+    try{
+        const userDetails = await UserDetailsModel.findOne({email: "stock@gmail.com"})
+        console.log("USER DETAILS "+userDetails)
+        return userDetails.email
+    }catch(error){
+        console.log(error)
+    }
+}
+async function login_user3() {
+
+    try{
+        const userDetails = await UserDetailsModel.findOne({email: "chef@gmail.com"})
+        console.log("USER DETAILS "+userDetails)
+        return userDetails.email
+    }catch(error){
+        console.log(error)
+    }
 }
 
 function checklogin() {
@@ -41,13 +59,28 @@ function checklogin() {
     })
 }
 
-router.post('/login', async (req, res) => {
+router.post('/login', async (req, res, next) => {
     try{
         var user = await login_user()
+        var user2 = await login_user2()
+        var user3 = await login_user3()
         console.log("login_user "+login_user())
         console.log(user)
-        if( user== 'Manager') 
+        if( req.body.email == user) {
             res.render('home_manager')
+            next()
+        }
+        else if( req.body.email == user2){
+            res.render('home_stockctrl')
+            next()
+        }
+        else if(req.body.email == user3) {
+            res.render('home_chef')
+            next()
+        }
+        else 
+            (req.body.email != user && user2 && user3)
+            res.render('login')
     }
     catch(error){
         console.log(error)
