@@ -18,6 +18,7 @@ const { addListener } = require('../models/ingredient_stock')
 const customerOrderModel = require('../models/customer_order')
 const discprepancieHistoryModel = require('../models/discpepancie_history')
 const spoilageHistoryModel = require('../models/spoilage_history')
+const ingredients_HistorySchema = require('../models/ingredients_history')
 const db = mongoose.connection
 
 router.get('/view_inventory-controller',async(req,res) =>{

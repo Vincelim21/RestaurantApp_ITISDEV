@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const ingredient_HistorySchema = new mongoose.Schema({
+const ingredients_HistorySchema = new mongoose.Schema({
   dateBought: {
     type: String,
     required: true
@@ -20,7 +20,7 @@ const ingredient_HistorySchema = new mongoose.Schema({
         required:true
     }
   }
-},{collection : 'ingredient_HistorySchema'})
+},{collection : 'ingredients_HistorySchema'})
 
 
-module.exports = mongoose.model('Ingredient_HistorySchema', ingredient_HistorySchema)
+module.exports = mongoose.model('Ingredients_HistorySchema', ingredients_HistorySchema)
