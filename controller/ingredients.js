@@ -69,7 +69,7 @@ router.post('/record_physical',async (req,res)=>{
             {$inc: { totalUnitValue: Number(quantityDiff)}}
             ).exec()
 
-        res.redirect('/')
+            res.redirect('/ingredients/view_inventory-controller')
 
     }catch(error){
         res.status(500).send(error)
@@ -162,7 +162,7 @@ router.post('/record_spoiled',async (req,res)=>{
        var quantitySpoiled = req.body.spoiled_quantity
 
         const ingredientSpoiled= new spoilageModel({  // Put fields into Ingredient First Model
-            ingredientTypeID: req.body.ingredient_names,
+            ingredientID: req.body.ingredient_names,
             quantity:quantitySpoiled
           })
  

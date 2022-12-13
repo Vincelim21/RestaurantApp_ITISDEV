@@ -4,7 +4,6 @@ const manualCountModel = require('../models/manual_count')
 const discrepancieModel = require('../models/discrepancie')
 const spoilageModel = require('../models/spoilage')
 const UserDetailsModel = require('../models/user_details')
-const CustomerOrderModel = require('../models/customer_order')
 const recipeModel = require('../models/recipe')
 const ingredientsModel = require('../models/ingredients')
 const recipeIngredientsModel = require('../models/recipe_ingredients')
@@ -29,8 +28,8 @@ router.get('/cashier_menu',async(req,res)=>{
             customerorder : getcashiermenu,
             orders : orders
         }
-        console.log(getcashiermenu);
-        console.log(recipes);
+        // console.log(getcashiermenu);
+        // console.log(recipes);
 
         res.render('cashier/cashier_menu',params);
         }catch(error){
@@ -44,14 +43,25 @@ router.post('/cashier_menu',async (req,res)=>{//Happens when submitting form of 
     //SUMMARY:     Create recipe_table with values inputted from EJS
 
     try{
-        
-        const getcashiermenu = new customerOrderModel({ // Put fields into recipemodel
-            itemName:req.body.item_value,
-            quantity:req.body.quantity_value, //Table value : Inputted Data from EJS 
-          })
 
-          console.log(getcashiermenu)
-          customerOrderModel.create(getcashiermenu) // Create table in MongoAtlas
+        let arrayoforders = [];
+        
+        for(let i=0;i<req.body.quantity_value.length;i++){
+            let object = {
+            itemName:req.body.item_value[i],
+            quantity:req.body.quantity_value[i]
+            }
+          arrayoforders.push(object)
+        }
+
+        let cashierorder = new customerOrderModel({
+            orders:arrayoforders
+        })
+
+        console.log(arrayoforders);
+
+          console.log(cashierorder)
+          customerOrderModel.create(cashierorder) // Create table in MongoAtlas
         res.redirect('/')
 
     }catch(error){

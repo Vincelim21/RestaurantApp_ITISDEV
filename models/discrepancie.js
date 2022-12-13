@@ -3,10 +3,6 @@ const mongoose = require('mongoose')
 
 
 const discrepancieSchema = new mongoose.Schema({
-    countID: {
-        type: String,
-        required: false
-    },
     ingredientID: {
         type: String,
         required: true

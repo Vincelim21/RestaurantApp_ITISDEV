@@ -1,21 +1,24 @@
 const mongoose = require('mongoose')
 
 const customer_orderSchema = new mongoose.Schema({
-    orderID:{
-        type:Number,
-        required:false
+    orderID: {
+        type: Number,
+        required: false
     },
-    itemName:{
-        type:Array,
-        required:true
+    orders: {
+        type: Array,
+        itemName: {
+            type: String,
+            required: true
+        },
+        quantity: {
+            type: Number,
+            required: true
+        },
     },
-    quantity:{
-        type:Array,
-        required:true
-    },
-    dateOrdered:{
-        type:Date,
-        required:false,
+    dateOrdered: {
+        type: Date,
+        required: false,
         default: Date.now
     }
 })
