@@ -10,13 +10,17 @@ router.get('/', async(req,res) =>{
 })
 
 // trial start
-function login_user() {
-    const userDetails = UserDetailsModel.findOne({email: "manager@gmail.com", password: "$2b$10$TCQs4uhMhVVn1CwghZrtLOXAGMm/EwneqbbPtrU6H40bb3lgOSEoa"}).lean().exec(function(err, user){
-        //placeholder
-        if(userDetails.userTypeName = 'Manager')
-            return userDetails.userTypeName
-            console.log()
-    })
+async function login_user() {
+
+    try{
+        const userDetails = await UserDetailsModel.findOne({email: "manager@gmail.com"})
+        console.log("USER DETAILS "+userDetails)
+        return userDetails.userTypeName
+    
+    }catch(error){
+        console.log(error)
+    }
+    
 }
 
 function checklogin() {
@@ -38,8 +42,17 @@ function checklogin() {
 }
 
 router.post('/login', async (req, res) => {
-    if(login_user() == 'Manager') 
-        res.render('home_manager')
+    try{
+        var user = await login_user()
+        console.log("login_user "+login_user())
+        console.log(user)
+        if( user== 'Manager') 
+            res.render('home_manager')
+    }
+    catch(error){
+        console.log(error)
+    }
+    
 })
 // trial end
 
