@@ -141,6 +141,11 @@ router.post('/create_ingredient',async (req,res) =>{
         })
         IngredientsModel.create(ingredientType)
         res.redirect('/')
+
+        //Add to Ingredient History
+        console.log(ingredientType)
+        ingredientsHistory(ingredientType)
+
     }catch(error){
         res.status(500).send(error)
         console.log(error)
@@ -237,21 +242,21 @@ async function spoilageHistory(ingredientSpoiled){
        
 }
 //Function that creates ingredient History
-async function ingredientsHistory(ingredientsList){
+async function ingredientsHistory(ingredientType){
     var findIngredientsHistory = await ingredients_HistoryModel.findOne({dateBought:Date.today().toString("MMMM dS, yyyy")});
        console.log("Find Spoilage History: "+findIngredientsHistory)
        try {
         if(findIngredientsHistory == null){
             const ingredientsHistory = new ingredients_HistoryModel({
-                dateSpoiled:Date.today().toString("MMMM dS, yyyy"),
-                ingredientsList:ingredientsList
+                dateBought:Date.today().toString("MMMM dS, yyyy"),
+                ingredientsList:ingredientType
                })
                ingredients_HistoryModel.create(ingredientsHistory)
     
            }
            else if (findIngredientsHistory !=null){
-                findIngredientsHistory.ingredientsList.push(ingredientsList)
-                console.log("INGREDIENT SPOILED: "+ingredientsList)
+                findIngredientsHistory.ingredientsList.push(ingredientType)
+                console.log("INGREDIENT SPOILED: "+ingredientType)
                 console.log(findIngredientsHistory.ingredientsList)
                 findIngredientsHistory.save()
            }
