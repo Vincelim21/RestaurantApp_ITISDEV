@@ -162,7 +162,7 @@ router.post('/record_spoiled',async (req,res)=>{
        var quantitySpoiled = req.body.spoiled_quantity
 
         const ingredientSpoiled= new spoilageModel({  // Put fields into Ingredient First Model
-            ingredientTypeID: req.body.ingredient_names,
+            ingredientID: req.body.ingredient_names,
             quantity:quantitySpoiled
           })
  

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const spoilageSchema = new mongoose.Schema({
-    ingredientTypeID: {
+    ingredientID: {
         type: String,
         required: true
     },
