@@ -1,8 +1,12 @@
-var optionValues =[];
-$('#reportDate').each(function(){
-   if($.inArray(this.value, optionValues) >-1){
-      $(this).remove()
-   }else{
-      optionValues.push(this.value);
-   }
-});
+$(document).ready(function(){
+
+   $("#reportDate").prepend("<option value='' selected='selected'>---</option>");
+   $("#ingredientName").prepend("<option value='' selected='selected'>---</option>");
+   $("#ingredientType").prepend("<option value='' selected='selected'>---</option>");
+   $("#unit").prepend("<option value='' selected='selected'>---</option>");
+
+
+
+
+})
+

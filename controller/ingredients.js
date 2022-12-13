@@ -181,6 +181,7 @@ router.post('/record_spoiled',async (req,res)=>{
         res.redirect('/ingredients/view_inventory-controller')
 
         //Add to Spoilage History
+        console.log(ingredientSpoiled)
         spoilageHistory(ingredientSpoiled)
 
     }catch(error){
@@ -212,11 +213,12 @@ async function discrepancieHistory(ingredientDiscrepancie){
 
 //Function that creates Discprepancie History
 async function spoilageHistory(ingredientSpoiled){
-    var findSpoilageHistory = await spoilageHistoryModel.find({});
+    var findSpoilageHistory = await spoilageHistoryModel.findOne({dateSpoiled:Date.today().toString("MMMM dS, yyyy")});
        console.log("Find Spoilage History: "+findSpoilageHistory)
        try {
         if(findSpoilageHistory == null){
             const spoilageHistory = new spoilageHistoryModel({
+                dateSpoiled:Date.today().toString("MMMM dS, yyyy"),
                 ingredientSpoiled:ingredientSpoiled
                })
                spoilageHistoryModel.create(spoilageHistory)

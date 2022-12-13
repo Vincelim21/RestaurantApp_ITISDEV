@@ -1,7 +1,10 @@
 const mongoose = require('mongoose')
 
 const spoilage_historySchema = new mongoose.Schema({
-
+    dateSpoiled:{
+        type:String,
+        required:true
+    },
     ingredientSpoiled:{
         type:Array,
         ingredientID: {
