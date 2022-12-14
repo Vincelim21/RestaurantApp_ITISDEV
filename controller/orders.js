@@ -99,20 +99,20 @@ router.post('/record_itempurchase',async (req,res)=>{
     try{
         const ingredientFirst = await IngredientFirstModel.findOne({ingredientName:req.body.name}) //Get Ingredient First Table Values to be put in for Ingredient Order Values
         console.log(ingredientFirst)
-        const history = await ingredientOrderHistoryModel.findOne({dateBought:Date.today().addDays(-2).toString("MMMM dS, yyyy")})
+        const history = await ingredientOrderHistoryModel.findOne({dateBought:Date.today().toString("MMMM dS, yyyy")})
         console.log(history + "HISTORY ETO  ")
         
         if(history ==null){
             const ingredientOrderHistory = new ingredientOrderHistoryModel({
                 ingredientID:mongoose.Types.ObjectId(),//Create Ingredient Order Values
-                dateBought: Date.today().addDays(-2).toString("MMMM dS, yyyy")
+                dateBought: Date.today().toString("MMMM dS, yyyy")
                 })
                 ingredientOrderHistoryModel.create(ingredientOrderHistory)
 
                 
         }
         console.log("HEREEEE: ")
-        const ingredientOrderHistory = await ingredientOrderHistoryModel.findOne({dateBought:Date.today().addDays(-2).toString("MMMM dS, yyyy")})
+        const ingredientOrderHistory = await ingredientOrderHistoryModel.findOne({dateBought:Date.today().toString("MMMM dS, yyyy")})
 
 
     
@@ -123,7 +123,7 @@ router.post('/record_itempurchase',async (req,res)=>{
         unitValue:ingredientFirst.unitValue,
         quantityBought:req.body.quantity,
         unit: ingredientFirst.unit,
-        dateBought: Date.today().addDays(-2).toString("MMMM dS, yyyy")
+        dateBought: Date.today().toString("MMMM dS, yyyy")
         
        })
       

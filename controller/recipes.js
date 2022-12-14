@@ -54,17 +54,30 @@ router.post('/create_recipe',async (req,res)=>{//Happens when submitting form of
           })
         recipeModel.create(recipeName)
 
-        for(let i=0;i<req.body.ingredient_value.length;i++){
-        let recipeingredients = new recipeIngredientsModel({// Put fields into recipemodel
-            ingredientID:recipeName.recipeID,
-            ingredientType:req.body.ingredient_name[i],
-            totalUnitValue:req.body.ingredient_value[i],
-            unit:req.body.ingredient_unit[i],
+        if(req.body.ingredient_value.length==1){
+            let recipeingredients = new recipeIngredientsModel({// Put fields into recipemodel
+                ingredientID:recipeName.recipeID,
+                ingredientType:req.body.ingredient_name,
+                totalUnitValue:req.body.ingredient_value,
+                unit:req.body.ingredient_unit,
+              })
+              console.log(req.body.ingredient_value)
+              recipeIngredientsModel.create(recipeingredients)
             
-          })
-          console.log(req.body.ingredient_value)
-          recipeIngredientsModel.create(recipeingredients)
+        }else{
+            for(let i=0;i<req.body.ingredient_value.length;i++){
+                let recipeingredients = new recipeIngredientsModel({// Put fields into recipemodel
+                    ingredientID:recipeName.recipeID,
+                    ingredientType:req.body.ingredient_name[i],
+                    totalUnitValue:req.body.ingredient_value[i],
+                    unit:req.body.ingredient_unit[i],
+                  })
+                  console.log(req.body.ingredient_value)
+                  recipeIngredientsModel.create(recipeingredients)
+                }
         }
+
+        
 
         res.redirect('/')
 
