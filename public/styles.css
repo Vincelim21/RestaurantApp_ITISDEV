@@ -290,11 +290,12 @@ input[type=number] {
 }
 
 .collapsible{
-    background-color: gray;
+    background-color: dodgerblue;
     color: black;
     cursor: pointer;
+    font-weight: bold;
     padding: 18px;
-    width: 100%;
+    width: 70%;
     margin-top: 20px;
     border: none;
     text-align: center;
@@ -302,11 +303,15 @@ input[type=number] {
     font-size: 15px;
 }
 
+.collapse{
+    text-align: center;
+}
+
 .content {
     padding: 0 18px;
+    position:relative;
     display: none;
     overflow: hidden;
-    background-color: #f1f1f1;
 }
 
 .box-container 
@@ -367,6 +372,20 @@ div.ingredients_in_recipe
 
 }
 
+.button2
+{
+    background-color: red; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+
+}
+
 .continue
 {
     padding: 20px;
@@ -379,31 +398,53 @@ div.ingredients_in_recipe
     text-align: center;
 }
 
-.button1:hover {
-    background-color: #4CAF50;
-    color:white;
-}
-
-table{
+table.table1{
     width: 100%;
     border-collapse: collapse;
+    border:1px solid;
 }
 
-th{
+table.table1 th{
  text-align:center;
  background-color: dodgerblue;
 }
 
-td{
+table.table1 td{
 height: 30px;
 }
 
-tr:nth-child(even){
-    background-color: gray;
-    color: white
+table.table1 tr:nth-child(even){
+    background-color: #F5F5F5;
+    color: black;
 }
 
-th, td{
+table.table1 th, td{
     padding:15px;
+    border-bottom: 1px solid black;
 }
+
+table.table2{
+    width: 70%;
+    border-collapse: collapse;
+    border: 1px solid;
+}
+
+table.table2 th{
+    text-align:center;
+    background-color: gray;
+    color:black;
+   }
+
+table.table2 th, td{
+    padding:15px;
+    border-bottom: 1px solid;
+}
+
+table.table2 tr:nth-child(even){
+    background-color: #F5F5F5;
+    color: black;
+}
+
+
+
 

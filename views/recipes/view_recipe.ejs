@@ -9,6 +9,8 @@
 
 <div class = "topnav">
  <a>RESTAURANT NAME</a>
+ <a href="#about" class="nav-user">CHEF</a>
+ <a href="/home_chef" class="nav-home">HOME</a>
 </div>
 
 <div class = "title">
@@ -21,9 +23,9 @@
 <div>
   <% recipe.forEach(recipe => { %>
     <% if (recipe.active == true) { %>
-    <button type = "button" class = "collapsible"><%= recipe.recipeName %></button>
+    <div class ="collapse"><button type = "button" class = "collapsible"><%= recipe.recipeName %></button>
       <div class = "content">
-          <table>
+          <table class = "table2">
             <tr>
               <th>Ingredient</th>
               <th>Amount</th>
@@ -49,6 +51,7 @@
       </div>
       <% } %>
       <% }) %>
+</div>
 </div>
 
 
