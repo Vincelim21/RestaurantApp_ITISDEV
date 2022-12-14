@@ -9,6 +9,10 @@ const recipeSchema = new Schema({
     recipeName:{
         type:String,
         required:true
+    },
+    active:{
+        type:Boolean,
+        default:true,
     }
 
 })

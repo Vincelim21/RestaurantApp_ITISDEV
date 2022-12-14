@@ -3,7 +3,9 @@ const router = express.Router()
 const UserDetailsModel = require('../models/user_details')
 const mongoose = require('mongoose')
 const db = mongoose.connection
+const recipeModel = require('../models/recipe')
 const bcrypt = require('bcrypt')
+const recipe = require('../models/recipe')
 
 router.get('/', async(req,res) =>{
     res.render('login')
@@ -125,6 +127,45 @@ router.post('/login', async (req, res, next) => {
 })
 // trial end
 
+router.get('/manager_records',async(req,res) =>{
+    
+    const recipe = await recipeModel.find({})
+
+    const params ={
+        recipe:recipe,
+    }
+
+    try{
+        res.render('manager_records', params);
+        
+    }catch(error){
+        res.status(500).send(error);
+        console.log(error);
+    }
+})
+
+router.post('/manager_records', async(req,res)=>{
+    //SUMMARY: Disable or Enable recipes
+
+    try{
+        // for(let i=0; i<req.body.recipeoption.length)
+        console.log(req.body.recipeoption.length);
+        for(let i=0;i<req.body.recipeoption.length;i++){
+            if(req.body.selection[i]=='enable'){
+                await recipeModel.updateOne({recipeName:req.body.recipeoption[i]},{active:true})
+            }
+            else{
+                await recipeModel.updateOne({recipeName:req.body.recipeoption[i]},{active:false})
+            }
+            console.log("Turned "+ req.body.recipeoption[i] + " into " + req.body.selection[i])
+        }
+        res.redirect('/');
+    }
+    catch(error){
+        res.status(500).send(error)
+        console.log(error)
+    }
+})
 
 router.get('/register', async(req,res) =>{
     try{

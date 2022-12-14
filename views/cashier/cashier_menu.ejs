@@ -11,6 +11,7 @@
         <div class="menu-card">
             
             <% recipename.forEach(recipename => { %>
+                <% if(recipename.active == true){ %>
                 <tr>
                     <button onclick="addItem(this.id)" id ="<%= recipename.recipeName%>">
 
@@ -25,6 +26,7 @@
                     </div>
                     </button>
                 </tr>
+               <% } %>
             <% }); %> 
         </div>
     </div>

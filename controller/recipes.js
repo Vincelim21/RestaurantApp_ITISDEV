@@ -50,7 +50,7 @@ router.post('/create_recipe',async (req,res)=>{//Happens when submitting form of
     try{
         const recipeName = new recipeModel({ // Put fields into recipemodel
             recipeName:req.body.recipe_name,
-            recipeID:mongoose.Types.ObjectId()//Table value : Inputted Data from EJS
+            // recipeID:mongoose.Types.ObjectId()//Table value : Inputted Data from EJS
           })
         recipeModel.create(recipeName)
 
