@@ -63,7 +63,7 @@ router.post('/ingredient_order_report',async (req,res) =>{
         }
         
 
-        if(filters.length != 0){
+        if(filters1.length != 0 || filters.length!=0){
             var orderFilter = filters1[0]
             var historyFilter = filters[0]
             
@@ -79,7 +79,6 @@ router.post('/ingredient_order_report',async (req,res) =>{
         }
             
         
-         console.log("fILTER 1: "+filter1)
         
  
     }catch(error){
