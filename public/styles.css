@@ -321,6 +321,18 @@ div.ingredients_in_recipe
 
 }
 
+.continue
+{
+    padding: 20px;
+    background-color: blue;
+    color: white;
+}
+
+.btn1
+{
+    text-align: center;
+}
+
 .button1:hover {
     background-color: #4CAF50;
     color:white;
