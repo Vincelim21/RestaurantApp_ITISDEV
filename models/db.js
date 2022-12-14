@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-<<<<<<< Updated upstream
 // const User = require('./UserModel.js');
 
 // const Comment = require('./CommentModel.js');
@@ -8,15 +7,6 @@ const mongoose = require('mongoose');
 // const Post = require('./PostModel.js');
 
 // const Order = require('./OrderModel.js');
-=======
-//const User = require('./UserModel.js');
-
-//const Comment = require('./CommentModel.js');
-
-//const Post = require('./PostModel.js');
-
-//const Order = require('./OrderModel.js');
->>>>>>> Stashed changes
 
 const url = 'mongodb+srv://Raphael:santillan@cluster0.cko2nz6.mongodb.net/?retryWrites=true&w=majority';
 

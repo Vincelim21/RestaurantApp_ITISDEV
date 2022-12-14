@@ -1,21 +1,15 @@
 // import module `database` from `../models/db.js`
 const db = require('../models/db');
-// const express = require('express')
+const express = require('express')
 const bcrypt = require('bcrypt');
 
 const UserDetailsModel = require('../models/user_details')
-// const router = express.Router()
+const router = express.Router()
 var session = require('express-session');
 
-<<<<<<< Updated upstream
 // router.post('/login', loginController.postLogin);
 // router.get('/login',loginController.login)
 // router.get('/logout', loginController.logout);
-=======
-//router.post('/login', loginController.postLogin);
-//router.get('/login',loginController.login)
-//router.get('/logout', loginController.logout);
->>>>>>> Stashed changes
 
 const loginController = {
 
