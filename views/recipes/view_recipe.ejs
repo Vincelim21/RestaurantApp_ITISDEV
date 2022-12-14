@@ -3,6 +3,7 @@
 
 <head>
 <link rel = "stylesheet" href = "/styles.css"> 
+<script type="text/javascript" src="\js\viewrecipescript.js"></script>
 </head>
 
 <body>
@@ -21,6 +22,11 @@
 <!--TODO: Recipe Cards-->
 
 <div>
+  <div>
+    <h2>Search by recipe or ingredient</h1>
+  <input id="searchinput" type="text" placeholder="Search..">
+  </div>
+  <div id ="recipecollapse">
   <% recipe.forEach(recipe => { %>
     <% if (recipe.active == true) { %>
     <div class ="collapse"><button type = "button" class = "collapsible"><%= recipe.recipeName %></button>
@@ -49,8 +55,10 @@
           </table>
           
       </div>
+      </div>
       <% } %>
       <% }) %>
+    </div>
 </div>
 </div>
 
