@@ -6,25 +6,27 @@ const ingredient_dailyHistorySchema = new mongoose.Schema({
     required: true
   },
 
-  ingredient:{
-    type:Array,
+  ingredientID:{
+    type:String,
+    required:true
+  },
+  
+  ingredientType: {
+    type: String,
+    required: true
+  },
 
-    ingredientType: {
-      type: String,
-      required: false
-    },
+  totalUnitValue: {
+    type: Number,
+    required: false,
+    default: 0
+  },
 
-    totalUnitValue: {
-        type: Number,
-        required: false
-    },
-
-    unit: {
-      type: String,
-      required: false
-    }
+  unit:{
+    type: String,
+    required:true
   }
-},{collection : 'ingredient_order_history'})
+},{collection : 'ingredient_dailyHistory'})
 
 
 module.exports = mongoose.model('Ingredient_dailyHistory', ingredient_dailyHistorySchema)

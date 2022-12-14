@@ -143,9 +143,19 @@ h1 {
     font-size: 20px;
 
 }
+
+.tablevalue{
+    font-size:15px;
+    border  : none;
+    background: none;
+    text-align:center;
+}
+
 .card-container p{
     color:black;
 }
+
+
 .checkout-details table{
     width: 100%;
 }
@@ -470,7 +480,5 @@ table.table2 tr:nth-child(even){
     background-color: #F5F5F5;
     color: black;
 }
-
-
 
 

@@ -105,8 +105,6 @@ router.get('/view_discrepancy',async(req,res)=>{
     
 })
 
-
-
 router.get('/view_inventory-chef',async(req,res)=>{
 
     const ingredients = await ingredientsModel.find({})

@@ -19,7 +19,7 @@
             <div class="entry"> 
                 <a>Ingredient Name </a>
                 <!-- Textbox-->
-                <input type="text" name="name" value="<%= ingredientorder.name %>">
+                <input type="text" name="name" value="<%= ingredientorder.name %>" required>
             </div>
             <div class="entry">
                 <a>Ingredient Type</a>
@@ -33,7 +33,7 @@
             <div class="entry">
                 <a>Net Weight </a>
                 <!-- Textbox-->
-                <input type="number" name="unitValue" min="1" value="<%= ingredientorder.unitValue %>">
+                <input type="number" name="unitValue" min="1" value="<%= ingredientorder.unitValue %>" required>
     
        
                 <select class="dropdown" name ="unit" id="unit">

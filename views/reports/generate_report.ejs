@@ -5,32 +5,75 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles.css">
-    <title>Report</title>
+    <title>View Inventory for Controller</title>
     
 </head>
 <body>
+    <div class = "topnav">
+        <a>ITISDEV RESTAURANT</a>
+        <a href="#about" class="nav-user">STOCK CONTROLLER</a>
+        <a href="/home_chef" class="nav-home">HOME</a>
+       </div>
     <div class="title">
-        <h1>Filtered Results</h1>
+        <h1>Ingredient Order History Report</h1>
+        <div class = "line"></div>
+        <h4>Date created: <%= Date.today().toString("MMMM dS, yyyy") %>        </h4>
+ <h4>Timestamp: <%= Date().getTime %></h4>
+        <br>
         
     <!-- Table for View Inventory-->
-    <div class="tableInventory">
+    <% order_report.forEach(order_report => { %>
+      <h2><%= order_report.dateBought %> orders</h2>
+      
+       
         <table>
             <tr>
-              <th>Date Bought</th>
-              <th>Ingredients</th>
-              <th>Unit Idontknow</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Value</th>
+                <th>Unit</th>
+                <th>Quantity</th>
             </tr>
-
-              <% order_report.forEach(order_report => { %>
+            <% orders.forEach(orders => { %>
+                <%if(orders.ingredientID == order_report.ingredientID) { %>
                 <tr>
-                <td><%= order_report.dateBought %></td>
-                <td><%= order_report.ingredientName %></td>
-                <td><%=order_report.unit %></td>
-              </tr>
-               
-            <% }) %>
-          
-            
+                     <td><%= orders.ingredientName %></td>
+                    <td><%= orders.ingredientType %></td>
+                    <td><%= orders.unitValue %></td>
+                    <td><%= orders.unit %></td>
+                    <td><%= orders.quantityBought %></td>
+                </tr>
+                <% }; %> 
+            <% }); %> 
+        </table>
+    <% }); %>
+
+    <h3> *END OF REPORT*</h3>
+
+            <!-- <tr>
+              <td>Ingredient 1</td>
+              <td>1000</td>
+              <td>g</td>
+            </tr>
+            <tr>
+                <td>Ingredient 2</td>
+                <td>1000</td>
+                <td>g</td>
+            </tr>
+            <tr>
+                <td>Ingredient 3</td>
+                <td>1000</td>
+                <td>g</td>
+            </tr>
+            <tr>
+                <td>Ingredient 4</td>
+                <td>1000</td>
+                <td>g</td>
+            </tr><tr>
+                <td>Ingredient 5</td>
+                <td>1000</td>
+                <td>g</td>
+            </tr>    -->
           </table>
 
     </div>
