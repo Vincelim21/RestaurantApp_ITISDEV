@@ -35,6 +35,7 @@
                 
                 <!--input type="text" id="ingredient_name" name="ingredient_name" placeholder="Ingredient Name"-->
                     <!--Must be dropdown-->
+                    <div class="ingredientcontainer">
                 <select class="dropdown" name="ingredient_name" id="ingredient_name">
                     <% ingredients.forEach(ingredients => { %>
                         <option  label="<%= ingredients.ingredientType%>" value="<%= ingredients.ingredientType %>">
@@ -50,6 +51,7 @@
                         <option  label="<%= recipeunit.unitName%>" value="<%= recipeunit.unitName %>">
                     <% }) %>
                 </select>
+                </div>
                 <br>
             </div>
             
