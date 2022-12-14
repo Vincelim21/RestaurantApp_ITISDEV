@@ -11,6 +11,10 @@ body {
 h1 {
     color: blue;
   }
+
+.content-half-box h1 {
+    color: black;
+  }
  p {
     color: red;
   }
@@ -196,19 +200,19 @@ div.content-half-box {
     flex-direction: column;
     justify-content: center;
     justify-content: center;
-    background: rgba(2, 73, 255, 0.2);
+    background: dodgerblue;
     align-items: center;
 
 }
 
 .login {
-    background: #0069FF;
+    background:  white;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     width: 50%;
     align-self: center;
     border: none;
-    color: #FFFFFF;
+    color: black;
     margin: 2em;
 }
 
@@ -313,7 +317,7 @@ input[type=number] {
     flex-wrap: wrap;
     border: 3px solid #333;
     justify-content:space-around;
-    background-color: #327bf0;
+    background-color: dodgerblue;
     margin-top: 20px;
     margin-left: 20px;
     margin-right: 20px;
