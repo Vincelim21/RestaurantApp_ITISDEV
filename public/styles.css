@@ -481,4 +481,13 @@ table.table2 tr:nth-child(even){
     color: black;
 }
 
+@media print {
+body * {
+    visibility: hidden;
+}
+#content, #content * {
+    visibility : visible;
+}
+} 
+
 
