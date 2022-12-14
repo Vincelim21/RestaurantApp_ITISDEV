@@ -61,7 +61,6 @@ router.post('/cashier_menu',async (req,res)=>{//Happens when submitting form of 
             orderModel.create(orders)
             }
             res.redirect('/')
-
         }
     catch(error){
         res.status(500).send(error)
