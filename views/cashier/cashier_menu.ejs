@@ -8,6 +8,8 @@
 <div class="inline-two">
     <div class="menu-container">
         <h1> MENU</h1>
+        <div class = "line"></div>
+        <br>
         <div class="menu-card">
             
             <% recipename.forEach(recipename => { %>
@@ -21,7 +23,7 @@
                             Use array to compute for value decreases in POST
                         -->
                     <div class="card-container" >
-                    <td><%= recipename.recipeName %></td>
+                    <td class="recipeitemname"><%= recipename.recipeName %></td>
                     <p>PRICE</p>
                     </div>
                     </button>
@@ -33,6 +35,8 @@
     <div class="checkout-container">
         <form action = "/cashier/cashier_menu" method="POST">
         <h1> CHECKOUT</h1>
+        <div class = "lines"></div>
+        <br>
         <div class="checkout-details">
             <table>
                 <tr class ="table-header">
@@ -54,8 +58,10 @@
                     <td>TOTAL</td>
                 </tr>        
         </div>
-
-        <button class="continue" type="submit" href="/">CONTINUE</button>
+        <p id="errormsg"></p>
+        <br id="beforecontinue">
+        <!-- Continue button will come from cashier_menu.ejs -->
+        <!-- <button class="continue" type="submit" href="/">CONTINUE</button> -->
         </form>
     </div>
 </div>

@@ -11,6 +11,10 @@ body {
 h1 {
     color: blue;
   }
+
+.content-half-box h1 {
+    color: black;
+  }
  p {
     color: red;
   }
@@ -104,17 +108,26 @@ h1 {
     background-color:dodgerblue;
     text-align: center;
     vertical-align: top;
+    box-shadow: 1px 1px 5px black;
 
 }
+
+.menu-card  button{
+    margin:3px;
+    width:20%;
+    height:20%;
+}
+
 .checkout-container{
-    width: 38%;
+    max-width: 38%;
+    width:38%;
     height: auto;
     display: inline-block;
     background-color:dodgerblue;
     text-align: center;
     margin-right: 10px;
     vertical-align: top;
-    
+    box-shadow: 1px 1px 5px black;
 }
 
 
@@ -127,12 +140,22 @@ h1 {
     background-color: white;
     margin: 10px;
     padding: 20px;
-    font-size: 30px;
+    font-size: 20px;
 
 }
+
+.tablevalue{
+    font-size:15px;
+    border  : none;
+    background: none;
+    text-align:center;
+}
+
 .card-container p{
     color:black;
 }
+
+
 .checkout-details table{
     width: 100%;
 }
@@ -196,19 +219,19 @@ div.content-half-box {
     flex-direction: column;
     justify-content: center;
     justify-content: center;
-    background: rgba(2, 73, 255, 0.2);
+    background: dodgerblue;
     align-items: center;
 
 }
 
 .login {
-    background: #0069FF;
+    background:  white;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     width: 50%;
     align-self: center;
     border: none;
-    color: #FFFFFF;
+    color: black;
     margin: 2em;
 }
 
@@ -266,7 +289,18 @@ input[type=number] {
 .line {
     margin-left: auto;
     margin-right: auto;
-    width: 826px;
+    max-width:826px;
+    height: 0px;
+    left: 20px;
+    top: 150px;
+
+    border:1px solid #000000;
+}
+
+.lines {
+    margin-left: auto;
+    margin-right: auto;
+    max-width:406px;
     height: 0px;
     left: 20px;
     top: 150px;
@@ -275,11 +309,12 @@ input[type=number] {
 }
 
 .collapsible{
-    background-color: gray;
+    background-color: dodgerblue;
     color: black;
     cursor: pointer;
+    font-weight: bold;
     padding: 18px;
-    width: 100%;
+    width: 70%;
     margin-top: 20px;
     border: none;
     text-align: center;
@@ -287,11 +322,17 @@ input[type=number] {
     font-size: 15px;
 }
 
+.collapse{
+    text-align: center;
+}
+
 .content {
-    padding: 0 18px;
+    position:relative;
     display: none;
     overflow: hidden;
-    background-color: #f1f1f1;
+    margin-left:15%;
+    width: 100%;
+
 }
 
 .box-container 
@@ -300,12 +341,13 @@ input[type=number] {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    border: 3px solid #333;
+    border: 1px solid #333;
     justify-content:space-around;
-    background-color: #327bf0;
+    background-color: dodgerblue;
     margin-top: 20px;
     margin-left: 20px;
     margin-right: 20px;
+    border-radius: 10px;
 }
   
 .box-item
@@ -313,16 +355,19 @@ input[type=number] {
     width: 150px;
     height: 125px;
     margin: 10px;
-    border: 3px solid #333;
+    border: 1px solid #333;
+    border-radius: 10px;
     background-color: white;
     align-self: center;
 }
 
 .box-item p
 {
-    font-family: Arial, Helvetica, sans-serif;
+    margin: auto;
     font-size: 25px;
-    text-align:center;
+    font-weight: bold;
+    padding: 10px 0 10px;
+    text-align: center;
 }
 
 .box-container a
@@ -330,6 +375,10 @@ input[type=number] {
     color:black;
     text-decoration: none;
 }
+
+.box-item:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+  }
 
 div.ingredients_in_recipe
 {   
@@ -352,6 +401,27 @@ div.ingredients_in_recipe
 
 }
 
+.button2
+{
+    background-color: red; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+
+}
+
+.cancelbtn
+{
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+}
+
 .continue
 {
     padding: 20px;
@@ -364,31 +434,51 @@ div.ingredients_in_recipe
     text-align: center;
 }
 
-.button1:hover {
-    background-color: #4CAF50;
-    color:white;
-}
-
-table{
+table.table1{
     width: 100%;
     border-collapse: collapse;
+    border:1px solid;
 }
 
-th{
+table.table1 th{
  text-align:center;
  background-color: dodgerblue;
 }
 
-td{
+table.table1 td{
 height: 30px;
 }
 
-tr:nth-child(even){
-    background-color: gray;
-    color: white
+table.table1 tr:nth-child(even){
+    background-color: #F5F5F5;
+    color: black;
 }
 
-th, td{
+table.table1 th, td{
     padding:15px;
+    border-bottom: 1px solid black;
 }
+
+table.table2{
+    width: 70%;
+    border-collapse: collapse;
+    border: 1px solid;
+}
+
+table.table2 th{
+    text-align:center;
+    background-color: gray;
+    color:black;
+   }
+
+table.table2 th, td{
+    padding:15px;
+    border-bottom: 1px solid;
+}
+
+table.table2 tr:nth-child(even){
+    background-color: #F5F5F5;
+    color: black;
+}
+
 
