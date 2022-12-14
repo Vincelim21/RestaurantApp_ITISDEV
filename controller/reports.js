@@ -18,6 +18,8 @@ const { addListener } = require('../models/ingredient_stock')
 const customerOrderModel = require('../models/customer_order')
 const ingredientOrderHistoryModel = require('../models/ingredient_order_history')
 const ingredientDaiyHistoryModel = require('../models/ingredient_dailyHistory')
+const ingredient_dailyHistory = require('../models/ingredient_dailyHistory')
+const ingredient_order_history = require('../models/ingredient_order_history')
 const db = mongoose.connection
 
 
@@ -45,32 +47,40 @@ router.get('/ingredient_order_report',async (req,res) => {
 router.post('/ingredient_order_report',async (req,res) =>{
     try{
         let filters = []
+        let filters1 = []
+
         if(req.body.reportDate!=''){
             filters.push({"dateBought":req.body.reportDate})
         }
         if(req.body.ingredientName!=''){
-            filters.push({"ingredientName":req.body.ingredientName})
+            filters1.push({"ingredientName":req.body.ingredientName})
         } 
         if(req.body.ingredientType!=''){
-            filters.push({"ingredientType":req.body.ingredientType})
+            filters1.push({"ingredientType":req.body.ingredientType})
         }
         if(req.body.unit!=''){
-            filters.push({"unit":req.body.unit})
+            filters1.push({"unit":req.body.unit})
         }
         
-        filtersJSON = JSON.stringify(filters)
-        console.log("Filters "+filtersJSON)
 
-        filter1 = filters[0]
-         filter1 = JSON.stringify(filter1)
-         filter1 = JSON.parse(filter1)
-         console.log("fILTER 1: "+filter1)
-         const orderHistoryFiltered = await ingredientOrderHistoryModel.find(filter1)
-         console.log(orderHistoryFiltered)
-
+        if(filters.length != 0){
+            var orderFilter = filters1[0]
+            var historyFilter = filters[0]
+            
+            const orders = await IngredientOrderModel.find(orderFilter)
+            const  orderHistoryFiltered= await ingredientOrderHistoryModel.find(historyFilter)
+            console.log(orderHistoryFiltered)
+           res.render('reports/generate_report',{order_report:orderHistoryFiltered, orders:orders})
+        }
+        else{
+            const orders = await IngredientOrderModel.find({})
+            const  orderHistoryFiltered= await ingredientOrderHistoryModel.find({})
+            res.render('reports/generate_report',{order_report:orderHistoryFiltered, orders:orders})
+        }
+            
         
-
-        res.render('reports/generate_report',{order_report:orderHistoryFiltered})
+         console.log("fILTER 1: "+filter1)
+        
  
     }catch(error){
         console.log(error)
@@ -98,7 +108,13 @@ router.get('/ingredient_dailyHistory_report',async (req,res) => {
 router.post('/ingredient_dailyHistory_report',async (req,res) =>{
     try{
         let filters = []
-        getFilters(filters,req.body)
+
+        if(req.body.reportDate!=''){
+            filters.push({"date":req.body.reportDate})
+            filters = JSON.parse(filters)
+            const filteredDaily = await ingredientDaiyHistoryModel.find(filters)
+            res.render('reports/generate_report',{order_report:filteredDaily})
+        }
     }catch(error){
 
     }
