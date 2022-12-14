@@ -7,27 +7,15 @@ const UserDetailsModel = require('../models/user_details')
 const router = express.Router()
 var session = require('express-session');
 
-//router.post('/login', loginController.postLogin);
-// router.get('/login',loginController.login)
-// router.get('/logout', loginController.logout);
 
-const loginController = {
-
-	/*login: function (req, res) {
-        res.render('login');
-	},*/
-
-    logout: function (req, res) {
-        req.session.destroy(function(err) {
-               if(err) throw err;
-               res.redirect('/login');
-           });
-     },
-
-     postLogin: function(req,res){
-
+/* router.post('/login', async(req,res) => {
+    try {
         var email = req.body.email;
+        console.log(email)
+        console.log(req.body.email)
         var password = req.body.password;
+        console.log(password)
+        console.log(req.body.password)
 
         var projection = "_id userID firstName lastName email password userTypeName"
 
@@ -44,7 +32,7 @@ const loginController = {
                         req.session.userTypeName = result.userTypeName
                         
                         var position = req.session.userTypeName;
-                       
+                        console.log(position)
                         if(position == 'Manager')
                             res.redirect('../views/home_manager.ejs');
                         else if(position =='Chef')
@@ -52,20 +40,27 @@ const loginController = {
                         else if(position == 'Stock Controller')
                             res.redirect('../views/home_stockctrl.ejs')
                     }
-                    
+                  
                     else
                     {
                         var details = {
 							flag: false,
 							error: `Contact Number and/or Password is incorrect.`}
 
-                            res.send({redirect: '/login'});
+                            res.send({redirect: '/'});
                     }
                 })
             }
         });
 
-     }
-};
+     }catch (error) {
+        console.log(error)
+        
+    }
+})
+*/
 
-module.exports = loginController;
+   
+
+
+module.exports = router;

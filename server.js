@@ -52,18 +52,17 @@ const cashierRouter = require('./controller/cashier')
 const ordersRouter = require('./controller/orders')
 const recipesRouter = require('./controller/recipes')
 const reportsRouter = require('./controller/reports')
-//const loginRouter = require('./controller/login')
+//const loginRouter = require('./controller/login') 
 
 
 //get index route
-//app.use('/',indexRouter)
 app.use('/',indexRouter)
 app.use('/cashier',cashierRouter)
 app.use('/ingredients',ingredientsRouter)
 app.use('/orders',ordersRouter)
 app.use('/recipes',recipesRouter)
 app.use('/reports',reportsRouter)
-// app.use('/login',loginRouter)
+//app.use('/login',loginRouter)
 
 
 console.log('Server starting at Localhost:3000...')

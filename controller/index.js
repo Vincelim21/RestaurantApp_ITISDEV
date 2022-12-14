@@ -6,10 +6,23 @@ const db = mongoose.connection
 const recipeModel = require('../models/recipe')
 const bcrypt = require('bcrypt')
 const recipe = require('../models/recipe')
+const bodyParser = require('body-parser')
+let alert = require('alert'); 
+
+
+router.use(bodyParser.urlencoded({ extended: false }));
+
 
 router.get('/', async(req,res) =>{
     res.render('login')
 })
+
+router.get('/logout', async(req, res) =>{
+    req.session.destroy(function(err) {
+           if(err) throw err;
+           res.redirect('/');
+       })
+});
 
 // trial start
 // this will return manager email
@@ -29,7 +42,7 @@ async function password_user() {
 
     try{
         const userDetails = await UserDetailsModel.findOne({password: "$2b$10$Au5QxrxX7H00hZ1EekLf0uT5uOmzLXpQMeUYNow02KZWO3gCUdbX2"})
-        console.log("USER DETAILS "+userDetails)
+        //console.log("USER DETAILS "+userDetails)
         return userDetails.password
     }catch(error){
         console.log(error)
@@ -53,7 +66,7 @@ async function password_user2() {
 
     try{
         const userDetails = await UserDetailsModel.findOne({password: "$2b$10$6StahTHb/f7hx/C0UXtZ3eQLbwcOXxqUkcWBoqojtVOdaRw30ohJa"})
-        console.log("USER DETAILS "+userDetails)
+        //console.log("USER DETAILS "+userDetails)
         return userDetails.password
     }catch(error){
         console.log(error)
@@ -76,7 +89,7 @@ async function password_user3() {
 
     try{
         const userDetails = await UserDetailsModel.findOne({password: "$2b$10$TCQs4uhMhVVn1CwghZrtLOXAGMm/EwneqbbPtrU6H40bb3lgOSEoa"})
-        console.log("USER DETAILS "+userDetails)
+        //console.log("USER DETAILS "+userDetails)
         return userDetails.password
     }catch(error){
         console.log(error)
@@ -84,46 +97,91 @@ async function password_user3() {
 }
 
 router.post('/login', async (req, res, next) => {
-    try{
+
+
+        var user = await UserDetailsModel.findOne({email:req.body.email})
+        console.log(user)
         //manager email
-        var user = await login_user()
+        //var user = await login_user()
         //stock controller email
-        var user2 = await login_user2()
+        //var user2 = await login_user2()
         //chef email
-        var user3 = await login_user3()
+        //var user3 = await login_user3()
         //manager password
-        var pass = await password_user()
+        //var pass = await password_user()
         //stock controller password
-        var pass2 = await password_user2()
+        //var pass2 = await password_user2()
         //chef password
-        var pass3 = await password_user3()
+        //var pass3 = await password_user3()
+
+        var email = req.body.email   
+        var password = req.body.password;
+        
         //compare the user input to the hashed password
-        const pMatch =  await bcrypt.compare(req.body.password, pass) 
-        console.log(req.body.password)
-        console.log(pass)
-        console.log(pMatch)
-        // console.log("login_user "+login_user())
-        // console.log(user)
-        if( req.body.email == user) {
-            res.render('home_manager')
-            return next()
+        bcrypt.compare(password, user.password, function(err, equal){
+            console.log("user password: "+user.password)
+            console.log("Req Body: "+req.body.password)
+            if(equal){
+                console.log(equal)
+                req.session.firstName = user.firstName;
+                req.session.lastName = user.lastName;
+                req.session.email = user.email;
+                req.session.userTypeName = user.userTypeName;
+                
+                console.log("Req Session: "+req.session.userTypeName)
+                console.log("Req Password: "+req.body.password)
+
+                if(req.session.email != null){
+
+                    var position = req.session.userTypeName;
+        
+                    if(position == 'Manager')
+                        position = 'manager';
+        
+                    if(position == 'Stock Controller')
+                        position = 'stockctrl';
+                    
+                    if(position == 'Chef')
+                        position = 'chef';
+                    console.log(position)
+                    res.render( "home_"+position.toLowerCase());
+                            
+                }
+                else{
+                    alert("Login Failed! Your email or password is incorrect")
+                    res.render('login');
+                }
+            // console.log("login_user "+login_user())
+            // console.log(user)
+             /*   if( email == user.email && password == user.password) {
+                    console.log(req.session.email)
+                    console.log(user.email)
+                    console.log(req.body.password)
+                    console.log(user.password)
+                    res.render('home_manager')
+                    return next()
+                }
+                else if( req.body.email == user2 && pass2 == req.body.password){
+                    console.log("user2")
+                    res.render('home_stockctrl')
+                    return next()
+                }
+                else if(req.body.email == user3 && pass3 == req.body.password) {
+                    user("user3")
+                    res.render('home_chef')
+                    return next()
+                }
+                else {
+                    console.log(email)
+                    console.log("False")
+                    res.render('login')
+                }
+
+                    //(req.body.email != user && user2 && user3)
+                   
+                }*/
         }
-        else if( req.body.email == user2){
-            res.render('home_stockctrl')
-            return next()
-        }
-        else if(req.body.email == user3) {
-            res.render('home_chef')
-            return next()
-        }
-        else 
-            (req.body.email != user && user2 && user3)
-            res.render('login')
-    }
-    catch(error){
-        console.log(error)
-    }
-    
+    })
 })
 // trial end
 
