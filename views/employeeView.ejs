@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div class="topnav">
+        <a>RESTAURANT NAME</a>
+        <a href="#about" class="nav-user">STOCK CONTROLLER</a>
+        <a href="/home_manager" class="nav-home">HOME</a>
+    </div> 
+    <div class="title">
+        <h1>Employees</h1>
+        <div class="tableInventory">
+            <table>
+                <tr>
+                  <th>User Type</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Email</th>
+                </tr>
+                
+                <!-- Loops Each ingredient data onto the table-->
+                    <% users.forEach(users => { %>
+                        <tr>
+                            <td><%= users.userTypeName %></td>
+                            <td><%= users.firstName %></td>
+                            <td><%= users.lastName %></td>
+                            <td><%= users.email %></td>
+                        </tr>
+                    <% }); %> 
+    
+
+                
+                <!--
+               <tr>
+                  <td>Ingredient 1</td>
+                  <td>1000</td>
+                  <td>g</td>
+                </tr>
+                <tr>
+                    <td>Ingredient 2</td>
+                    <td>1000</td>
+                    <td>g</td>
+                </tr>
+                --> 
+    
+              </table>
+    
+        </div>
+
+    </div>
+
+</body>
+</html> 

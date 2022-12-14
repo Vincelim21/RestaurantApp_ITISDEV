@@ -18,6 +18,8 @@ const { addListener } = require('../models/ingredient_stock')
 const customerOrderModel = require('../models/customer_order')
 const discprepancieHistoryModel = require('../models/discpepancie_history')
 const spoilageHistoryModel = require('../models/spoilage_history')
+const ingredients_HistoryModel = require('../models/ingredients_history')
+const ingredients_DailyHistoryModel = require('../models/ingredient_dailyHistory')
 const db = mongoose.connection
 
 router.get('/view_inventory-controller',async(req,res) =>{
@@ -40,8 +42,10 @@ router.get('/record_physical',async(req,res) =>{
     
     try{
         // Read Databasefile
-        const ingredientStock = await IngredientStockModel.find({});  //Retrieve IngredientStock table
+        const ingredientStock = await IngredientStockModel.find({});
+        console.log("Ingredient: "+ingredientStock)  //Retrieve IngredientStock table
         res.render('ingredients/record_physical',{ingredStock:ingredientStock});
+        
     //EJS 
         
     }catch(error){
@@ -108,6 +112,9 @@ router.get('/view_inventory-chef',async(req,res)=>{
     try{
         //Read Database file
         //Retrieve recipeIngredients table
+        //Add to Ingredient History
+        console.log(ingredients)
+        ingredientsHistory(ingredients)
         res.render('ingredients/view_inventory-chef',{ingredients:ingredients});
         //EJS
     }catch(error){
@@ -142,6 +149,7 @@ router.post('/create_ingredient',async (req,res) =>{
         })
         IngredientsModel.create(ingredientType)
         res.redirect('/')
+
     }catch(error){
         res.status(500).send(error)
         console.log(error)
@@ -202,7 +210,7 @@ async function discrepancieHistory(ingredientDiscrepancie){
             dateRecorded: Date.today().toString("MMMM dS, yyyy"),
             ingredientDiscrepancie:ingredientDiscrepancie
            })
-           discrepancieHistoryModel.create(discrepancieHistory)
+           discprepancieHistoryModel.create(discrepancieHistory)
 
        }
        else if (findDiscrepancieHistory !=null){
@@ -237,4 +245,53 @@ async function spoilageHistory(ingredientSpoiled){
        }
        
 }
+//Function that creates ingredient History
+async function ingredientsHistory(ingredients){
+    var findIngredientsHistory = await ingredients_HistoryModel.findOne({dateBought:Date.today().toString("MMMM dS, yyyy")});
+       console.log("Find Spoilage History: "+findIngredientsHistory)
+       try {
+        if(findIngredientsHistory == null){
+            const ingredientsHistory = new ingredients_HistoryModel({
+                dateBought:Date.today().toString("MMMM dS, yyyy"),
+                ingredientsList:ingredients
+               })
+               ingredients_HistoryModel.create(ingredientsHistory)
+    
+           }
+           else if (findIngredientsHistory !=null){
+                findIngredientsHistory.ingredientsList.push(ingredients)
+                console.log("INGREDIENT SPOILED: "+ingredients)
+                console.log(findIngredientsHistory.ingredientsList)
+                findIngredientsHistory.save()
+           }
+       } catch (error) {
+        console.log(error)
+       }
+}
+
+//Function that creates ingredient daily history
+async function ingredientsDailyHistory(ingredients){
+    var findDailyIngredientsHistory = await ingredients_DailyHistoryModel.findOne({date:Date.today().toString("MMMM dS, yyyy")});
+       console.log("Find Inventory Daily History: "+ findDailyIngredientsHistory)
+       
+       try {
+        if(findDailyIngredientsHistory == null){
+            const ingredientsHistory = new ingredients_DailyHistoryModel({
+                date:Date.today().toString("MMMM dS, yyyy"),
+                ingredient:ingredients
+               })
+               ingredients_DailyHistoryModel.create(ingredientsHistory)
+    
+           }
+           else if (findDailyIngredientsHistory !=null){
+            findDailyIngredientsHistory.ingredient.push(ingredients)
+                console.log("INGREDIENT: "+ingredients)
+                console.log(findDailyIngredientsHistory.ingredient)
+                findDailyIngredientsHistory.save()
+           }
+       } catch (error) {
+        console.log(error)
+       }
+}
+
 module.exports = router
