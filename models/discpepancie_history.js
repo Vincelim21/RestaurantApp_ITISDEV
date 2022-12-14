@@ -5,6 +5,10 @@ const discrepancie_historySchema = new mongoose.Schema({
     dateRecorded:{
         type: String,
         required: true,
+    },
+    ingredientID: {
+        type: String,
+        required: true
     }
 })
 

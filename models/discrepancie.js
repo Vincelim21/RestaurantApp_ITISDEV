@@ -7,6 +7,10 @@ const discrepancieSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    ingredientName: {
+        type:String,
+        required: true
+    },
     quantityDiff: {
         type: String,
         required: true

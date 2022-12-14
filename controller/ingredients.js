@@ -59,11 +59,25 @@ router.post('/record_physical',async (req,res)=>{
 
     try{
         const ingredientStockChosen = await IngredientStockModel.findOne({ingredientName:req.body.ingredient_names})
+        var quantityDiff = req.body.fname - ingredientStockChosen.totalUnitValue  
 
-       var quantityDiff = req.body.fname - ingredientStockChosen.totalUnitValue  
+       const history = await discprepancieHistoryModel.findOne({dateRecorded:Date.today().toString("MMMM dS, yyyy")})
+
+       if(history ==null){
+        const discrepancieHistory = new discrepancyHistoryModel({
+            dateRecorded:Date.today().toString("MMMM dS, yyyy"),
+            ingredientID:mongoose.Types.ObjectId()
+            })
+            discrepancyHistoryModel.create(discrepancieHistory)
+        }
+
+        console.log("HEREEEE: ")
+        const discrepancieHistory = await discrepancyHistoryModel.findOne({dateRecorded:Date.today().toString("MMMM dS, yyyy")})
+        
 
         const ingredientDiscrepancie = new discrepancieModel({  // Put fields into Ingredient First Model
-            ingredientID: req.body.ingredient_names,
+            ingredientID:discrepancieHistory.ingredientID,
+            ingredientName: ingredientStockChosen.ingredientName,
             quantityDiff:quantityDiff
           })
  
@@ -78,7 +92,7 @@ router.post('/record_physical',async (req,res)=>{
             res.redirect('/ingredients/view_inventory-controller')
         
         //Add to Discpepancie History
-        discrepancieHistory(ingredientDiscrepancie)
+        //discrepancieHistory(ingredientDiscrepancie)
 
     }catch(error){
         res.status(500).send(error)
