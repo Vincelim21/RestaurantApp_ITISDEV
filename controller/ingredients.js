@@ -135,8 +135,10 @@ router.get('/create_ingredient',async (req,res) => {
 router.post('/create_ingredient',async (req,res) =>{
     try{
         const ingredientType = new IngredientsModel({
+
             ingredientType:req.body.ingredient_type,
-            unit:req.body.unit
+            unit:req.body.unit,
+            ingredientID: mongoose.Types.ObjectId()
         })
         IngredientsModel.create(ingredientType)
         res.redirect('/')

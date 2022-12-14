@@ -44,40 +44,42 @@ router.get('/ingredient_order_report',async (req,res) => {
 router.post('/ingredient_order_report',async (req,res) =>{
     try{
         let filters = []
-        getFilters(filters,req.body)
+        if(req.body.reportDate!=''){
+            filters.push({"dateBought":req.body.reportDate})
+        }
+        if(req.body.ingredientName!=''){
+            filters.push({"ingredientName":req.body.ingredientName})
+        } 
+        if(req.body.ingredientType!=''){
+            filters.push({"ingredientType":req.body.ingredientType})
+        }
+        if(req.body.unit!=''){
+            filters.push({"unit":req.body.unit})
+        }
+        
+        filtersJSON = JSON.stringify(filters)
+        console.log("Filters "+filtersJSON)
 
-
-
-
+        filter1 = filters[0]
+         filter1 = JSON.stringify(filter1)
+         filter1 = JSON.parse(filter1)
+         console.log("fILTER 1: "+filter1)
+         const orderHistoryFiltered = await ingredientOrderHistoryModel.find(filter1)
+         console.log(orderHistoryFiltered)
 
         
+
+        res.render('reports/generate_report',{order_report:orderHistoryFiltered})
+ 
     }catch(error){
+        console.log(error)
 
     }
-
-
-
 
 })
-
-function getFilters(filters,body){
-
-    if(body.reportDate!=''){
-        filters.push({"dateBought":"req.body.reportDate"})
-    }
-    if(body.ingredientName!=''){
-        filters.push({"ingredientOrder.ingredientName":"req.body.ingredientName"})
-    } 
-    if(body.ingredientType!=''){
-        filters.push({"ingredientOrder.ingredientType":"req.body.ingredientType"})
-    }
-    if(body.unit!=''){
-        filters.push({"unit":"req.body.unit"})
-    }
-
-
-}
-
+router.get('/generate_report',async(req,res)=>{
+    
+})
 
 
 

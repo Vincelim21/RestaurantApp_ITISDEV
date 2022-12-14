@@ -17,11 +17,10 @@
 </div>
 
 <!--TODO: Recipe Cards-->
+
 <div>
-  <% for (var i = 0; i < recipe.length; i++) { %>
-    <button type = "button" class = "collapsible">
-      <%= recipe[i].recipeName %>
-    </button>
+  <% recipe.forEach(recipe => { %>
+    <button type = "button" class = "collapsible"><%= recipe.recipeName %></button>
       <div class = "content">
           <table>
             <tr>
@@ -30,18 +29,24 @@
               <th>Unit</th>
           </tr>
           <!-- Loops Each ingredient data onto the table-->
-          <% for (var y = 0; y < recipe[i].recipeIngredients.length; y++) { %> 
-            <tr>
 
-              <td><%= recipe[i].recipeIngredients[y].ingredientType %></td>
-              <td><%= recipe[i].recipeIngredients[y].unitValue %></td>
-              <td><%= recipe[i].recipeIngredients[y].unitName %></td>
-              
+          
+            <% recipeIngredients.forEach(recipeIngredients => { %>
+              <% if(recipeIngredients.ingredientID == recipe.recipeID){ %>
+                <tr>
+              <td><%= recipeIngredients.ingredientType %></td>
+              <td><%= recipeIngredients.totalUnitValue %></td>
+              <td><%=recipeIngredients.unit %></td>
             </tr>
-          <% } %>
+              <% } %>
+             
+          <% }) %>
+            
+          
           </table>
+          
       </div>
-  <% } %>
+      <% }) %>
 </div>
 
 

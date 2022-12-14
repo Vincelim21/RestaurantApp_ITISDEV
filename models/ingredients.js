@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const IngredientsSchema = new mongoose.Schema({
+  ingredientID:{
+    type:String,
+    required:true
+  },
   ingredientType: {
     type: String,
     required: true
@@ -8,7 +12,8 @@ const IngredientsSchema = new mongoose.Schema({
 
   totalUnitValue: {
     type: Number,
-    required: false
+    required: false,
+    default: 0
   },
 
   unit:{

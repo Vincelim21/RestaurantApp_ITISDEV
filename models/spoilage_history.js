@@ -4,22 +4,6 @@ const spoilage_historySchema = new mongoose.Schema({
     dateSpoiled:{
         type:String,
         required:true
-    },
-    ingredientSpoiled:{
-        type:Array,
-        ingredientID: {
-            type: String,
-            required: true
-        },
-        quantity: {
-            type: Number,
-            required: true
-        },
-        dateSpoiled: {
-            type: Date,
-            required: true,
-            default: Date.now
-        }
     }
 })
 

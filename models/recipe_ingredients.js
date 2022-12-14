@@ -10,25 +10,22 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const recipe_ingredientsSchema = new Schema({
-   /* _id:{
-        type: Schema.Types.ObjectId,
-        ref: 'recipe',
-        required:false
-    },*/
-    
-    ingredientType:{
-        type:String,    
+    ingredientID:{
+        type:String,
         required:true
     },
-
-    unitValue:{
-        type:Number,
-        required:true
-    },
-
-    unitID: {
+    ingredientType: {
         type: String,
         required: true
+      },
+    
+      totalUnitValue: {
+        type: Number,
+        required: false
+      },
+      unit:{
+        type: String,
+        required:true
       }
 })
 

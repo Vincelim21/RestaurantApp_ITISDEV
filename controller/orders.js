@@ -100,12 +100,8 @@ router.post('/record_itempurchase',async (req,res)=>{
        const ingredientFirst = await IngredientFirstModel.findOne({ingredientName:req.body.name}) //Get Ingredient First Table Values to be put in for Ingredient Order Values
 
 
-      
-
-
-
-
-       const ingredientOrder = new IngredientOrderModel({ //Create Ingredient Order Values
+       const ingredientOrder = new IngredientOrderModel({ 
+        ingredientID:mongoose.Types.ObjectId(),//Create Ingredient Order Values
         ingredientName:ingredientFirst.ingredientName, // Put Ingredient First Values in Ingredient Order Table
         ingredientType:ingredientFirst.ingredientType,
         unitValue:ingredientFirst.unitValue,
@@ -114,12 +110,13 @@ router.post('/record_itempurchase',async (req,res)=>{
         dateBought: Date.today().toString("MMMM dS, yyyy")
         
        })
-       
+       console.log("HEREEEE: ")
        IngredientOrderModel.create(ingredientOrder)  // Create Ingredient Order Table
 
        const ingredient = await IngredientsModel.findOne({ingredientType: ingredientOrder.ingredientType})
+       
        var convertedValue = Number(conversion(ingredientOrder,ingredient))
-
+   
        console.log("Converted Value: "+convertedValue)
 
        IngredientsModel.updateOne(
@@ -299,22 +296,19 @@ function getMultiplier(ingredientOrderUnit,ingredientUnit) // Params: from unit,
 }
 
 async function orderHistory(ingredientOrder){
-    var findOrderHistory = await ingredientOrderHistoryModel.findOne({dateBought:Date.today().toString("MMMM dS, yyyy")})
-       console.log("Find Order History: "+findOrderHistory)
-       if(findOrderHistory == null){
-        const ingredientOrderHistory = new ingredientOrderHistoryModel({
-            dateBought: Date.today().toString("MMMM dS, yyyy"),
-            ingredientOrder:ingredientOrder
-           })
-           ingredientOrderHistoryModel.create(ingredientOrderHistory)
 
-       }
-       else if (findOrderHistory !=null){
-            findOrderHistory.ingredientOrder.push(ingredientOrder)
-            console.log("INGREDIENT ORDER: "+ingredientOrder)
-            console.log(findOrderHistory.ingredientOrder)
-            findOrderHistory.save()
-       }
+    const ingredientOrderHistory = new ingredientOrderHistoryModel({
+        ingredientID:mongoose.Types.ObjectId(),//Create Ingredient Order Values
+        ingredientName:ingredientOrder.ingredientName, // Put Ingredient First Values in Ingredient Order Table
+        ingredientType:ingredientOrder.ingredientType,
+        unitValue:ingredientOrder.unitValue,
+        quantityBought:ingredientOrder.quantity,
+        unit: ingredientOrder.unit,
+        dateBought: Date.today().toString("MMMM dS, yyyy")
+    })
+    ingredientOrderHistoryModel.create(ingredientOrderHistory)
+
+   
 }
 
 
