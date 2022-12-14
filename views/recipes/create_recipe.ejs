@@ -35,7 +35,7 @@
                 
                 <!--input type="text" id="ingredient_name" name="ingredient_name" placeholder="Ingredient Name"-->
                     <!--Must be dropdown-->
-                <select name="ingredient_name" id="ingredient_name">
+                <select class="dropdown" name="ingredient_name" id="ingredient_name">
                     <% ingredients.forEach(ingredients => { %>
                         <option  label="<%= ingredients.ingredientType%>" value="<%= ingredients.ingredientType %>">
                     <% }) %>
@@ -45,14 +45,15 @@
                 <input type="number" min="1" id="ingredient_value" name="ingredient_value" value="<%= ingredients.ingredient_value %>">
                 <!--input type="text" id="ingredient_unit" name="ingredient_unit" placeholder="Ingredient Unit"-->
                     <!--Must be dropdown-->
-               <select name="ingredient_unit" id="ingredient_unit">
+                <select class="dropdown1" name="ingredient_unit" id="ingredient_unit">
                     <% recipeunit.forEach(recipeunit => { %>
                         <option  label="<%= recipeunit.unitName%>" value="<%= recipeunit.unitName %>">
                     <% }) %>
-                </select> 
+                </select>
+                <br>
             </div>
             
-            <button id="add_ingredient" type="button">Click me to add more</button>
+            <button class="dropdown" id="add_ingredient" type="button">Click me to add more</button>
                 <!--Click so user can add more ingredients-->
     </div>
     

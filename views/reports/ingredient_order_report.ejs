@@ -14,13 +14,13 @@
 
 <div class = "title">
     <h1>Ingredient Order Report</h1>
-    <hr>
+    <div class = "line"></div>
 
     <form action = "/reports/ingredient_order_report" method ="POST">
     <h2>Filter By:</h2>
     <div class="entry">
         <a>Date</a>
-        <select name ="reportDate" id="reportDate">
+        <select class="dropdown" name ="reportDate" id="reportDate">
             <% orderHistory.forEach(orderHistory => { %>
                 <option  label="<%= orderHistory.dateBought %>" value="<%= orderHistory.dateBought %>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
             <% }) %>
@@ -28,7 +28,7 @@
     </div>
     <div class="entry">
         <a>Ingredient Name</a>
-        <select name ="ingredientName" id="ingredientName">
+        <select class="dropdown" name ="ingredientName" id="ingredientName">
             <% ingredientFirst.forEach(ingredientFirst => { %>
                 <option  label="<%= ingredientFirst.ingredientName %>" value="<%= ingredientFirst.ingredientName%>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
             <% }) %>
@@ -36,7 +36,7 @@
     </div>
     <div class="entry">
         <a>Ingredient Type</a>
-        <select name ="ingredientType" id="ingredientType">
+        <select class="dropdown" name ="ingredientType" id="ingredientType">
             <% ingredient.forEach(ingredient => { %>
                 <option  label="<%= ingredient.ingredientType %>" value="<%= ingredient.ingredientType%>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
             <% }) %>
@@ -44,7 +44,7 @@
     </div>
     <div class="entry">
         <a>Unit</a>
-        <select name ="unit" id="unit">
+        <select class="dropdown" name ="unit" id="unit">
             <% unit.forEach(unit => { %>
                 <option  label="<%= unit.unitName %>" value="<%= unit.unitName%>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
             <% }) %>
@@ -52,7 +52,7 @@
     </div>
 
 </div>
-<button class="continue" type="submit" href="/">GENERATE REPORT</button>
+<div class="btn1"><button class="continue" type="submit" href="/">GENERATE REPORT</button></div>
 </form>
 
 

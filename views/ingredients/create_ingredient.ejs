@@ -15,6 +15,7 @@
 
 <div class = "title">
     <h1>Create New Ingredient</h1>
+    <div class = "line"></div>
 
     <form action = "/ingredients/create_ingredient" method ="POST">
         <div class = "entry">
@@ -24,7 +25,7 @@
 
     <div class="entry">
         <a>Specify Ingredient's Default Unit</a>
-        <select name ="unit" id="unit">
+        <select class="dropdown" name ="unit" id="unit">
             <% unit.forEach(unit => { %>
                 <option  label="<%= unit.unitName %>" value="<%= unit.unitName %>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
             <% }) %>

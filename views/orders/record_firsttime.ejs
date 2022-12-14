@@ -12,7 +12,7 @@
     <form action = "/orders/record_firsttime" method="POST">
         <div class="title">
             <h1>Record First Time Purchase</h1>
-            <hr>
+            <div class = "line"></div>
     
             
            
@@ -24,7 +24,7 @@
             <div class="entry">
                 <a>Ingredient Type</a>
                 <!-- Dropdown Menu-->
-               <select name ="ingredientType" id="type">
+               <select class="dropdown" name ="ingredientType" id="type">
                 <% ingredients.forEach(ingredients => { %>
                     <option  label="<%= ingredients.ingredientType %>" value="<%= ingredients.ingredientType %>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
                 <% }) %>
@@ -36,7 +36,7 @@
                 <input type="number" name="unitValue" min="1" value="<%= ingredientorder.unitValue %>">
     
        
-                <select name ="unit" id="unit">
+                <select class="dropdown" name ="unit" id="unit">
                     <% unit.forEach(unit => { %>
                         <option  label="<%= unit.unitName %>" value="<%= unit.unitName %>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
                     <% }) %>
@@ -47,7 +47,7 @@
     
             
         </div>
-        <button class="continue" type="submit" href="/record_itempurchase">CONTINUE</button>
+        <div class="btn1"><button class="continue" type="submit" href="/record_itempurchase">CONTINUE</button></div>
     
 
     </form>
