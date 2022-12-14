@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="layouts/styles.css">
+</head>
+<body>
+    <div class="topnav">
+        <a>RESTAURANT NAME</a>
+        <a href="#about" class="nav-user">Manager</a>
+        <a href="/home_manager" class="nav-home">HOME</a>
+    </div>
+    <div class="title">
+        <h1>Manager Records</h1>
+        <hr>
+        <h2>Recipes</h2>
+        <div class="recordoptions">
+            <form action = "/manager_records" method="POST">
+        <% recipe.forEach(recipe =>{ %>
+            <div class="double">
+            <input type ="text" name ="recipeoption" class="recipeoption" value ="<%= recipe.recipeName%>" readonly></input>
+            <select name="selection">
+                <% if(recipe.active==true) { %>
+                <option>enable</option>
+                <option>disable</option>
+                <%} else { %>
+                    <option>disable</option>
+                    <option>enable</option>
+                <%} %>
+            </select>
+            </div>
+        <%}) %>
+        <button type="submit" href="/">SUBMIT</button>
+        </form>
+        </div>
+    </div>
+</body>
+</html>

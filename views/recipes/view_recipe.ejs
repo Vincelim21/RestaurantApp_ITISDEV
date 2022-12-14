@@ -20,6 +20,7 @@
 
 <div>
   <% recipe.forEach(recipe => { %>
+    <% if (recipe.active == true) { %>
     <button type = "button" class = "collapsible"><%= recipe.recipeName %></button>
       <div class = "content">
           <table>
@@ -46,6 +47,7 @@
           </table>
           
       </div>
+      <% } %>
       <% }) %>
 </div>
 
