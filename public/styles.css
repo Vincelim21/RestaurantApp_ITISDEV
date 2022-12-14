@@ -308,10 +308,12 @@ input[type=number] {
 }
 
 .content {
-    padding: 0 18px;
     position:relative;
     display: none;
     overflow: hidden;
+    margin-left:15%;
+    width: 100%;
+
 }
 
 .box-container 
