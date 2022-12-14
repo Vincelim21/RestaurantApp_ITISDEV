@@ -81,6 +81,7 @@ router.post('/cashier_menu',async (req,res)=>{//Happens when submitting form of 
                 var multiplierStock = getMultiplier(recipeIngredients.unit,stock.unit)
 
                 var minusToStock = (Number((recipeIngredients.totalUnitValue)*multiplierStock))*-1
+                console.log("MINUS TO STOCK : "+ minusToStock + stock.unit)
 
                 IngredientStockModel.updateOne({
                     ingredientType:recipeIngredients.ingredientType,
@@ -143,7 +144,7 @@ function getMultiplier(ingredientOrderUnit,ingredientUnit) // Params: from unit,
             case "gram": multiplier = 1; break;
             case "kilogram": multiplier = 0.001; break;
             case "milliliter" :multiplier = 1; break;
-            case "liter" : multiplier = 1000; break;
+            case "liter" : multiplier = 0.001; break;
             case "gallon" : multiplier =  0.000264172052; break;
             case "ounce" : multiplier = 0.035274; break;
             case "pound": multiplier = 0.00220462; break;
