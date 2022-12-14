@@ -108,17 +108,26 @@ h1 {
     background-color:dodgerblue;
     text-align: center;
     vertical-align: top;
+    box-shadow: 1px 1px 5px black;
 
 }
+
+.menu-card  button{
+    margin:3px;
+    width:20%;
+    height:20%;
+}
+
 .checkout-container{
-    width: 38%;
+    max-width: 38%;
+    width:38%;
     height: auto;
     display: inline-block;
     background-color:dodgerblue;
     text-align: center;
     margin-right: 10px;
     vertical-align: top;
-    
+    box-shadow: 1px 1px 5px black;
 }
 
 
@@ -131,7 +140,7 @@ h1 {
     background-color: white;
     margin: 10px;
     padding: 20px;
-    font-size: 30px;
+    font-size: 20px;
 
 }
 .card-container p{
@@ -270,7 +279,7 @@ input[type=number] {
 .line {
     margin-left: auto;
     margin-right: auto;
-    width: 826px;
+    max-width:826px;
     height: 0px;
     left: 20px;
     top: 150px;
@@ -281,7 +290,7 @@ input[type=number] {
 .lines {
     margin-left: auto;
     margin-right: auto;
-    width: 406px;
+    max-width:406px;
     height: 0px;
     left: 20px;
     top: 150px;
