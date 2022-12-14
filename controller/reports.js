@@ -17,7 +17,7 @@ const mongoose = require('mongoose')
 const { addListener } = require('../models/ingredient_stock')
 const customerOrderModel = require('../models/customer_order')
 const ingredientOrderHistoryModel = require('../models/ingredient_order_history')
-const ingredientDaiyHistoryModel = require('../models/ingredient_dailyHistory')
+const ingredientDailyHistoryModel = require('../models/ingredient_dailyHistory')
 const ingredient_dailyHistory = require('../models/ingredient_dailyHistory')
 const ingredient_order_history = require('../models/ingredient_order_history')
 const db = mongoose.connection
@@ -87,38 +87,39 @@ router.post('/ingredient_order_report',async (req,res) =>{
     }
 
 })
+
 router.get('/generate_report',async(req,res)=>{
     
 })
-router.get('/ingredient_dailyHistory_report',async (req,res) => {
-    try{
-        const ingredient = await IngredientsModel.find({})
- 
-        const params = {
-         ingredient:ingredient
-        }
-         res.render('reports/ingredient_dailyHistory_report',params)
-     }catch(error){
-         res.status(500).send(error)
-         console.log(error)
-     }
+
+router.get('/ingredient_dailyHistory_report',async(req,res)=>{
+
+    var dailyReports = await ingredientDailyHistoryModel.find({})
+
+    const params = {
+        dailyReports : dailyReports
+    }
+
+    res.render('reports/ingredient_dailyHistory_report',params)
+})
+
+router.get('/generate_dailyReport',async(req,res)=>{
+    
 })
 
 router.post('/ingredient_dailyHistory_report',async (req,res) =>{
     try{
         let filters = []
 
-        if(req.body.reportDate!=''){
-            filters.push({"date":req.body.reportDate})
+        if(req.body.date!=''){
+            filters.push({"date":req.body.date})
             filters = JSON.parse(filters)
-            const filteredDaily = await ingredientDaiyHistoryModel.find(filters)
-            res.render('reports/generate_report',{order_report:filteredDaily})
+            const filteredDaily = await ingredientDailyHistoryModel.find(filters)
+            res.render('reports/generate_dailyReport',{order_report:filteredDaily})
         }
     }catch(error){
 
     }
 })
-
-
 
 module.exports = router

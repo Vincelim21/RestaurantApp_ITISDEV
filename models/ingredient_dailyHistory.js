@@ -2,13 +2,9 @@ const mongoose = require('mongoose')
 
 const ingredient_dailyHistorySchema = new mongoose.Schema({
   date: {
-    type: String,
-    required: true
-  },
-
-  ingredientID:{
-    type:String,
-    required:true
+    type: Date,
+    required: true,
+    default: Date.now
   },
   
   ingredientType: {

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>View Inventory for Controller</title>
+    
+</head>
+<body>
+    <div class = "topnav">
+        <a>ITISDEV RESTAURANT</a>
+        <a href="#about" class="nav-user">STOCK CONTROLLER</a>
+        <a href="/home_chef" class="nav-home">HOME</a>
+       </div>
+    <div class="title">
+        <h1>Ingredient Order History Report</h1>
+        <div class = "line"></div>
+        <h4>Date created: <%= Date.today().toString("MMMM dS, yyyy") %>        </h4>
+ <h4>Timestamp: <%= Date().getTime %></h4>
+        <br>
+        
+    <!-- Table for View Inventory-->
+    <% dailyReports.forEach(dailyReports => { %>
+      <h2><%= dailyReports.date %>: End-of-Day Inventory</h2>
+      
+       
+        <table>
+            <tr>
+                <th>Ingredient Type</th>
+                <th>Total Value</th>
+                <th>Unit</th>
+            </tr>
+            <% dailyReports.forEach(dailyReports => { %>
+                <%if(dailyReports.ingredientType == dailyReports.ingredientType) { %>
+                <tr>
+                    <td><%= dailyReports.ingredientType %></td>
+                    <td><%= dailyReports.totalUnitValue %></td>
+                    <td><%= dailyReports.unit %></td>
+                </tr>
+                <% }; %> 
+            <% }); %> 
+        </table>
+    <% }); %>
+
+    <h3> *END OF REPORT*</h3>
+
+        </table>
+
+    </div>
+    
+</body>
+</html>

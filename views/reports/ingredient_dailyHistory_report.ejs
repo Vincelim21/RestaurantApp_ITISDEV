@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<script type="text/javascript" src="\js\ingredientorderscript.js"></script>
+<script type="text/javascript" src="\js\ingredientdailyhistoryscript.js"></script>
 <link rel = "stylesheet" href = "/styles.css"> 
 </head>
 
@@ -19,32 +19,12 @@
     <form action = "/reports/ingredient_dailyHistory_report" method ="POST">
     <h2>Filter By:</h2>
 
-    <div class="entry">
-        <a>Date</a>
-        <select class="dropdown" name ="reportDate" id="reportDate">
-            <% ingredient.forEach(ingredient => { %>
-                <option  label="<%= ingredient.date %>" value="<%= ingredient.date %>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
-            <% }) %>
-          </select>
-    </div>
+    <div class="date">
+        <a><label for="start">Date:</label> </a>
 
-    <div class="tableInventory">
-        <table>
-            <tr>
-              <th>Ingredient Name</th>
-              <th>End-of-Day Balance</th>
-              <th>Unit</th>
-            </tr>
-            
-            <!-- Loops Each ingredient data onto the table-->
-            <% ingredient.forEach(ingredient => { %>
-                <tr>
-                    <td><%= ingredient.ingredientType %></td>
-                    <td><%= ingredient.totalUnitValue %></td>
-                    <td><%= ingredient.unitID %></td>
-                </tr>
-            <% }); %> 
-          </table>
+            <input class="dropdown" type="date" id="start" name="trip-start"
+                value="2022-11-07"
+                min="2022-11-07">
     </div>
 </div>
 <div class="btn1"><button class="continue" type="submit" href="/">GENERATE REPORT</button></div>
