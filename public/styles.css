@@ -274,6 +274,17 @@ input[type=number] {
     border:1px solid #000000;
 }
 
+.lines {
+    margin-left: auto;
+    margin-right: auto;
+    width: 406px;
+    height: 0px;
+    left: 20px;
+    top: 150px;
+
+    border:1px solid #000000;
+}
+
 .collapsible{
     background-color: gray;
     color: black;

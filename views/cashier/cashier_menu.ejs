@@ -8,6 +8,8 @@
 <div class="inline-two">
     <div class="menu-container">
         <h1> MENU</h1>
+        <div class = "line"></div>
+        <br>
         <div class="menu-card">
             
             <% recipename.forEach(recipename => { %>
@@ -33,6 +35,8 @@
     <div class="checkout-container">
         <form action = "/cashier/cashier_menu" method="POST">
         <h1> CHECKOUT</h1>
+        <div class = "lines"></div>
+        <br>
         <div class="checkout-details">
             <table>
                 <tr class ="table-header">
@@ -54,7 +58,7 @@
                     <td>TOTAL</td>
                 </tr>        
         </div>
-
+        <br>
         <button class="continue" type="submit" href="/">CONTINUE</button>
         </form>
     </div>
