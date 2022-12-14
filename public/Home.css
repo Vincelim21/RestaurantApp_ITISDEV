@@ -21,14 +21,13 @@ body
 }
 .topnav a.nav-home{
     float: right;
-    background-color: blue;
+    background-color: white;
     color: black
 
 }
 .topnav a.nav-user{
     float: right;
     background-color: white;
-    color: black
 }
 /* End of Navigation Bar */
 
@@ -39,7 +38,6 @@ body
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    border: 3px solid #333;
     justify-content:space-around;
     background-color: dodgerblue;
     margin-top: 20px;
@@ -61,6 +59,8 @@ body
 {
     font-size: 25px;
     text-align:center;
+    padding: 70px 0px;
+
 }
 
 .box-container a
