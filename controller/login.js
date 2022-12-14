@@ -7,15 +7,15 @@ const UserDetailsModel = require('../models/user_details')
 const router = express.Router()
 var session = require('express-session');
 
-// router.post('/login', loginController.postLogin);
+router.post('/login', loginController.postLogin);
 // router.get('/login',loginController.login)
 // router.get('/logout', loginController.logout);
 
 const loginController = {
 
-	login: function (req, res) {
+	/*login: function (req, res) {
         res.render('login');
-	},
+	},*/
 
     logout: function (req, res) {
         req.session.destroy(function(err) {
