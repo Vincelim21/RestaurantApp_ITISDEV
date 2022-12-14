@@ -7,7 +7,7 @@ const UserDetailsModel = require('../models/user_details')
 const router = express.Router()
 var session = require('express-session');
 
-router.post('/login', loginController.postLogin);
+//router.post('/login', loginController.postLogin);
 // router.get('/login',loginController.login)
 // router.get('/logout', loginController.logout);
 
