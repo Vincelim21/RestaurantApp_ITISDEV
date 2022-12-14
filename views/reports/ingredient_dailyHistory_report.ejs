@@ -21,7 +21,7 @@
 
     <div class="entry">
         <a>Date</a>
-        <select name ="reportDate" id="reportDate">
+        <select class="dropdown" name ="reportDate" id="reportDate">
             <% ingredient.forEach(ingredient => { %>
                 <option  label="<%= ingredient.date %>" value="<%= ingredient.date %>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
             <% }) %>

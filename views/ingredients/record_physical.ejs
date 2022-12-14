@@ -24,7 +24,7 @@
             <a>Ingredient Name</a>
 
             <!-- Dropdown Menu-->
-            <select name="ingredient_names" id="ingredient_names" onchange="changeSystemCount(count)">
+            <select class="dropdown" name="ingredient_names" id="ingredient_names" onchange="changeSystemCount(count)">
                 <% ingredStock.forEach(ingredStock => { %>
                     <option  label="<%= ingredStock.ingredientName %>" value="<%= ingredStock.ingredientName %>">
                         <% var count = ingredStock.totalUnitValue %>  <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
@@ -47,7 +47,7 @@
         <div class="date">
             <a><label for="start">Date Recorded:</label> </a>
 
-                <input type="date" id="start" name="trip-start"
+                <input class="dropdown" type="date" id="start" name="trip-start"
                     value="2022-11-07"
                     min="2022-11-07">
         </div>

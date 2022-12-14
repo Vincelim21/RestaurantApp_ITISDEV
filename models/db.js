@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-const User = require('./UserModel.js');
+// const User = require('./UserModel.js');
 
-const Comment = require('./CommentModel.js');
+// const Comment = require('./CommentModel.js');
 
-const Post = require('./PostModel.js');
+// const Post = require('./PostModel.js');
 
-const Order = require('./OrderModel.js');
+// const Order = require('./OrderModel.js');
 
 const url = 'mongodb+srv://Raphael:santillan@cluster0.cko2nz6.mongodb.net/?retryWrites=true&w=majority';
 

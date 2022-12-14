@@ -24,7 +24,7 @@
 
     <div class="entry">
         <a>Specify Ingredient's Default Unit</a>
-        <select name ="unit" id="unit">
+        <select class="dropdown" name ="unit" id="unit">
             <% unit.forEach(unit => { %>
                 <option  label="<%= unit.unitName %>" value="<%= unit.unitName %>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
             <% }) %>

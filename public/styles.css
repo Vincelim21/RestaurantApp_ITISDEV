@@ -211,7 +211,7 @@ div.content-half-box {
 }
 
 input[type=text] {
-    background: #C4C4C4;
+    background: white;
     border-radius: 10px;
     height: 30px;
     border: none;
@@ -219,7 +219,15 @@ input[type=text] {
 }
 
 input[type=password] {
-    background: #C4C4C4;
+    background: white;
+    border-radius: 10px;
+    height: 30px;
+    border: none;
+    text-align: center;
+}
+
+input[type=email] {
+    background: white;
     border-radius: 10px;
     height: 30px;
     border: none;
@@ -227,7 +235,16 @@ input[type=password] {
 }
 
 input[type=number] {
-    background: #C4C4C4;
+    background: white;
+    border-radius: 10px;
+    height: 30px;
+    border: none;
+    text-align: center;
+}
+
+.dropdown
+{
+    background: white;
     border-radius: 10px;
     height: 30px;
     border: none;
@@ -324,7 +341,7 @@ div.ingredients_in_recipe
 .continue
 {
     padding: 20px;
-    background-color: blue;
+    background-color: #4CAF50; 
     color: white;
 }
 
