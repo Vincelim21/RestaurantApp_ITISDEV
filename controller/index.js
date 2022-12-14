@@ -22,7 +22,7 @@ router.get('/logout', async(req, res) =>{
            if(err) throw err;
            res.redirect('/');
        })
-});
+}); 
 
 // trial start
 // this will return manager email
