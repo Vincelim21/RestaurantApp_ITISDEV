@@ -25,7 +25,7 @@
     <div class="lowonstock-container">
         <h2>Low on stock</h2>
         <% stock.forEach(stock=>{%>
-            <!-- <% if(stock.totalUnitValue < stock.safetyStock) { %> should be: stock.totalUnitValue < stock.reorderPoint -->
+            <!-- <% if(stock.totalUnitValue < stock.reorderPoint) { %> should be: stock.totalUnitValue < stock.reorderPoint -->
                 <p> <%= stock.ingredientType %></p>
             <% } %>
         <%}) %>
