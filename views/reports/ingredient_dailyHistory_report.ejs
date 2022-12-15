@@ -19,13 +19,23 @@
     <form action = "/reports/ingredient_dailyHistory_report" method ="POST">
     <h2>Filter By:</h2>
 
-    <div class="date">
+    <!-- <div class="date">
         <a><label for="start">Date:</label> </a>
 
             <input class="dropdown" type="date" id="start" name="trip-start"
                 value="2022-11-07"
                 min="2022-11-07">
+    </div> -->
+
+    <div class="entry">
+        <a>Date</a>
+        <select class="dropdown" name ="reportDate" id="reportDate">
+            <% dailyReports.forEach(dailyReports => { %>
+                <option  label="<%= dailyReports.date %>" value="<%= dailyReports.date %>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
+            <% }) %>
+          </select>
     </div>
+
 </div>
 <div class="btn1"><button class="continue" type="submit" href="/">GENERATE REPORT</button></div>
 </form>
