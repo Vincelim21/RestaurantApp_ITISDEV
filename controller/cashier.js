@@ -31,7 +31,12 @@ router.get('/cashier_menu',async(req,res)=>{
         }
         if(req.session.userTypeName == "Cashier")
             res.render('cashier/cashier_menu',params);
- 
+        else if(req.session.userTypeName == "Manager")
+            res.render('home_manager');
+        else if(req.session.userTypeName == "Chef")
+            res.render('home_chef');
+        else if(req.session.userTypeName == "Stock Controller")
+            res.render('home_stockctrl');
         }catch(error){
             res.status(500).send(error)
         }
