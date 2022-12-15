@@ -9,16 +9,29 @@ const IngredientsSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-
   totalUnitValue: {
     type: Number,
     required: false,
     default: 0
   },
-
   unit:{
     type: String,
     required:true
+  },
+  dailyUsage:{
+    type:Number,
+    required:false,
+    default:0
+  },
+  safetyStock:{
+    type:Number,
+    required:false,
+    default:0
+  },
+  reorderPoint:{
+    type:Number,
+    required:false,
+    default:0
   }
 
 },{collection : 'ingredients'})

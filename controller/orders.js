@@ -22,9 +22,9 @@ var parsedate = require('datejs')
 const { find } = require('../models/ingredient_order_history')
 const db = mongoose.connection
 
-router.get('/record_firsttime',async(req,res) =>{ //Happens when rendering record_firsttime EJS
+router.get('/record_firsttime',async(req,res) =>{ 
 
-    //SUMMARY: Render EJS file with IngredientsFirst Table (created) and Ingredients Table (Retrieved) as params for EJS
+    
     
     try{
         const ingredients = await IngredientsModel.find({})  //Retrieve Ingredients table
@@ -99,6 +99,8 @@ router.post('/record_itempurchase',async (req,res)=>{
     try{
         const ingredientFirst = await IngredientFirstModel.findOne({ingredientName:req.body.name}) //Get Ingredient First Table Values to be put in for Ingredient Order Values
         console.log(ingredientFirst)
+
+
         const history = await ingredientOrderHistoryModel.findOne({dateBought:Date.today().toString("MMMM dS, yyyy")})
         console.log(history + "HISTORY ETO  ")
         
@@ -108,8 +110,6 @@ router.post('/record_itempurchase',async (req,res)=>{
                 dateBought: Date.today().toString("MMMM dS, yyyy")
                 })
                 ingredientOrderHistoryModel.create(ingredientOrderHistory)
-
-                
         }
         console.log("HEREEEE: ")
         const ingredientOrderHistory = await ingredientOrderHistoryModel.findOne({dateBought:Date.today().toString("MMMM dS, yyyy")})

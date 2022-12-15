@@ -6,6 +6,10 @@ const orderSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    dailyUsageID:{
+        type:String,
+        required:true
+    },
     itemName: {
         type: String,
         required: true

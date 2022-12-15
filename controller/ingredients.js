@@ -23,39 +23,37 @@ const ingredients_DailyHistoryModel = require('../models/ingredient_dailyHistory
 const db = mongoose.connection
 
 router.get('/view_inventory-controller',async(req,res) =>{
-    
+
+    // SUMMARY : Get view inventory of controller page with ingredient stock data
+
     const ingredientStock = await IngredientStockModel.find({})
 
     try{
-        // Read Databasefile
-          //Retrieve IngredientStock table
         res.render('ingredients/view_inventory-controller',{ingredStock:ingredientStock});
-    //EJS 
-        
-    }catch(error){
-        res.status(500).send(error);
-        console.log(error);
-    }
-})
-//Renders current inventory and stock amount in record physical page
-router.get('/record_physical',async(req,res) =>{
-    
-    try{
-        // Read Databasefile
-        const ingredientStock = await IngredientStockModel.find({});
-        console.log("Ingredient: "+ingredientStock)  //Retrieve IngredientStock table
-        res.render('ingredients/record_physical',{ingredStock:ingredientStock});
-        
-    //EJS 
-        
     }catch(error){
         res.status(500).send(error);
         console.log(error);
     }
 })
 
-//Submits user manual count input and calculates the difference of system inventory with the manual count
+router.get('/record_physical',async(req,res) =>{
+
+    // SUMMARY : Get record physical page with ingredient stock data
+    
+    try{
+        const ingredientStock = await IngredientStockModel.find({});
+        console.log("Ingredient: "+ingredientStock) 
+        res.render('ingredients/record_physical',{ingredStock:ingredientStock});
+    }catch(error){
+        res.status(500).send(error);
+        console.log(error);
+    }
+})
+
+
 router.post('/record_physical',async (req,res)=>{
+
+    // SUMMARY: Submits user manual count input and calculates the difference of system inventory with the manual count
 
     try{
         const ingredientStockChosen = await IngredientStockModel.findOne({ingredientName:req.body.ingredient_names})
@@ -75,7 +73,7 @@ router.post('/record_physical',async (req,res)=>{
         const discrepancieHistory = await discrepancyHistoryModel.findOne({dateRecorded:Date.today().toString("MMMM dS, yyyy")})
         
 
-        const ingredientDiscrepancie = new discrepancieModel({  // Put fields into Ingredient First Model
+        const ingredientDiscrepancie = new discrepancieModel({
             ingredientID:discrepancieHistory.ingredientID,
             ingredientName: ingredientStockChosen.ingredientName,
             quantityDiff:quantityDiff
@@ -159,7 +157,8 @@ router.post('/create_ingredient',async (req,res) =>{
 
             ingredientType:req.body.ingredient_type,
             unit:req.body.unit,
-            ingredientID: mongoose.Types.ObjectId()
+            ingredientID: mongoose.Types.ObjectId(),
+            safetyStock:req.body.safety_stock
         })
         IngredientsModel.create(ingredientType)
         res.redirect('/')
