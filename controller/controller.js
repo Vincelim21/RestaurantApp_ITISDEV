@@ -441,10 +441,17 @@ router.post('/create_ingredient',async (req,res) =>{
 })
 
 //Home Page
-router.get('/home_stockctrl',(req,res) =>{
-    //First Screen
-    res.render('home_stockctrl')
-})
+// router.get('/home_stockctrl', async(req,res) =>{
+//     //First Screen
+//     const stock = await ingredientsModel.find({})
+//     console.log("stock"stock);
+//     const params = {
+//         stock: stock,
+//     }
+    
+//     res.render('home_stockctrl', params)
+
+// })
 
 router.get('/home_chef',(req,res) =>{
     //First Screen

@@ -22,5 +22,13 @@
         <div class="box-item box-item-5"> <p><a href="/ingredients/record_physical">Record Physical Count</a></p> </div>
         <div class="box-item box-item-2"> <p><a href="/logout"> Log Out </a></p> </div>
     </div>
+    <div class="lowonstock-container">
+        <h2>Low on stock</h2>
+        <% stock.forEach(stock=>{%>
+            <!-- <% if(stock.totalUnitValue < stock.safetyStock) { %> should be: stock.totalUnitValue < stock.reorderPoint -->
+                <p> <%= stock.ingredientType %></p>
+            <% } %>
+        <%}) %>
+    </div>
 </body>
 </html>

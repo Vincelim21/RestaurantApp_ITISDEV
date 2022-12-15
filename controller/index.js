@@ -4,6 +4,7 @@ const UserDetailsModel = require('../models/user_details')
 const mongoose = require('mongoose')
 const db = mongoose.connection
 const recipeModel = require('../models/recipe')
+const ingredientsModel = require('../models/ingredients')
 const bcrypt = require('bcrypt')
 const recipe = require('../models/recipe')
 const bodyParser = require('body-parser')
@@ -264,9 +265,14 @@ router.post('/register', async (req,res) =>{
     console.log(UserDetailsModel)
 })
 
-router.get('/home_stockctrl',(req,res) =>{
+router.get('/home_stockctrl', async (req,res) =>{
     //First Screen
-    res.render('home_stockctrl')
+    const ingredient = await ingredientsModel.find({})
+    const params = {
+        stock: ingredient,
+    }
+        res.render('home_stockctrl', params)
+
 })
 
 router.get('/home_chef',(req,res) =>{

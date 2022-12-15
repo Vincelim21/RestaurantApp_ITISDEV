@@ -15,9 +15,6 @@ h1 {
 .content-half-box h1 {
     color: black;
   }
- p {
-    color: red;
-  }
 
 .topnav{
     background-color: #55565A;
@@ -395,6 +392,27 @@ div.ingredients_in_recipe
     width: 50%;
     padding: 10px;
 }
+
+div.lowonstock-container{
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    border-radius: 10px;
+    max-width:20%;
+    background-color:lightcoral
+}
+
+div.lowonstock-container p{
+    font-weight:bold;
+    margin-left:20px;
+}
+
+div.lowonstock-container h2{
+    margin-left:10px;
+}
+
 .button1
 {
     background-color: #4CAF50; 
