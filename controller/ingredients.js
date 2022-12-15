@@ -283,29 +283,4 @@ async function ingredientsHistory(ingredients){
        }
 }
 
-//Function that creates ingredient daily history
-async function ingredientsDailyHistory(ingredients){
-    var findDailyIngredientsHistory = await ingredients_DailyHistoryModel.findOne({date:Date.today().toString("MMMM dS, yyyy")});
-       console.log("Find Inventory Daily History: "+ findDailyIngredientsHistory)
-       
-       try {
-        if(findDailyIngredientsHistory == null){
-            const ingredientsHistory = new ingredients_DailyHistoryModel({
-                date:Date.today().toString("MMMM dS, yyyy"),
-                ingredient:ingredients
-               })
-               ingredients_DailyHistoryModel.create(ingredientsHistory)
-    
-           }
-           else if (findDailyIngredientsHistory !=null){
-            findDailyIngredientsHistory.ingredient.push(ingredients)
-                console.log("INGREDIENT: "+ingredients)
-                console.log(findDailyIngredientsHistory.ingredient)
-                findDailyIngredientsHistory.save()
-           }
-       } catch (error) {
-        console.log(error)
-       }
-}
-
 module.exports = router

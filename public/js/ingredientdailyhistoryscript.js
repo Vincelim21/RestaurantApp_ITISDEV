@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    $("#reportDate").prepend("<option value='' selected='selected'>---</option>");
+    $("#date").prepend("<option value='' selected='selected'>---</option>");
  })
  
  

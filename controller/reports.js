@@ -94,32 +94,45 @@ router.get('/generate_report',async(req,res)=>{
 
 router.get('/ingredient_dailyHistory_report',async(req,res)=>{
 
-    var dailyReports = await ingredientDailyHistoryModel.find({})
+    var dailyReports = await ingredientDailyHistoryModel.find({}).distinct("date")
+    var dailyReportsArray = dailyReports.map((str, index) => ({ date: str, id: index + 1 }));
 
     const params = {
-        dailyReports : dailyReports
+        dailyReports : dailyReportsArray
     }
 
     res.render('reports/ingredient_dailyHistory_report',params)
 })
 
 router.get('/generate_dailyReport',async(req,res)=>{
-    
+
+    var dailyReports = await ingredientDailyHistoryModel.find({}).distinct("date")
+    var dailyReportsArray = dailyReports.map((str, index) => ({ date: str, id: index + 1 }));
+
+    const params = {
+        dailyReports : dailyReportsArray
+    }
+
+    res.render('reports/generate_dailyReport',params)
 })
 
 router.post('/ingredient_dailyHistory_report',async (req,res) =>{
+    
     try{
         let filters = []
 
         if(req.body.date!=''){
             filters.push({"date":req.body.date})
-            filters = JSON.parse(filters)
-            const filteredDaily = await ingredientDailyHistoryModel.find(filters)
-            res.render('reports/generate_dailyReport',{order_report:filteredDaily})
+            const filteredDaily = await ingredientDailyHistoryModel.find(filters[0])
+            res.render('reports/generate_dailyReport',{dailyReports:filteredDaily})
         }
     }catch(error){
 
     }
+})
+
+router.get('/generate_dailyReport',async(req,res)=>{
+    
 })
 
 module.exports = router
