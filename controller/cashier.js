@@ -174,7 +174,7 @@ router.post('/cashier_menu',async (req,res)=>{
         }
 
         
-        res.redirect('/')
+        res.redirect('/home_cashier')
     }
     catch(error){
         res.status(500).send(error)

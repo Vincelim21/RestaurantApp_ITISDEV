@@ -83,7 +83,7 @@ router.post('/create_recipe',async (req,res)=>{//Happens when submitting form of
 
         
 
-        res.redirect('/')
+        res.redirect('/home_chef')
 
     }catch(error){
         res.status(500).send(error)

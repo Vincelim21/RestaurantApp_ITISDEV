@@ -185,7 +185,7 @@ router.post('/create_ingredient',async (req,res) =>{
             safetyStock:req.body.safety_stock
         })
         IngredientsModel.create(ingredientType)
-        res.redirect('/')
+        res.redirect('/home_chef')
 
     }catch(error){
         res.status(500).send(error)
