@@ -104,18 +104,6 @@ router.get('/ingredient_dailyHistory_report',async(req,res)=>{
     res.render('reports/ingredient_dailyHistory_report',params)
 })
 
-router.get('/generate_dailyReport',async(req,res)=>{
-
-    var dailyReports = await ingredientDailyHistoryModel.find({}).distinct("date")
-    var dailyReportsArray = dailyReports.map((str, index) => ({ date: str, id: index + 1 }));
-
-    const params = {
-        dailyReports : dailyReportsArray
-    }
-
-    res.render('reports/generate_dailyReport',params)
-})
-
 router.post('/ingredient_dailyHistory_report',async (req,res) =>{
     
     try{
