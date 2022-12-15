@@ -61,8 +61,9 @@ router.post('/record_firsttime',async (req,res)=>{//Happens when submitting form
           })
  
     
-        IngredientFirstModel.create(ingredientFirst) // Create table in MongoAtlas
-        res.render('home_stockctrl')
+        IngredientFirstModel.create(ingredientFirst)
+     // Create table in MongoAtlas
+        res.redirect('/home_stockctrl')
         
 
     }catch(error){
@@ -174,7 +175,9 @@ router.post('/record_itempurchase',async (req,res)=>{
             totalUnitValue: Number(valueQuery),
             unit: ingredientFirst.unit
         }) 
-        IngredientStockModel.create(ingredientStock) //Create IngredientStock Table
+        IngredientStockModel.create(ingredientStock)
+         //Create IngredientStock Table
+  
         res.redirect('/home_stockctrl')
        }
 
@@ -183,7 +186,9 @@ router.post('/record_itempurchase',async (req,res)=>{
         IngredientStockModel.updateOne(
             { ingredientName: ingredientOrder.ingredientName },
             { $inc: { totalUnitValue: Number(valueQuery) }}
-         ).exec() //Update IngredientStock table by finding the table with the same IngredientOrder name and incrementing totalUnitValue with valQuery
+         ).exec() 
+ 
+         //Update IngredientStock table by finding the table with the same IngredientOrder name and incrementing totalUnitValue with valQuery
         res.redirect('/home_stockctrl')
        }
 
