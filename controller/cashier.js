@@ -29,7 +29,9 @@ router.get('/cashier_menu',async(req,res)=>{
             orders : orders,
             order : order
         }
-        res.render('cashier/cashier_menu',params);
+        if(req.session.userTypeName == "Cashier")
+            res.render('cashier/cashier_menu',params);
+ 
         }catch(error){
             res.status(500).send(error)
         }
