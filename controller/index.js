@@ -143,6 +143,8 @@ router.post('/login', async (req, res, next) => {
                     
                     if(position == 'Chef')
                         position = 'chef';
+                    if(position == 'Cashier')
+                        position = 'cashier';
                     console.log(position)
                     res.render( "home_"+position.toLowerCase());
                             
@@ -274,6 +276,10 @@ router.get('/home_chef',(req,res) =>{
 
 router.get('/home_manager',(req,res) =>{
     res.render('home_manager')
+})
+
+router.get('/home_cashier',(req,res) =>{
+    res.render('home_cashier')
 })
 
 router.get('/employeeView',async(req,res) =>{
