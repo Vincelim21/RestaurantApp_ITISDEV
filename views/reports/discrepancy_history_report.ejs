@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<script type="text/javascript" src="\js\ingredientdailyhistoryscript.js"></script>
+<script type="text/javascript" src="\js\discrepancyhistoryscript.js"></script>
 <link rel = "stylesheet" href = "/styles.css"> 
 </head>
 
@@ -23,7 +23,7 @@
         <a>Date</a>
         <select class="dropdown" name ="reportDate" id="reportDate">
             <% discrep_History.forEach(discrep_History => { %>
-                <option  label="<%= discrep_History.dateRecorded %>" value="<%= discrep_History.dateRecorded %>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
+                <option  label="<%= discrep_History.dateRecorded %>" value="<%= discrep_History.dateRecorded %>">
             <% }) %>
           </select>
     </div>

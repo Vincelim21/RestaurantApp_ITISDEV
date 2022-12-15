@@ -25,13 +25,19 @@
             <tr>
               <th>Ingredient Name</th>
               <th> Changes</th>
+              <th> Date Recorded</th>
               <!--<th>Difference</th>!-->
             </tr>
 
             <% discrep.forEach(discrep => { %>
                 <tr>
-                    <td><%= discrep.ingredientID %></td>
+                    <td><%= discrep.ingredientName %></td>
                     <td><%= discrep.quantityDiff %></td>
+                    <% discrepHistory.forEach(discrepHistory =>{ %>
+                        <% if(discrepHistory.ingredientID == discrep.ingredientID){ %>
+                            <td><%= discrepHistory.dateRecorded %></td>
+                    <%   } %>
+                    <% }) %>
                 </tr>
             <% }); %> 
 

@@ -16,7 +16,7 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const { addListener } = require('../models/ingredient_stock')
 const customerOrderModel = require('../models/customer_order')
-const discrepancyHistoryModel = require('../models/discpepancy_history')
+const discrepancyHistoryModel = require('../models/discrepancy_history')
 const spoilageHistoryModel = require('../models/spoilage_history')
 const ingredients_HistoryModel = require('../models/ingredients_history')
 const ingredients_DailyHistoryModel = require('../models/ingredient_dailyHistory')
@@ -69,9 +69,9 @@ router.post('/record_physical',async (req,res)=>{
             discrepancyHistoryModel.create(discrepancyHistory)
         }
 
-        console.log("HEREEEE: ")
-        const discrepancyHistory = await discrepancyHistoryModel.findOne({dateRecorded:Date.today().toString("MMMM dS, yyyy")})
         
+        const discrepancyHistory = await discrepancyHistoryModel.findOne({dateRecorded:Date.today().toString("MMMM dS, yyyy")})
+        console.log("HEREEEE: "+discrepancyHistory)
 
         const ingredientDiscrepancy = new discrepancyModel({  // Put fields into Ingredient First Model
             ingredientID:discrepancyHistory.ingredientID,
@@ -103,16 +103,20 @@ router.get('/view_discrepancy',async(req,res)=>{
 
     try{
         const getViewDiscrepancy = await discrepancyModel.find({});
+        const discrepancyHistory = await discrepancyHistoryModel.find({});
         const getStockValue = await IngredientStockModel.find({});
         const params = { 
-            discrep : getViewDiscrepancy // recipename in EJS file: recipename value retrieved
+            discrep : getViewDiscrepancy, // recipename in EJS file: recipename value retrieved
+            discrepHistory : discrepancyHistory
         } 
         console.log(getViewDiscrepancy);
         console.log(getStockValue);
+        console.log(discrepancyHistory);
 
         res.render('ingredients/view_discrepancy',params);
         }catch(error){
             res.status(500).send(error)
+            console.log(error)
         }
     
 })

@@ -2,7 +2,7 @@ const express = require('express')
 const IngredientOrderModel = require('../models/ingredient_order')//ingredient_order table
 const manualCountModel = require('../models/manual_count')
 const discrepancyModel = require('../models/discrepancy')
-const discrepancyHistoryModel = require('../models/discpepancy_history')
+const discrepancyHistoryModel = require('../models/discrepancy_history')
 const spoilageModel = require('../models/spoilage')
 const UserDetailsModel = require('../models/user_details')
 const CustomerOrderModel = require('../models/customer_order')
@@ -127,9 +127,10 @@ router.get('/discrepancy_history_report',async(req,res)=>{
         var discrepancy = await discrepancyModel.find({})
 
         const params = {
-            discrep_History : discrepancyHistory,
-            discrepancy: discrepancy,
+            discrep_History:discrepancyHistory,
+            discrepancy:discrepancy,
            }
+           console.log(params)
 
         res.render('reports/discrepancy_history_report',params)
         } catch (error) {
@@ -156,18 +157,18 @@ router.post('/discrepancy_history_report',async (req,res) =>{
             var discrepancyHistoryFilter = filters[0]
             var discrepancyFilter = filters1[0]
             
-            const discrepancyFiltered = await IngredientOrderModel.find(discrepancyFilter)
-            const  discrepancyrHistoryFiltered= await ingredientOrderHistoryModel.find(discrepancyHistoryFilter)
+            const discrepancyFiltered = await discrepancyModel.find(discrepancyFilter)
+            const  discrepancyrHistoryFiltered= await discrepancyHistoryModel.find(discrepancyHistoryFilter)
             //console.log(discrepancyrHistoryFiltered)
             const params = {
-                discrep_History:discrepancyrHistoryFiltered,
+                discrep_report:discrepancyrHistoryFiltered,
                 discrepancy:discrepancyFiltered
             }
            res.render('reports/generate_discrepancyReport',params)
         }
         else{
-            const discrepancyFiltered = await IngredientOrderModel.find(discrepancyFilter)
-            const  discrepancyrHistoryFiltered= await ingredientOrderHistoryModel.find(discrepancyHistoryFilter)
+            const discrepancyFiltered = await discrepancyModel.find(discrepancyFilter)
+            const  discrepancyrHistoryFiltered= await discrepancyHistoryModel.find(discrepancyHistoryFilter)
             //console.log(discrepancyrHistoryFiltered)
             const params = {
                 discrep_report:discrepancyrHistoryFiltered,
