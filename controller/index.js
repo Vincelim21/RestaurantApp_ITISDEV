@@ -102,6 +102,10 @@ router.post('/login', async (req, res, next) => {
 
         var user = await UserDetailsModel.findOne({email:req.body.email})
         console.log(user)
+        const ingredient = await ingredientsModel.find({})
+        const params = {
+            stock: ingredient,
+        }
         //manager email
         //var user = await login_user()
         //stock controller email
@@ -147,7 +151,7 @@ router.post('/login', async (req, res, next) => {
                     if(position == 'Cashier')
                         position = 'cashier';
                     console.log(position)
-                    res.render( "home_"+position.toLowerCase());
+                    res.render( "home_"+position.toLowerCase(), params);
                             
                 }
                 else{
