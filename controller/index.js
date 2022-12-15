@@ -306,6 +306,12 @@ router.get('/employeeView',async(req,res) =>{
 })
 
 router.post('/block_access',async(req,res)=>{
+
+    const ingredient = await ingredientsModel.find({})
+    const params = {
+        stock: ingredient,
+    }
+
     if(req.session.userTypeName == "Cashier")
         res.render('home_cashier')
     else if(req.session.userTypeName == "Manager")
@@ -313,7 +319,7 @@ router.post('/block_access',async(req,res)=>{
     else if(req.session.userTypeName == "Chef")
         res.render('home_chef')
     else if(req.session.userTypeName == "Stock Controller")
-        res.render('home_stockctrl')
+        res.render('home_stockctrl', params)
     else    
         res.render('login')
         
