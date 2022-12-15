@@ -15,7 +15,9 @@
         <a href="/home_chef" class="nav-home">HOME</a>
        </div>
     <div id="content" class="title">
-        <h1>End-of-Day Inventory Report for <%=dailyReports.date %></h1>
+        <% dailyReports.forEach(dailyReports => { %>
+            <h1>End-of-Day Inventory Report for <%=dailyReports.date%></h1>
+        <% }); %>
         <div class = "line"></div>
         <!--<h4>for <%= Date.today().toString("MMMM dS, yyyy") %>        </h4> -->
         <br>
