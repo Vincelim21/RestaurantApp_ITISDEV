@@ -38,8 +38,11 @@ router.get('/record_firsttime',async(req,res) =>{ //Happens when rendering recor
             ingredientorder : ingredient_first,
             unit: unit // ingredientorder in EJS file: ingredientfirst value retrieved
         } 
-        res.render('record_firsttime',params) // Render EJS with table values
-        
+         // Render EJS with table values
+        if(req.session.userTypeName == "Stock Controller")
+            res.render('record_firsttime',params)
+         else
+            res.render('block_access')
     }catch(error){
         res.status(500).send(error)
         console.log(error)
@@ -85,7 +88,10 @@ router.get('/record_itempurchase',async (req,res)=>{
             ingredientorder: ingredientOrder, // ingredientorder in EJS file: Ingredient Order value taker
             ingredientfirst : ingredientFirst// ingredientfirst in EJS file: Ingredient First value taken
         } // EJS
-        res.render('record_itempurchase',params) // Render EJS with table values
+        if(req.session.userTypeName == "Stock Controller")
+            res.render('record_itempurchase',params)
+        else
+            res.render('block_access') // Render EJS with table values
         
     }catch(error){
         res.status(500).send(error)

@@ -39,7 +39,11 @@ router.get('/ingredient_order_report',async (req,res) => {
         ingredient:ingredient,
         unit: unit
        }
+        
+        if(req.session.userTypeName == "Manager")
         res.render('reports/ingredient_order_report',params)
+    else
+        res.render('block_access')
     }catch(error){
         res.status(500).send(error)
         console.log(error)
@@ -103,7 +107,11 @@ router.get('/ingredient_dailyHistory_report',async(req,res)=>{
         dailyReports : dailyReportsArray
     }
 
+    
+    if(req.session.userTypeName == "Manager")
     res.render('reports/ingredient_dailyHistory_report',params)
+    else
+        res.render('block_access')
 })
 
 router.post('/ingredient_dailyHistory_report',async (req,res) =>{
@@ -132,7 +140,11 @@ router.get('/discrepancy_history_report',async(req,res)=>{
            }
            console.log(params)
 
+        
+        if(req.session.userTypeName == "Manager")
         res.render('reports/discrepancy_history_report',params)
+        else
+            res.render('block_access')
         } catch (error) {
             res.status(500).send(error)
             console.log(error)

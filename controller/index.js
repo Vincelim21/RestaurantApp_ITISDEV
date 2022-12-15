@@ -305,4 +305,17 @@ router.get('/employeeView',async(req,res) =>{
     }
 })
 
+router.post('/block_access',async(req,res)=>{
+    if(req.session.userTypeName == "Cashier")
+        res.render('home_cashier')
+    else if(req.session.userTypeName == "Manager")
+        res.render('home_manager')
+    else if(req.session.userTypeName == "Chef")
+        res.render('home_chef')
+    else if(req.session.userTypeName == "Stock Controller")
+        res.render('home_stockctrl')
+    else    
+        res.render('login')
+        
+})
 module.exports = router

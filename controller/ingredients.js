@@ -29,7 +29,11 @@ router.get('/view_inventory-controller',async(req,res) =>{
     const ingredientStock = await IngredientStockModel.find({})
 
     try{
+        
+        if(req.session.userTypeName == "Stock Controller")
         res.render('ingredients/view_inventory-controller',{ingredStock:ingredientStock});
+    else
+        res.render('block_access')
     }catch(error){
         res.status(500).send(error);
         console.log(error);
@@ -43,7 +47,11 @@ router.get('/record_physical',async(req,res) =>{
     try{
         const ingredientStock = await IngredientStockModel.find({});
         console.log("Ingredient: "+ingredientStock) 
+        
+        if(req.session.userTypeName == "Stock Controller")
         res.render('ingredients/record_physical',{ingredStock:ingredientStock});
+    else
+        res.render('block_access')
     }catch(error){
         res.status(500).send(error);
         console.log(error);
@@ -113,7 +121,11 @@ router.get('/view_discrepancy',async(req,res)=>{
         console.log(getStockValue);
         console.log(discrepancyHistory);
 
+        
+        if(req.session.userTypeName == "Stock Controller")
         res.render('ingredients/view_discrepancy',params);
+    else
+        res.render('block_access')
         }catch(error){
             res.status(500).send(error)
             console.log(error)
@@ -131,7 +143,11 @@ router.get('/view_inventory-chef',async(req,res)=>{
         //Add to Ingredient History
         console.log(ingredients)
         ingredientsHistory(ingredients)
+        
+        if(req.session.userTypeName == "Chef")
         res.render('ingredients/view_inventory-chef',{ingredients:ingredients});
+    else
+        res.render('block_access')
         //EJS
     }catch(error){
         res.status(500).send(error);
@@ -148,7 +164,11 @@ router.get('/create_ingredient',async (req,res) => {
             ingredient : ingredients,
             unit : units
         }
+        
+        if(req.session.userTypeName == "Chef")
         res.render('ingredients/create_ingredient',params)
+    else
+        res.render('block_access')
     }catch(error){
         res.status(500).send(error)
         console.log(error)
@@ -178,7 +198,11 @@ router.get('/record_spoiled',async(req,res) =>{
     try{
         // Read Databasefile
         const ingredientStock = await IngredientStockModel.find({});  //Retrieve IngredientStock table
+        
+        if(req.session.userTypeName == "Stock Controller")
         res.render('ingredients/record_spoiled',{ingredientStock:ingredientStock});
+    else
+        res.render('block_access')
     //EJS 
         
     }catch(error){
@@ -218,25 +242,6 @@ router.post('/record_spoiled',async (req,res)=>{
     
 })
 
-//Function that creates Discprepancie History
-async function discrepancieHistory(ingredientDiscrepancie){
-    var findDiscrepancieHistory = await discprepancieHistoryModel.findOne({dateRecorded:Date.today().toString("MMMM dS, yyyy")})
-       console.log("Find Discrepancie History: "+findDiscrepancieHistory)
-       if(findDiscrepancieHistory == null){
-        const discrepancieHistory = new discprepancieHistoryModel({
-            dateRecorded: Date.today().toString("MMMM dS, yyyy"),
-            ingredientDiscrepancie:ingredientDiscrepancie
-           })
-           discprepancieHistoryModel.create(discrepancieHistory)
-
-       }
-       else if (findDiscrepancieHistory !=null){
-            findDiscrepancieHistory.ingredientDiscrepancie.push(ingredientDiscrepancie)
-            console.log("INGREDIENT DISC: "+ingredientDiscrepancie)
-            console.log(findDiscrepancieHistory.ingredientDiscrepancie)
-            findDiscrepancieHistory.save()
-       }
-}
 
 //Function that creates Discprepancie History
 async function spoilageHistory(ingredientSpoiled){

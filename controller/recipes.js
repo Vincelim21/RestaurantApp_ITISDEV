@@ -33,7 +33,11 @@ router.get('/create_recipe',async (req,res)=>{
             ingredients : getIngredient
 
         } 
-        res.render('recipes/create_recipe',params) // Render EJS with table values
+        
+        if(req.session.userTypeName == "Chef")
+        res.render('recipes/create_recipe',params) 
+    else
+        res.render('block_access')// Render EJS with table values
 
     }catch(error){
         res.status(500).send(error)
@@ -97,7 +101,11 @@ router.get('/view_recipe',async(req,res)=>{
         recipeIngredients : recipeIngredients
     }
 
+    
+    if(req.session.userTypeName == "Chef")
     res.render('recipes/view_recipe',params)
+    else
+        res.render('block_access')
 })
 
 
