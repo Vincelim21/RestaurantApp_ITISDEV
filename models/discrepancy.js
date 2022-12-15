@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 
 
-const discrepancieSchema = new mongoose.Schema({
+const discrepancySchema = new mongoose.Schema({
     ingredientID: {
         type: String,
         required: true
@@ -17,4 +17,4 @@ const discrepancieSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Discrepancie', discrepancieSchema)
+module.exports = mongoose.model('Discrepancy', discrepancySchema)

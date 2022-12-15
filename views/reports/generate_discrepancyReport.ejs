@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Ingredient Order History Report</title>
+    
+</head>
+
+<body>
+    <div class = "topnav">
+        <a>ITISDEV RESTAURANT</a>
+        <a href="#about" class="nav-user">MANAGER</a>
+        <a href="/home_chef" class="nav-home">HOME</a>
+       </div>
+    <div id ="content" class="title">
+        <h1>Discrepancy History Report</h1>
+        <div class = "line"></div>
+        <h4>Date created: <%= Date.today().toString("MMMM dS, yyyy") %> </h4>
+        <br>
+        
+    <!-- Table for View Inventory-->
+    <% discrep_report.forEach(discrep_report => { %>
+      <h2><%= discrep_report.dateRecorded %> Discrepancy</h2>
+      
+       
+        <table class="table1">
+            <t>
+                <th>Ingredient Name</th>
+                <th>Value Difference</th>
+            </t>
+
+            <% discrepancy.forEach(discrepancy => { %>
+                <%if(discrepancy.ingredientID == discrep_report.ingredientID) { %>
+                <tr>
+                     <td><%= discrepancy.ingredientName %></td>
+                    <td><%= discrepancy.quantityDiff %></td>
+                </tr>
+                <% }; %> 
+            <% }); %> 
+        </table>
+    <% }); %>
+
+    <h3> *END OF REPORT*</h3>
+
+          </table>
+     </div>
+          <div class="btn1"><button id="print" class="button1">PRINT REPORT</button></div>
+          <script>
+            const printBtn = document.getElementById('print');
+            printBtn.addEventListener('click', function(){
+                print();
+            })
+          </script>    
+    
+</body>
+</html>

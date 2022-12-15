@@ -14,18 +14,19 @@
         <a href="#about" class="nav-user">STOCK CONTROLLER</a>
         <a href="/home_chef" class="nav-home">HOME</a>
        </div>
-    <div id="content" class="title">
-        <h1>End-of-Day Inventory Report for <%=dailyReports.date %></h1>
+    <div class="title">
+        <h1>Ingredient Order History Report</h1>
         <div class = "line"></div>
-        <!--<h4>for <%= Date.today().toString("MMMM dS, yyyy") %>        </h4> -->
+        <h4>Date created: <%= Date.today().toString("MMMM dS, yyyy") %>        </h4>
+ <h4>Timestamp: <%= Date().getTime %></h4>
         <br>
         
     <!-- Table for View Inventory-->
-
-      <!--<h2>End-of-Day Inventory</h2>-->
+    <% dailyReports.forEach(dailyReports => { %>
+      <h2><%= dailyReports.date %>: End-of-Day Inventory</h2>
       
        
-        <table class="table1">
+        <table>
             <tr>
                 <th>Ingredient Type</th>
                 <th>Total Value</th>
@@ -41,20 +42,21 @@
                 <% }; %> 
             <% }); %> 
         </table>
+    <% }); %>
 
-    
     <h3> *END OF REPORT*</h3>
 
         </table>
 
     </div>
+
     <div class="btn1"><button id="print" class="button1">PRINT REPORT</button></div>
-          <script>
+        <script>
             const printBtn = document.getElementById('print');
             printBtn.addEventListener('click', function(){
                 print();
             })
-          </script>    
+        </script>    
     
 </body>
 </html>

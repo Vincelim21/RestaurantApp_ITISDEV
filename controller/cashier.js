@@ -1,7 +1,7 @@
 const express = require('express')
 const IngredientOrderModel = require('../models/ingredient_order')//ingredient_order table
 const manualCountModel = require('../models/manual_count')
-const discrepancieModel = require('../models/discrepancie')
+const discrepancyModel = require('../models/discrepancy')
 const spoilageModel = require('../models/spoilage')
 const UserDetailsModel = require('../models/user_details')
 const recipeModel = require('../models/recipe')

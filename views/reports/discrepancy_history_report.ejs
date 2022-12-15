@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script type="text/javascript" src="\js\ingredientdailyhistoryscript.js"></script>
+<link rel = "stylesheet" href = "/styles.css"> 
+</head>
+
+<body>
+
+<div class = "topnav">
+ <a>ITISDEV RESTAURANT</a>
+</div>
+
+<div class = "title">
+    <h1>Ingredient Discerpancy Report</h1>
+    <div class = "line"></div>
+
+    <form action = "/reports/discrepancy_history_report" method ="POST">
+    <h2>Filter By:</h2>
+    
+    <div class="entry">
+        <a>Date</a>
+        <select class="dropdown" name ="reportDate" id="reportDate">
+            <% discrep_History.forEach(discrep_History => { %>
+                <option  label="<%= discrep_History.dateRecorded %>" value="<%= discrep_History.dateRecorded %>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
+            <% }) %>
+          </select>
+    </div>
+    <div class="entry">
+        <a>Ingredient Name</a>
+        <select class="dropdown" name ="ingredientName" id="ingredientName">
+            <% discrepancy.forEach(discrepancy => { %>
+                <option  label="<%= discrepancy.ingredientName %>" value="<%= discrepancy.ingredientName%>"> <!-- Value = Mapupunta sa fields Label = Magpapakita sa input -->
+            <% }) %>
+          </select>
+    </div>
+
+</div>
+<div class="btn1"><button class="continue" type="submit" href="/">GENERATE REPORT</button></div>
+</form>
+
+
+</body>
+</html>

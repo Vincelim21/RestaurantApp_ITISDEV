@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const discrepancie_historySchema = new mongoose.Schema({
+const discrepancy_historySchema = new mongoose.Schema({
 
     dateRecorded:{
         type: String,
@@ -12,4 +12,4 @@ const discrepancie_historySchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Discrepancie_history', discrepancie_historySchema)
+module.exports = mongoose.model('Discrepancy_history', discrepancy_historySchema)

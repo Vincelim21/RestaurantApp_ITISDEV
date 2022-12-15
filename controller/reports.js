@@ -1,7 +1,8 @@
 const express = require('express')
 const IngredientOrderModel = require('../models/ingredient_order')//ingredient_order table
 const manualCountModel = require('../models/manual_count')
-const discrepancieModel = require('../models/discrepancie')
+const discrepancyModel = require('../models/discrepancy')
+const discrepancyHistoryModel = require('../models/discpepancy_history')
 const spoilageModel = require('../models/spoilage')
 const UserDetailsModel = require('../models/user_details')
 const CustomerOrderModel = require('../models/customer_order')
@@ -20,6 +21,7 @@ const ingredientOrderHistoryModel = require('../models/ingredient_order_history'
 const ingredientDailyHistoryModel = require('../models/ingredient_dailyHistory')
 const ingredient_dailyHistory = require('../models/ingredient_dailyHistory')
 const ingredient_order_history = require('../models/ingredient_order_history')
+const discrepancy = require('../models/discrepancy')
 const db = mongoose.connection
 
 
@@ -104,18 +106,6 @@ router.get('/ingredient_dailyHistory_report',async(req,res)=>{
     res.render('reports/ingredient_dailyHistory_report',params)
 })
 
-router.get('/generate_dailyReport',async(req,res)=>{
-
-    var dailyReports = await ingredientDailyHistoryModel.find({}).distinct("date")
-    var dailyReportsArray = dailyReports.map((str, index) => ({ date: str, id: index + 1 }));
-
-    const params = {
-        dailyReports : dailyReportsArray
-    }
-
-    res.render('reports/generate_dailyReport',params)
-})
-
 router.post('/ingredient_dailyHistory_report',async (req,res) =>{
     
     try{
@@ -131,8 +121,64 @@ router.post('/ingredient_dailyHistory_report',async (req,res) =>{
     }
 })
 
-router.get('/generate_dailyReport',async(req,res)=>{
+router.get('/discrepancy_history_report',async(req,res)=>{
+    try {
+        var discrepancyHistory = await discrepancyHistoryModel.find({})
+        var discrepancy = await discrepancyModel.find({})
+
+        const params = {
+            discrep_History : discrepancyHistory,
+            discrepancy: discrepancy,
+           }
+
+        res.render('reports/discrepancy_history_report',params)
+        } catch (error) {
+            res.status(500).send(error)
+            console.log(error)
+        }
     
+})
+
+router.post('/discrepancy_history_report',async (req,res) =>{
+    try{
+        let filters = []
+        let filters1 = []
+
+        if(req.body.reportDate !=''){
+            filters.push({"dateRecorded":req.body.reportDate})
+        }
+
+        if(req.body.ingredientName != ''){
+            filters1.push({"ingredientName":req.body.ingredientName})
+        }
+
+        if(filters.length != 0 || filters1.length != 0){
+            var discrepancyHistoryFilter = filters[0]
+            var discrepancyFilter = filters1[0]
+            
+            const discrepancyFiltered = await IngredientOrderModel.find(discrepancyFilter)
+            const  discrepancyrHistoryFiltered= await ingredientOrderHistoryModel.find(discrepancyHistoryFilter)
+            //console.log(discrepancyrHistoryFiltered)
+            const params = {
+                discrep_History:discrepancyrHistoryFiltered,
+                discrepancy:discrepancyFiltered
+            }
+           res.render('reports/generate_discrepancyReport',params)
+        }
+        else{
+            const discrepancyFiltered = await IngredientOrderModel.find(discrepancyFilter)
+            const  discrepancyrHistoryFiltered= await ingredientOrderHistoryModel.find(discrepancyHistoryFilter)
+            //console.log(discrepancyrHistoryFiltered)
+            const params = {
+                discrep_report:discrepancyrHistoryFiltered,
+                discrepancy:discrepancyFiltered
+            }
+           res.render('reports/generate_discrepancyReport',params)
+        }
+    }catch(error){
+        res.status(500).send(error)
+        console.log(error)
+    }
 })
 
 module.exports = router

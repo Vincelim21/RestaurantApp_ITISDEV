@@ -1,7 +1,7 @@
 const express = require('express')
 const IngredientOrderModel = require('../models/ingredient_order')//ingredient_order table
 const manualCountModel = require('../models/manual_count')
-const discrepancieModel = require('../models/discrepancie')
+const discrepancyModel = require('../models/discrepancy')
 const spoilageModel = require('../models/spoilage')
 const UserDetailsModel = require('../models/user_details')
 const CustomerOrderModel = require('../models/customer_order')
@@ -16,7 +16,7 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const { addListener } = require('../models/ingredient_stock')
 const customerOrderModel = require('../models/customer_order')
-const discprepancieHistoryModel = require('../models/discpepancie_history')
+const discrepancyHistoryModel = require('../models/discpepancy_history')
 const spoilageHistoryModel = require('../models/spoilage_history')
 const ingredients_HistoryModel = require('../models/ingredients_history')
 const ingredients_DailyHistoryModel = require('../models/ingredient_dailyHistory')
@@ -61,28 +61,28 @@ router.post('/record_physical',async (req,res)=>{
         const ingredientStockChosen = await IngredientStockModel.findOne({ingredientName:req.body.ingredient_names})
         var quantityDiff = req.body.fname - ingredientStockChosen.totalUnitValue  
 
-       const history = await discprepancieHistoryModel.findOne({dateRecorded:Date.today().toString("MMMM dS, yyyy")})
+       const history = await discrepancyHistoryModel.findOne({dateRecorded:Date.today().toString("MMMM dS, yyyy")})
 
        if(history ==null){
-        const discrepancieHistory = new discrepancyHistoryModel({
+        const discrepancyHistory = new discrepancyHistoryModel({
             dateRecorded:Date.today().toString("MMMM dS, yyyy"),
             ingredientID:mongoose.Types.ObjectId()
             })
-            discrepancyHistoryModel.create(discrepancieHistory)
+            discrepancyHistoryModel.create(discrepancyHistory)
         }
 
         console.log("HEREEEE: ")
-        const discrepancieHistory = await discrepancyHistoryModel.findOne({dateRecorded:Date.today().toString("MMMM dS, yyyy")})
+        const discrepancyHistory = await discrepancyHistoryModel.findOne({dateRecorded:Date.today().toString("MMMM dS, yyyy")})
         
 
-        const ingredientDiscrepancie = new discrepancieModel({  // Put fields into Ingredient First Model
-            ingredientID:discrepancieHistory.ingredientID,
+        const ingredientDiscrepancy = new discrepancyModel({  // Put fields into Ingredient First Model
+            ingredientID:discrepancyHistory.ingredientID,
             ingredientName: ingredientStockChosen.ingredientName,
             quantityDiff:quantityDiff
           })
  
     
-        discrepancieModel.create(ingredientDiscrepancie) 
+        discrepancyModel.create(ingredientDiscrepancy) 
         console.log(quantityDiff)
         
         IngredientStockModel.updateOne({ingredientName:req.body.ingredient_names},
@@ -91,8 +91,8 @@ router.post('/record_physical',async (req,res)=>{
 
             res.redirect('/ingredients/view_inventory-controller')
         
-        //Add to Discpepancie History
-        //discrepancieHistory(ingredientDiscrepancie)
+        //Add to Discpepancy History
+        //discrepancyHistory(ingredientDiscrepancie)
 
     }catch(error){
         res.status(500).send(error)
@@ -104,7 +104,7 @@ router.post('/record_physical',async (req,res)=>{
 router.get('/view_discrepancy',async(req,res)=>{
 
     try{
-        const getViewDiscrepancy = await discrepancieModel.find({});
+        const getViewDiscrepancy = await discrepancyModel.find({});
         const getStockValue = await IngredientStockModel.find({});
         const params = { 
             discrep : getViewDiscrepancy // recipename in EJS file: recipename value retrieved
