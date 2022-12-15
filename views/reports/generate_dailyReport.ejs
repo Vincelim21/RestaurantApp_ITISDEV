@@ -15,16 +15,13 @@
         <a href="/home_chef" class="nav-home">HOME</a>
        </div>
     <div id="content" class="title">
-        <h1>End-of-Day Inventory Report for <%=dailyReports.date %></h1>
+        <% for(var i = 0; dailyReports[i] <= 1; i++) %>
+            <h1>End-of-Day Inventory Report for <%=dailyReports[i].date%></h1>
+            <% i++ %>
         <div class = "line"></div>
-        <h4>Date created: <%= Date.today().toString("MMMM dS, yyyy") %>        </h4>
- <h4>Timestamp: <%= Date().getTime %></h4>
         <br>
         
     <!-- Table for View Inventory-->
-    <% dailyReports.forEach(dailyReports => { %>
-      <h2><%= dailyReports.date %>: End-of-Day Inventory</h2>
-      
        
         <table>
             <tr>
