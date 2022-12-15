@@ -221,9 +221,10 @@ function getMultiplier(ingredientOrderUnit,ingredientUnit) // Params: from unit,
     var multiplier = 0
     if(ingredientOrderUnit == "gram"){
         switch(ingredientUnit){
+            case "gram": multiplier = 1; break;
             case "kilogram": multiplier = 0.001; break;
             case "milliliter" :multiplier = 1; break;
-            case "liter" : multiplier = 1000; break;
+            case "liter" : multiplier = 0.001; break;
             case "gallon" : multiplier =  0.000264172052; break;
             case "ounce" : multiplier = 0.035274; break;
             case "pound": multiplier = 0.00220462; break;
@@ -232,6 +233,7 @@ function getMultiplier(ingredientOrderUnit,ingredientUnit) // Params: from unit,
     }
     else if(ingredientOrderUnit == "kilogram"){
         switch(ingredientUnit){
+            case "kilogram": multiplier = 1; break;
             case "gram": multiplier = 1000; break;
             case "milliliter" :multiplier = 1000; break;
             case "liter" : multiplier = 1; break;
@@ -243,6 +245,7 @@ function getMultiplier(ingredientOrderUnit,ingredientUnit) // Params: from unit,
     }
     else if (ingredientOrderUnit == "milliliter"){
         switch(ingredientUnit){
+            case "milliliter": multiplier = 1; break;
             case "gram": multiplier = 1; break;
             case "kilogram" :multiplier = 1000; break;
             case "liter" : multiplier = 0.001; break;
@@ -254,6 +257,7 @@ function getMultiplier(ingredientOrderUnit,ingredientUnit) // Params: from unit,
     }
     else if (ingredientOrderUnit == "liter"){
         switch(ingredientUnit){
+            case "liter": multiplier = 1; break;
             case "gram": multiplier = 1000; break;
             case "kilogram" :multiplier = 1; break;
             case "milliliter" : multiplier = 1000; break;
@@ -265,6 +269,7 @@ function getMultiplier(ingredientOrderUnit,ingredientUnit) // Params: from unit,
     }
     else if (ingredientOrderUnit == "gallon"){
         switch(ingredientUnit){
+            case "milligallonliter": multiplier = 1; break;
             case "gram": multiplier = 3,785.41      ; break;
             case "kilogram" :multiplier = 3.785412; break;
             case "milliliter" : multiplier = 3785.41; break;
@@ -276,6 +281,7 @@ function getMultiplier(ingredientOrderUnit,ingredientUnit) // Params: from unit,
     }
     else if (ingredientOrderUnit == "ounce"){
         switch(ingredientUnit){
+            case "ounce": multiplier = 1; break;
             case "gram": multiplier = 28.35    ; break;
             case "kilogram" :multiplier = 0.028; break;
             case "milliliter" : multiplier = 29.57; break;
@@ -287,6 +293,7 @@ function getMultiplier(ingredientOrderUnit,ingredientUnit) // Params: from unit,
     }
     else if (ingredientOrderUnit == "pound"){
         switch(ingredientUnit){
+            case "pound": multiplier = 1; break;
             case "gram": multiplier = 453.59; break;
             case "kilogram" :multiplier = 0.454; break;
             case "milliliter" : multiplier = 453.59; break;
@@ -298,6 +305,7 @@ function getMultiplier(ingredientOrderUnit,ingredientUnit) // Params: from unit,
     }
     else if (ingredientOrderUnit == "milligram"){
         switch(ingredientUnit){
+            case "milligram": multiplier = 1; break;
             case "gram": multiplier = 0.001; break;
             case "kilogram" :multiplier = 0.000001; break;
             case "milliliter" : multiplier = 0.001; break;

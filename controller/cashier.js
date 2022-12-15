@@ -76,31 +76,33 @@ router.post('/cashier_menu',async (req,res)=>{
 
 
             const recipes = await recipeModel.findOne({recipeName:req.body.item_value})
-            const recipeIngredients = await recipeIngredientsModel.findOne({ingredientID:recipes.recipeID})
-            const ingredients = await ingredientsModel.findOne({ingredientType:recipeIngredients.ingredientType})
-            const stock = await IngredientStockModel.findOne({ingredientType:recipeIngredients.ingredientType})
+            const recipeIngredients = await recipeIngredientsModel.find({ingredientID:recipes.recipeID})
+
+
+            for(v=0;v<recipeIngredients.length;v++){
+                const ingredients = await ingredientsModel.findOne({ingredientType:recipeIngredients[v].ingredientType})
+                const stock = await IngredientStockModel.findOne({ingredientType:recipeIngredients[v].ingredientType})
+                    
+                // Decrease Ingredients by ingredients used in order/s (with multiplier)
+                var multiplierIngredient = getMultiplier(recipeIngredients[v].unit,ingredients.unit)
+                var minusToIngredients = (Number((recipeIngredients[v].totalUnitValue)*multiplierIngredient *req.body.quantity_value))*-1
+                console.log("MINUS TO ingredinet : "+ minusToIngredients + ingredients.unit)
+                ingredientsModel.findOneAndUpdate(
+                    {ingredientType:recipeIngredients[v].ingredientType},
+                    {$inc: { totalUnitValue:  minusToIngredients}
+                }).exec()
+
+                // Decrease Ingredients Stock by ingredients used in order/s (with multiplier)
+                var multiplierStock = getMultiplier(recipeIngredients[v].unit,stock.unit)
+                var minusToStock = (Number((recipeIngredients[v].totalUnitValue)*multiplierStock*req.body.quantity_value))*-1
+                console.log("MINUS TO STOCK : "+ minusToStock + stock.unit)
+                IngredientStockModel.findOneAndUpdate(
+                    {ingredientType:recipeIngredients[v].ingredientType},
+                    {$inc: { totalUnitValue:  minusToStock}
+                }).exec()
+                getDailyUsage(recipes,recipeIngredients[v],multiplierIngredient)
                 
-            // Decrease Ingredients by ingredients used in order/s (with multiplier)
-            var multiplierIngredient = getMultiplier(recipeIngredients.unit,ingredients.unit)
-            var minusToIngredients = (Number((recipeIngredients.totalUnitValue)*multiplierIngredient *req.body.quantity_value))*-1
-            ingredientsModel.updateOne({
-                   ingredientType:recipeIngredients.ingredientType,
-                   $inc: { totalUnitValue:  minusToIngredients}
-            }).exec()
-
-            // Decrease Ingredients Stock by ingredients used in order/s (with multiplier)
-            var multiplierStock = getMultiplier(recipeIngredients.unit,stock.unit)
-            var minusToStock = (Number((recipeIngredients.totalUnitValue)*multiplierStock*req.body.quantity_value))*-1
-            console.log("MINUS TO STOCK : "+ minusToStock + stock.unit)
-            IngredientStockModel.updateOne({
-                    ingredientType:recipeIngredients.ingredientType,
-                    $inc: { totalUnitValue: minusToStock }
-            }).exec()
-
-            var dailyUsage = getDailyUsage(orders,ingredients,multiplierIngredient)
-            ingredientsModel.updateOne(
-                {ingredientType:recipeIngredients.ingredientType},
-                { $set: {dailyUsage:dailyUsage}})
+             }
 
 
 
@@ -132,32 +134,34 @@ router.post('/cashier_menu',async (req,res)=>{
 
 
             const recipes = await recipeModel.findOne({recipeName:req.body.item_value[i]})
-            const recipeIngredients = await recipeIngredientsModel.findOne({ingredientID:recipes.recipeID})
+            const recipeIngredients = await recipeIngredientsModel.find({ingredientID:recipes.recipeID})
 
             for(v=0;v<recipeIngredients.length;v++){
-                const ingredients = await ingredientsModel.findOne({ingredientType:recipeIngredients.ingredientType})
-                const stock = await IngredientStockModel.findOne({ingredientType:recipeIngredients.ingredientType})
+                const ingredients = await ingredientsModel.findOne({ingredientType:recipeIngredients[v].ingredientType})
+                const stock = await IngredientStockModel.findOne({ingredientType:recipeIngredients[v].ingredientType})
                     
                 // Decrease Ingredients by ingredients used in order/s (with multiplier)
-                var multiplierIngredient = getMultiplier(recipeIngredients.unit,ingredient.unit)
-                var minusToIngredients = (Number((recipeIngredients.totalUnitValue)*multiplierIngredient *req.body.quantity_value))*-1
-                ingredientsModel.updateOne({
-                    ingredientType:recipeIngredients.ingredientType,
-                    $inc: { totalUnitValue:  minusToIngredients}
+                var multiplierIngredient = getMultiplier(recipeIngredients[v].unit,ingredients.unit)
+                var minusToIngredients = (Number((recipeIngredients[v].totalUnitValue)*multiplierIngredient *req.body.quantity_value))*-1
+                console.log("MINUS TO ingredinet : "+ minusToIngredients + ingredients.unit)
+                ingredientsModel.findOneAndUpdate(
+                    {ingredientType:recipeIngredients[v].ingredientType},
+                    {$inc: { totalUnitValue:  minusToIngredients}
                 }).exec()
 
                 // Decrease Ingredients Stock by ingredients used in order/s (with multiplier)
-                var multiplierStock = getMultiplier(recipeIngredients.unit,stock.unit)
-                var minusToStock = (Number((recipeIngredients.totalUnitValue)*multiplierStock*req.body.quantity_value))*-1
+                var multiplierStock = getMultiplier(recipeIngredients[v].unit,stock.unit)
+                var minusToStock = (Number((recipeIngredients[v].totalUnitValue)*multiplierStock*req.body.quantity_value))*-1
                 console.log("MINUS TO STOCK : "+ minusToStock + stock.unit)
-                IngredientStockModel.updateOne({
-                        ingredientType:recipeIngredients.ingredientType,
-                        $inc: { totalUnitValue: minusToStock }
+                IngredientStockModel.findOneAndUpdate(
+                    {ingredientType:recipeIngredients[v].ingredientType},
+                    {$inc: { totalUnitValue: minusToStock }
                 }).exec()
-                var dailyUsage = getDailyUsage(orders,ingredients,multiplierIngredient)
-                ingredientsModel.updateOne(
-                    {ingredientType:recipeIngredients.ingredientType},
-                    { $set: {dailyUsage:dailyUsage}})
+
+                getDailyUsage(recipes,recipeIngredients[v],multiplierIngredient)
+
+            
+               
                 }
 
             }
@@ -283,23 +287,40 @@ function getMultiplier(ingredientOrderUnit,ingredientUnit){// PARAMETERS: From u
     return multiplier
 }
 
-async function getDailyUsage(orders,ingredients,multiplier){
+async function getDailyUsage(recipes,recipeIngredients,multiplier){
 
-    var daysLength = await dailyUsageModel.find({dailyUsageID:orders.dailyUsageID})
-    var orders = await orderModel.find({itemName:ingredients.ingredientType})
+    var orders = await orderModel.find({itemName:recipes.recipeName})
+    var daysLength=0
     var totalIngredientValue = 0
-
-    for(var i = 0;i< daysLength.length;i++){
-
-        var ingredientValue = await ingredientsModel.findOne({ingredientType: orders[i]})
-        if(ingredientValue !=null){
-            totalIngredientValue += ingredientValue * (orders[i].quantity*multiplier)
-        }
+    
+    console.log("ORDERS "+orders)
+    
+    for(var v=0;v<orders.length;v++){
+        daysLength = (await dailyUsageModel.find({dailyUsageID:orders[v].dailyUsageID})).length
+        console.log(daysLength)
+        totalIngredientValue +=orders[v].quantity *recipeIngredients.totalUnitValue *multiplier
+        console.log(totalIngredientValue)
     }
+    
+    
+   
 
-    var dailyUsageComputation = daysLength.length*totalIngredientValue
+    var dailyUsageComputation = totalIngredientValue/daysLength
+    console.log("DAILY USAGE IN FUNCTION: "+ dailyUsageComputation)
 
-    return dailyUsageComputation
+    console.log("Daily Usage : "+ dailyUsageComputation)
+    console.log("Recipe Ingredients : "+ recipeIngredients)
+    var dailyUsageInto = await ingredientsModel.findOneAndUpdate(
+                {ingredientType:recipeIngredients.ingredientType},
+                { $set: {dailyUsage:Number(dailyUsageComputation)}
+    })
+    var reorderPoint = dailyUsageInto.dailyUsage + dailyUsageInto.safetyStock
+    var dailyUsagePoint = await ingredientsModel.findOneAndUpdate(
+        {ingredientType:recipeIngredients.ingredientType},
+        { $set: {reorderPoint:Number(reorderPoint)}
+})
+                
+
 
 }
 module.exports = router
