@@ -1,7 +1,7 @@
 const express = require('express')
 const IngredientOrderModel = require('../models/ingredient_order')//ingredient_order table
 const manualCountModel = require('../models/manual_count')
-const discrepancieModel = require('../models/discrepancie')
+const discrepancyModel = require('../models/discrepancy')
 const spoilageModel = require('../models/spoilage')
 const UserDetailsModel = require('../models/user_details')
 const CustomerOrderModel = require('../models/customer_order')
@@ -241,13 +241,13 @@ router.post('/record_physical',async (req,res)=>{
 
        var quantityDiff = req.body.fname - ingredientStockChosen.totalUnitValue  
 
-        const ingredientDiscrepancie = new discrepancieModel({  // Put fields into Ingredient First Model
+        const ingredientDiscrepancy = new discrepancyModel({  // Put fields into Ingredient First Model
             ingredientID: req.body.ingredient_names,
             quantityDiff:quantityDiff
           })
  
     
-        discrepancieModel.create(ingredientDiscrepancie) 
+        discrepancyModel.create(ingredientDiscrepancy) 
         console.log(quantityDiff)
         
         IngredientStockModel.updateOne({ingredientName:req.body.ingredient_names},
@@ -266,7 +266,7 @@ router.post('/record_physical',async (req,res)=>{
 router.get('/view_discrepancy',async(req,res)=>{
 
     try{
-        const getViewDiscrepancy = await discrepancieModel.find({});
+        const getViewDiscrepancy = await discrepancyModel.find({});
         const getStockValue = await IngredientStockModel.find({});
         const params = { 
             discrep : getViewDiscrepancy // recipename in EJS file: recipename value retrieved
@@ -399,19 +399,6 @@ router.post('/cashier_menu',async (req,res)=>{//Happens when submitting form of 
     }
 })
 
-//Test to see if data in discrepancies are being read properly
-router.get('/test_discrepancies',async (req,res) =>{
-    
-    const Discrepancies = await discrepancieModel.find({});
-    
-    try{
-        res.render('test_discrepancies',{discrep:Discrepancies})
-        console.log(Discrepancies) //check lang
-    }catch(error){
-        res.status(500).send(error)
-    }   
-
-})
 
 router.get('/test_userDetails',async (req,res) =>{ //TEST DATA HERE (can be accessed in home page)
     

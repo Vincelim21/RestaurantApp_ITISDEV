@@ -235,7 +235,16 @@ div.content-half-box {
     margin: 2em;
 }
 
-input[type=text] {
+input.recipeoption{
+    font-size:20px;
+    border  : none;
+    padding : 0 10px;
+    margin  : 0;
+    width   : 240px;
+    background: none;
+}
+
+input[type=text] :not(.recipeoption) {
     background: white;
     border-radius: 10px;
     height: 30px;
@@ -386,7 +395,6 @@ div.ingredients_in_recipe
     width: 50%;
     padding: 10px;
 }
-
 .button1
 {
     background-color: #4CAF50; 
